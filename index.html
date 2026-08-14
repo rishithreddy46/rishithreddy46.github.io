@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rishith Reddy | Software &amp; Web Developer</title>
+<meta name="description" content="Portfolio of Rishith Reddy — Final Year B.Tech Student, Software & Web Developer" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorOutline"></div>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">
+      <span>&lt;</span>RR<span>/&gt;</span>
+    </div>
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill" id="preloaderFill"></div>
+    </div>
+    <div class="preloader-percent" id="preloaderPercent">0%</div>
+  </div>
+</div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ ANIMATED BACKGROUND BLOBS ============ -->
+<div class="bg-blobs" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+  <div class="noise-overlay"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="logo">
+      <span class="logo-bracket">&lt;</span>Rishith<span class="logo-accent">.</span><span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-section="home"><span>Home</span></a>
+      <a href="#about" class="nav-link" data-section="about"><span>About</span></a>
+      <a href="#skills" class="nav-link" data-section="skills"><span>Skills</span></a>
+      <a href="#projects" class="nav-link" data-section="projects"><span>Projects</span></a>
+      <a href="#experience" class="nav-link" data-section="experience"><span>Journey</span></a>
+      <a href="#contact" class="nav-link" data-section="contact"><span>Contact</span></a>
+      <span class="nav-indicator" id="navIndicator"></span>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-sun sun-icon"></i>
+        <i class="fa-solid fa-moon moon-icon"></i>
+        <span class="toggle-ball"></span>
+      </button>
+      <a href="#contact" class="btn btn-nav magnetic"><span>Hire Me</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" class="mobile-link">Home</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#experience" class="mobile-link">Journey</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-container">
+
+    <div class="hero-text">
+      <div class="hero-badge reveal-up">
+        <span class="pulse-dot"></span> Available for Internships &amp; Full-time Roles
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line" data-line>
+          <span class="split-text" data-split>Hi, I'm</span>
+        </span>
+        <span class="line" data-line>
+          <span class="split-text gradient-text" data-split>Rishith Reddy</span>
+        </span>
+      </h1>
+
+      <div class="hero-role reveal-up">
+        <span>I'm a</span>
+        <span class="typewriter" id="typewriter"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+
+      <p class="hero-desc reveal-up">
+        Final year B.Tech student crafting delightful digital experiences.
+        I love turning ideas into interactive, elegant, and performant
+        web applications — one line of code at a time.
+      </p>
+
+      <div class="hero-buttons reveal-up">
+        <a href="#projects" class="btn btn-primary magnetic">
+          <span>View My Work</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="assets/Rishith_Reddy_Resume.pdf" download class="btn btn-outline magnetic">
+          <span>Download CV</span>
+          <i class="fa-solid fa-download"></i>
+        </a>
+      </div>
+
+      <div class="hero-socials reveal-up">
+        <a href="https://github.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://instagram.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orbit-wrapper">
+        <div class="orbit orbit-1">
+          <span class="orbit-icon"><i class="fa-brands fa-html5"></i></span>
+        </div>
+        <div class="orbit orbit-2">
+          <span class="orbit-icon"><i class="fa-brands fa-css3-alt"></i></span>
+        </div>
+        <div class="orbit orbit-3">
+          <span class="orbit-icon"><i class="fa-brands fa-js"></i></span>
+        </div>
+        <div class="orbit orbit-4">
+          <span class="orbit-icon"><i class="fa-brands fa-react"></i></span>
+        </div>
+        <div class="orbit orbit-5">
+          <span class="orbit-icon"><i class="fa-brands fa-node-js"></i></span>
+        </div>
+        <div class="orbit orbit-6">
+          <span class="orbit-icon"><i class="fa-brands fa-git-alt"></i></span>
+        </div>
+
+        <div class="avatar-core">
+          <div class="avatar-glow"></div>
+          <div class="avatar-blob">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <div class="floating-card card-top">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Open to Work</span>
+          </div>
+          <div class="floating-card card-bottom">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>B.Tech CSE '26</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-down">
+    <div class="mouse"><span class="wheel"></span></div>
+    <span>Scroll Down</span>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="section-header">
+    <span class="section-tag reveal-up">Get To Know Me</span>
+    <h2 class="section-title reveal-up"><span class="text-outline">About</span> Me</h2>
+  </div>
+
+  <div class="about-container">
+    <div class="about-visual reveal-left">
+      <div class="about-frame" id="aboutFrame">
+        <div class="about-frame-inner">
+          <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <div class="frame-corner tl"></div>
+        <div class="frame-corner br"></div>
+        <div class="exp-badge">
+          <h3 class="counter" data-count="8.9">0</h3>
+          <p>CGPA</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <h3 class="about-heading reveal-up">
+        A Final Year Engineering Student Turning <span class="gradient-text">Curiosity</span> Into Code.
+      </h3>
+      <p class="reveal-up">
+        I'm Rishith, a Computer Science undergraduate passionate about
+        building things that live on the internet. My interest lies in
+        software development, web technologies, and solving real-world
+        problems through clean, scalable code.
+      </p>
+      <p class="reveal-up">
+        Over the past few years, I've explored full-stack development,
+        contributed to hackathons, and built projects that blend design
+        with functionality. I'm constantly learning — currently diving
+        deep into the MERN stack, DSA, and cloud fundamentals.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-box reveal-up">
+          <h3 class="counter" data-count="15">0</h3><span>+</span>
+          <p>Projects Built</p>
+        </div>
+        <div class="stat-box reveal-up">
+          <h3 class="counter" data-count="6">0</h3><span>+</span>
+          <p>Hackathons</p>
+        </div>
+        <div class="stat-box reveal-up">
+          <h3 class="counter" data-count="10">0</h3><span>+</span>
+          <p>Certifications</p>
+        </div>
+        <div class="stat-box reveal-up">
+          <h3 class="counter" data-count="4">0</h3><span>+</span>
+          <p>Years Coding</p>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn btn-primary magnetic reveal-up">
+        <span>Let's Talk</span><i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="skills" id="skills">
+  <div class="section-header">
+    <span class="section-tag reveal-up">What I Bring</span>
+    <h2 class="section-title reveal-up"><span class="text-outline">My</span> Skills</h2>
+  </div>
+
+  <div class="skills-container">
+    <div class="skills-col reveal-left">
+      <h3><i class="fa-solid fa-laptop-code"></i> Frontend Development</h3>
+      <div class="skill-bar">
+        <div class="skill-info"><span>HTML5 / CSS3</span><span>95%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>JavaScript</span><span>90%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>React.js</span><span>85%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>Tailwind CSS</span><span>88%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="88"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-col reveal-right">
+      <h3><i class="fa-solid fa-server"></i> Backend &amp; Tools</h3>
+      <div class="skill-bar">
+        <div class="skill-info"><span>Node.js / Express</span><span>82%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="82"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>Java / Python</span><span>85%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>MongoDB / MySQL</span><span>80%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-info"><span>Git / GitHub</span><span>90%</span></div>
+        <div class="bar"><div class="bar-fill" data-width="90"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-wrapper reveal-up">
+    <div class="marquee-track">
+      <span><i class="fa-brands fa-html5"></i> HTML5</span>
+      <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+      <span><i class="fa-brands fa-js"></i> JavaScript</span>
+      <span><i class="fa-brands fa-react"></i> React</span>
+      <span><i class="fa-brands fa-node-js"></i> Node.js</span>
+      <span><i class="fa-brands fa-python"></i> Python</span>
+      <span><i class="fa-brands fa-java"></i> Java</span>
+      <span><i class="fa-brands fa-git-alt"></i> Git</span>
+      <span><i class="fa-brands fa-github"></i> GitHub</span>
+      <span><i class="fa-brands fa-figma"></i> Figma</span>
+      <!-- duplicate for seamless loop -->
+      <span><i class="fa-brands fa-html5"></i> HTML5</span>
+      <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+      <span><i class="fa-brands fa-js"></i> JavaScript</span>
+      <span><i class="fa-brands fa-react"></i> React</span>
+      <span><i class="fa-brands fa-node-js"></i> Node.js</span>
+      <span><i class="fa-brands fa-python"></i> Python</span>
+      <span><i class="fa-brands fa-java"></i> Java</span>
+      <span><i class="fa-brands fa-git-alt"></i> Git</span>
+      <span><i class="fa-brands fa-github"></i> GitHub</span>
+      <span><i class="fa-brands fa-figma"></i> Figma</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <div class="section-header">
+    <span class="section-tag reveal-up">My Recent Work</span>
+    <h2 class="section-title reveal-up"><span class="text-outline">Featured</span> Projects</h2>
+  </div>
+
+  <div class="filter-bar reveal-up">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="web">Web Apps</button>
+    <button class="filter-btn" data-filter="ui">UI / Design</button>
+    <button class="filter-btn" data-filter="ml">AI / ML</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card tilt-card reveal-up" data-category="web">
+      <div class="project-media grad-1">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Web App</span>
+        <h3>ShopSphere — E-Commerce Platform</h3>
+        <p>MERN stack shopping platform with cart, auth, and payment gateway integration.</p>
+        <div class="tech-tags">
+          <span>React</span><span>Node.js</span><span>MongoDB</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card tilt-card reveal-up" data-category="ml">
+      <div class="project-media grad-2">
+        <i class="fa-solid fa-brain"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">AI / ML</span>
+        <h3>PredictIQ — Student Performance Predictor</h3>
+        <p>ML model that predicts academic performance using regression algorithms.</p>
+        <div class="tech-tags">
+          <span>Python</span><span>Scikit-learn</span><span>Flask</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card tilt-card reveal-up" data-category="web">
+      <div class="project-media grad-3">
+        <i class="fa-solid fa-comments"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Web App</span>
+        <h3>ChatSync — Realtime Chat App</h3>
+        <p>Real-time messaging app using Socket.io with rooms and typing indicators.</p>
+        <div class="tech-tags">
+          <span>React</span><span>Socket.io</span><span>Express</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card tilt-card reveal-up" data-category="ui">
+      <div class="project-media grad-4">
+        <i class="fa-solid fa-palette"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">UI / Design</span>
+        <h3>Fintrack — Finance Dashboard UI</h3>
+        <p>Sleek, data-rich dashboard concept for tracking personal expenses.</p>
+        <div class="tech-tags">
+          <span>Figma</span><span>Tailwind</span><span>Chart.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card tilt-card reveal-up" data-category="web">
+      <div class="project-media grad-5">
+        <i class="fa-solid fa-list-check"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Web App</span>
+        <h3>TaskFlow — Collaborative Task Manager</h3>
+        <p>Kanban-style productivity app with drag-and-drop and team boards.</p>
+        <div class="tech-tags">
+          <span>React</span><span>Firebase</span><span>DnD Kit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card tilt-card reveal-up" data-category="ml">
+      <div class="project-media grad-6">
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+        <div class="project-overlay">
+          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">AI / ML</span>
+        <h3>SentiSense — Sentiment Analyzer</h3>
+        <p>NLP based tool to analyze sentiment from tweets and reviews in real time.</p>
+        <div class="tech-tags">
+          <span>Python</span><span>NLTK</span><span>Streamlit</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE / EDUCATION ============ -->
+<section class="experience" id="experience">
+  <div class="section-header">
+    <span class="section-tag reveal-up">My Journey</span>
+    <h2 class="section-title reveal-up"><span class="text-outline">Education</span> &amp; Experience</h2>
+  </div>
+
+  <div class="timeline" id="timeline">
+    <div class="timeline-line" id="timelineLine"></div>
+
+    <div class="timeline-item left reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">2022 — 2026</span>
+        <h3>B.Tech in Computer Science</h3>
+        <h4>XYZ Institute of Technology</h4>
+        <p>Pursuing Computer Science Engineering with focus on web development, DSA, and software engineering principles. Current CGPA: 8.9/10.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right reveal-right">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">Summer 2024</span>
+        <h3>Web Development Intern</h3>
+        <h4>ABC Technologies Pvt. Ltd.</h4>
+        <p>Built and optimized responsive web interfaces using React.js, improving load performance by 30% and collaborating with a 5-member agile team.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left reveal-left">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">2023</span>
+        <h3>Smart India Hackathon — Finalist</h3>
+        <h4>Ministry of Education, Govt. of India</h4>
+        <p>Led a team of 6 to build a full-stack solution for smart campus management, reaching the national finals among 500+ teams.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right reveal-right">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">2020 — 2022</span>
+        <h3>Higher Secondary Education (MPC)</h3>
+        <h4>ABC Junior College</h4>
+        <p>Completed intermediate education with a focus on Mathematics, Physics &amp; Computer Science, scoring 96%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <span class="section-tag reveal-up">Get In Touch</span>
+    <h2 class="section-title reveal-up"><span class="text-outline">Contact</span> Me</h2>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-info reveal-left">
+      <h3>Let's build something <span class="gradient-text">amazing</span> together.</h3>
+      <p>Have a project in mind, an internship opportunity, or just want to say hi? My inbox is always open.</p>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div><span>Email</span><p>rishith.reddy@example.com</p></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+        <div><span>Phone</span><p>+91 98765 43210</p></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div><span>Location</span><p>Hyderabad, India</p></div>
+      </div>
+
+      <div class="hero-socials">
+        <a href="https://github.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://instagram.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-right" id="contactForm">
+      <div class="form-group">
+        <input type="text" id="name" required />
+        <label for="name">Your Name</label>
+        <span class="form-line"></span>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" required />
+        <label for="email">Your Email</label>
+        <span class="form-line"></span>
+      </div>
+      <div class="form-group">
+        <input type="text" id="subject" required />
+        <label for="subject">Subject</label>
+        <span class="form-line"></span>
+      </div>
+      <div class="form-group">
+        <textarea id="message" rows="5" required></textarea>
+        <label for="message">Your Message</label>
+        <span class="form-line"></span>
+      </div>
+      <button type="submit" class="btn btn-primary magnetic full-width">
+        <span id="submitText">Send Message</span>
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+      <div class="form-success" id="formSuccess">
+        <i class="fa-solid fa-circle-check"></i> Message sent successfully!
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-container">
+    <a href="#home" class="logo">
+      <span class="logo-bracket">&lt;</span>Rishith<span class="logo-accent">.</span><span class="logo-bracket">/&gt;</span>
+    </a>
+    <p>Designed &amp; Built with <i class="fa-solid fa-heart"></i> by Rishith Reddy</p>
+    <p class="copyright">&copy; <span id="year"></span> All Rights Reserved.</p>
+  </div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
