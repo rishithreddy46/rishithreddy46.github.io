@@ -192,7 +192,7 @@ function initRoleTyping() {
 
   const roles = [
     "Full-Stack Software Developer",
-    "B.Tech EIE @ VNR VJIET (CGPA 7.50)",
+    "B.Tech EIE (7th Sem) @ VNR VJIET",
     "Embedded Systems & IoT Innovator",
     "AWS Cloud Specialist",
     "Published GNN/ML Researcher (ICAMSTA-2025)",
@@ -242,14 +242,14 @@ function initTerminalEngine() {
   const commands = {
     help: () => `
 <span class="term-cmd-highlight">AVAILABLE COMMANDS:</span>
-  • <b style="color:var(--cyan);">about</b>       : Read full bio, background & core philosophy
+  • <b style="color:var(--cyan);">about</b>       : Read bio, engineering philosophy & background
   • <b style="color:var(--cyan);">skills</b>      : Display categorized technical proficiency matrix
   • <b style="color:var(--cyan);">projects</b>    : Explore academic & full-stack software projects
   • <b style="color:var(--cyan);">experience</b>  : Timeline of internships (Infosys, AWS, Internshala)
-  • <b style="color:var(--cyan);">edu</b>         : Academic credentials (VNR VJIET, Narayana)
+  • <b style="color:var(--cyan);">edu</b>         : Academic credentials (VNR VJIET 7th Sem, Narayana)
   • <b style="color:var(--cyan);">patent</b>      : 1st Prize Patent Summit & hardware innovation
   • <b style="color:var(--cyan);">paper</b>       : ICAMSTA-2025 GNN research paper details
-  • <b style="color:var(--cyan);">resume</b>      : Launch live resume PDF viewer / download
+  • <b style="color:var(--cyan);">resume</b>      : Launch live address-less resume PDF viewer / download
   • <b style="color:var(--cyan);">contact</b>     : Direct communication coordinates (Email, Phone, LinkedIn)
   • <b style="color:var(--cyan);">hire</b>        : Open immediate interview / collaboration dialog
   • <b style="color:var(--cyan);">clear</b>       : Clear console buffer
@@ -257,32 +257,32 @@ function initTerminalEngine() {
 
     about: () => `
 <b style="color:var(--gold);">CHILUKA RISHITH REDDY</b> — Full-Stack Developer & Embedded Systems Specialist
-Pursuing B.Tech in Electronics & Instrumentation Engineering (EIE) at VNR VJIET, Hyderabad (CGPA: 7.50).
-Passionate about building resilient distributed web systems (Django, React, PostgreSQL) integrated seamlessly with IoT telemetry & cloud infrastructure (AWS).
+Pursuing B.Tech in Electronics & Instrumentation Engineering (EIE, 7th Sem) at VNR VJIET, Hyderabad.
+Core focus on reliable embedded systems, control engineering, full-stack web platforms (React.js, Django REST, PostgreSQL), AWS cloud infrastructure, and deep learning research.
     `,
 
     skills: () => `
-<b style="color:var(--cyan);">[PROGRAMMING LANGUAGES]</b> : Python, JavaScript (ES6+), C / Embedded C, Arduino, HTML5, CSS3, SQL
-<b style="color:var(--purple);">[FRAMEWORKS & LIBS]</b>    : Django, Django REST Framework, React.js, Streamlit, Bootstrap, Tailwind
-<b style="color:var(--gold);">[HARDWARE & IoT]</b>        : Arduino, ESP32, NI LabVIEW, NI Multisim, MATLAB, Sensors & Actuators, Auto-CAD
-<b style="color:var(--emerald);">[CLOUD & DEV TOOLS]</b>      : AWS (EC2, S3, Lambda, IAM), Git, GitHub, PostgreSQL, SQLite, VS Code
+<b style="color:var(--cyan);">[PROGRAMMING LANGUAGES]</b> : Python (NPTEL Elite), C / Embedded C, JavaScript (ES6+), HTML5, CSS3, SQL
+<b style="color:var(--purple);">[BACKEND & WEB APIS]</b>    : Django, Django REST Framework (DRF), JWT Authentication, React.js, Streamlit
+<b style="color:var(--gold);">[HARDWARE & IoT]</b>        : Arduino, ESP32, NI Multisim, NI LabVIEW, MATLAB, Sensors & Actuators
+<b style="color:var(--emerald);">[CLOUD & DATABASES]</b>      : AWS (EC2, S3, Lambda, IAM), PostgreSQL, SQLite, Git, GitHub, VS Code
     `,
 
     projects: () => `
-1. <b style="color:var(--cyan);">TalentLink / Taskera</b> : Freelance marketplace platform (React, Django REST, PostgreSQL, JWT Auth).
-2. <b style="color:var(--gold);">HeavyHaul Pro</b>        : Uber for Heavy Machinery & Contract Vehicles (Django REST, Leaflet Radar, Dynamic Billing).
-3. <b style="color:var(--purple);">Smart EV Dashboard</b>   : Real-time IoT battery & vehicle telemetry dashboard (Arduino, Streamlit, NI Multisim).
-4. <b style="color:var(--emerald);">Campus Career Hub</b>    : Student job readiness portal with ATS resume builders & mock interview tools.
+1. <b style="color:var(--cyan);">Taskera / TalentLink</b> : Freelance marketplace platform (React, Django REST, PostgreSQL, JWT Auth).
+2. <b style="color:var(--purple);">Smart EV Dashboard</b>   : Real-time IoT battery & vehicle telemetry dashboard (Arduino, React.js, Streamlit, Django REST).
+3. <b style="color:var(--gold);">HeavyHaul Pro</b>        : Heavy Machinery & Contract Vehicle Dispatch Ecosystem (Django REST, Leaflet Radar).
+4. <b style="color:var(--emerald);">SP-GNN Fault Detector</b> : Statistical Physics-Informed Graph Neural Network for sensor array uncertainty quantification.
     `,
 
     experience: () => `
-• <b style="color:var(--cyan);">Infosys Springboard</b> (11/2025 - 01/2026) : "Taskera" freelance matchmaking platform development.
+• <b style="color:var(--cyan);">Infosys Springboard</b> (11/2025 - 01/2026) : "Taskera" freelance marketplace platform.
 • <b style="color:var(--purple);">Internship Studio</b> (07/2025 - 01/2026) : 6-Month AWS Cloud Engineering internship (EC2, S3, IAM, Lambda).
 • <b style="color:var(--gold);">Internshala / NSDC</b> (06/2025 - 08/2025) : Govt.-affiliated Full-Stack Web Development internship.
     `,
 
     edu: () => `
-• <b style="color:var(--cyan);">B.Tech in EIE (2023 - 2027)</b> : VNR Vignana Jyothi Institute of Engineering and Technology | CGPA: 7.50
+• <b style="color:var(--cyan);">B.Tech in EIE (2023 - 2027)</b> : VNR Vignana Jyothi Institute of Engineering & Technology (7th Sem)
 • <b style="color:var(--purple);">Intermediate MPC (2021 - 2023)</b> : Narayana Junior College | Score: 91.7%
 • <b style="color:var(--gold);">SSC (2021)</b> : Narayana High School | GPA: 10.0 / 10.0
     `,
@@ -299,14 +299,14 @@ Awarded at the National Workshop on Patent Analytics and Filing Framework, VNR V
 
     resume: () => {
       openResumeModal();
-      return `Launching official resume viewer... You can also download directly via <a href="/resume.pdf" download style="color:var(--cyan); text-decoration:underline;">resume.pdf</a>`;
+      return `Launching official address-less resume viewer... You can also download directly via <a href="/resume.pdf" download style="color:var(--cyan); text-decoration:underline;">resume.pdf</a>`;
     },
 
     contact: () => `
 • <b>Email</b>: <a href="mailto:rishithreddyc45@gmail.com" style="color:var(--cyan);">rishithreddyc45@gmail.com</a>
 • <b>Phone</b>: <a href="tel:+919494105486" style="color:var(--gold);">+91 9494105486</a>
 • <b>GitHub</b>: <a href="https://github.com/rishithreddy46" target="_blank" style="color:var(--purple);">github.com/rishithreddy46</a>
-• <b>Location</b>: Teachers Colony, BN Reddy, Ranga Reddy, Telangana, India - 500070
+• <b>Location</b>: Hyderabad, Telangana, India &bull; PIN: 500070
     `,
 
     hire: () => {
@@ -538,7 +538,7 @@ function initContactForm() {
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-msg').value;
 
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const subject = encodeURIComponent(`Portfolio Dispatch from ${name}`);
     const body = encodeURIComponent(`Hi Rishith,\n\n${message}\n\nFrom: ${name} (${email})`);
     
     // Open default email client
