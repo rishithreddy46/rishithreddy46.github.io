@@ -1,1 +1,1 @@
-# rishithreddy46.github.ioedf
+# rishithreddy46.github.io
