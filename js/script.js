@@ -1,451 +1,550 @@
-/* ============================================================
-   PORTFOLIO SCRIPT — Rishith Reddy
-   All interactivity & animations
-============================================================ */
+/**
+ * CHILUKA RISHITH REDDY - PORTFOLIO INTERACTIVE APPLICATION ENGINE
+ * Particle constellation canvas, 3D tilt cards, interactive RishithOS CLI,
+ * dynamic typing, project filter, resume modal, and magnetic cursor.
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
+  initCustomCursor();
+  initParticleCanvas();
+  initRoleTyping();
+  initTerminalEngine();
+  initProjectFiltering();
+  initSkillTabs();
+  initScrollSpyAndNav();
+  init3DCardTilt();
+  initResumeModal();
+  initContactForm();
+});
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* ==========================================================
-     0. PRELOADER
-  ========================================================== */
+// ==========================================================================
+// 1. PRELOADER
+// ==========================================================================
+function initPreloader() {
   const preloader = document.getElementById('preloader');
-  const preloaderFill = document.getElementById('preloaderFill');
-  const preloaderPercent = document.getElementById('preloaderPercent');
+  const progressBar = document.getElementById('preloader-progress');
+  const statusText = document.getElementById('preloader-status');
 
-  let progress = 0;
-  const loadInterval = setInterval(() => {
-    progress += Math.random() * 18;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(loadInterval);
-      preloaderFill.style.width = '100%';
-      preloaderPercent.textContent = '100%';
+  let width = 0;
+  const interval = setInterval(() => {
+    width += Math.floor(Math.random() * 18) + 8;
+    if (width > 100) width = 100;
+    
+    if (progressBar) progressBar.style.width = width + '%';
+    if (statusText) statusText.textContent = `INITIALIZING SYSTEM... ${width}%`;
+
+    if (width >= 100) {
+      clearInterval(interval);
       setTimeout(() => {
-        preloader.classList.add('loaded');
-        document.body.style.overflow = '';
-        playHeroIntro();
-        ScrollTrigger.refresh();
-      }, 400);
-    } else {
-      preloaderFill.style.width = progress + '%';
-      preloaderPercent.textContent = Math.floor(progress) + '%';
+        if (preloader) preloader.classList.add('hidden');
+      }, 350);
     }
-  }, 150);
+  }, 40);
+}
 
-  document.body.style.overflow = 'hidden';
+// ==========================================================================
+// 2. MAGNETIC CUSTOM CURSOR
+// ==========================================================================
+function initCustomCursor() {
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorOutline = document.getElementById('cursor-outline');
+  if (!cursorDot || !cursorOutline) return;
 
-  /* ==========================================================
-     1. CUSTOM CURSOR
-  ========================================================== */
-  const cursorDot = document.getElementById('cursorDot');
-  const cursorOutline = document.getElementById('cursorOutline');
-  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  let mouseX = 0, mouseY = 0;
+  let outlineX = 0, outlineY = 0;
 
-  if (!isTouch) {
-    let mouseX = 0, mouseY = 0;
-    let outlineX = 0, outlineY = 0;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = `${mouseX}px`;
+    cursorDot.style.top = `${mouseY}px`;
+  });
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
-    });
+  // Smooth lerp for outer ring
+  function animateCursor() {
+    outlineX += (mouseX - outlineX) * 0.18;
+    outlineY += (mouseY - outlineY) * 0.18;
+    cursorOutline.style.left = `${outlineX}px`;
+    cursorOutline.style.top = `${outlineY}px`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
 
-    function animateOutline() {
-      outlineX += (mouseX - outlineX) * 0.18;
-      outlineY += (mouseY - outlineY) * 0.18;
-      cursorOutline.style.left = outlineX + 'px';
-      cursorOutline.style.top = outlineY + 'px';
-      requestAnimationFrame(animateOutline);
+  // Hover magnet expansions
+  const hoverables = document.querySelectorAll('a, button, input, textarea, .project-3d-card, .skill-card-item, .spotlight-card, .term-chip-btn');
+  hoverables.forEach(el => {
+    el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+  });
+}
+
+// ==========================================================================
+// 3. INTERACTIVE PARTICLE CONSTELLATION CANVAS
+// ==========================================================================
+function initParticleCanvas() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const particles = [];
+  const particleCount = Math.min(width > 768 ? 75 : 35, 90);
+  const mouse = { x: null, y: null, radius: 140 };
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  // Particle Class
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * 2 + 1;
+      this.vx = (Math.random() - 0.5) * 0.8;
+      this.vy = (Math.random() - 0.5) * 0.8;
+      this.color = Math.random() > 0.6 ? '#00F0FF' : (Math.random() > 0.5 ? '#8B5CF6' : '#FFB703');
     }
-    animateOutline();
 
-    const hoverTargets = 'a, button, .magnetic, .project-card, .stat-box, input, textarea, .filter-btn';
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverTargets)) cursorOutline.classList.add('hovered');
-    });
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverTargets)) cursorOutline.classList.remove('hovered');
-    });
-  } else {
-    cursorDot.style.display = 'none';
-    cursorOutline.style.display = 'none';
-  }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
 
-  /* ==========================================================
-     2. SCROLL PROGRESS BAR
-  ========================================================== */
-  const scrollProgress = document.getElementById('scrollProgress');
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = (scrollTop / docHeight) * 100;
-    scrollProgress.style.width = pct + '%';
-  });
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
 
-  /* ==========================================================
-     3. NAVBAR: scroll shrink + active link indicator
-  ========================================================== */
-  const navbar = document.getElementById('navbar');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const navIndicator = document.getElementById('navIndicator');
-  const sections = document.querySelectorAll('main section, .hero');
-
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-    toggleBackToTop();
-  });
-
-  function moveIndicator(el) {
-    if (!el) return;
-    navIndicator.style.width = el.offsetWidth + 'px';
-    navIndicator.style.transform = `translateX(${el.offsetLeft}px)`;
-  }
-
-  function setActiveLink(link) {
-    navLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-    moveIndicator(link);
-  }
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => setActiveLink(link));
-    link.addEventListener('mouseenter', () => moveIndicator(link));
-  });
-
-  document.querySelector('.nav-links').addEventListener('mouseleave', () => {
-    const activeLink = document.querySelector('.nav-link.active');
-    moveIndicator(activeLink);
-  });
-
-  // init indicator position after fonts/layout settle
-  window.addEventListener('load', () => {
-    moveIndicator(document.querySelector('.nav-link.active'));
-  });
-
-  // IntersectionObserver to update active link on scroll
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        const matchingLink = document.querySelector(`.nav-link[data-section="${id}"]`);
-        if (matchingLink) setActiveLink(matchingLink);
+      // Mouse interaction
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 3;
+          this.y -= (dy / dist) * force * 3;
+        }
       }
-    });
-  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-
-  sections.forEach(sec => { if (sec.id) sectionObserver.observe(sec); });
-
-  /* ==========================================================
-     4. MOBILE MENU
-  ========================================================== */
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-  });
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('active');
-    });
-  });
-
-  /* ==========================================================
-     5. THEME TOGGLE
-  ========================================================== */
-  const themeToggle = document.getElementById('themeToggle');
-  const root = document.documentElement;
-  const savedTheme = localStorage.getItem('portfolio-theme');
-  if (savedTheme) root.setAttribute('data-theme', savedTheme);
-
-  themeToggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    if (current === 'light') {
-      root.setAttribute('data-theme', 'light');
-    } else {
-      root.removeAttribute('data-theme');
     }
-    localStorage.setItem('portfolio-theme', current);
-  });
 
-  /* ==========================================================
-     6. MAGNETIC BUTTONS
-  ========================================================== */
-  if (!isTouch) {
-    document.querySelectorAll('.magnetic').forEach(el => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        gsap.to(el, { x: x * 0.35, y: y * 0.45, duration: 0.4, ease: 'power2.out' });
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-      });
-    });
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+    }
   }
 
-  /* ==========================================================
-     7. HERO INTRO ANIMATION (Compound / Timeline)
-  ========================================================== */
-  function playHeroIntro() {
-    const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-    tl.from('.hero-badge', { y: -30, opacity: 0, duration: 0.7 })
-      .from('[data-line] [data-split]', {
-        y: '110%',
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15
-      }, '-=0.3')
-      .from('.hero-role', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.hero-desc', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.hero-buttons', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.hero-socials', { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.orbit-wrapper', { scale: 0.5, opacity: 0, duration: 1.2, ease: 'elastic.out(1, 0.6)' }, '-=1.2')
-      .from('.scroll-down', { opacity: 0, y: -10, duration: 0.6 }, '-=0.4');
-
-    // remove reveal-up class effect duplication on hero-badge etc. (already animated via GSAP -> mark in-view)
-    document.querySelectorAll('.hero .reveal-up').forEach(el => el.classList.add('in-view'));
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
   }
 
-  /* ==========================================================
-     8. TYPEWRITER EFFECT
-  ========================================================== */
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+
+      // Connect lines
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 240, 255, ${0.18 * (1 - dist / 110)})`;
+          ctx.lineWidth = 0.75;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// ==========================================================================
+// 4. DYNAMIC ROLE TYPING EFFECT
+// ==========================================================================
+function initRoleTyping() {
+  const roleEl = document.getElementById('typed-role-text');
+  if (!roleEl) return;
+
   const roles = [
-    'Web Developer',
-    'Software Engineer',
-    'Full-Stack Enthusiast',
-    'Problem Solver',
-    'B.Tech Final Year Student'
+    "Full-Stack Software Developer",
+    "B.Tech EIE @ VNR VJIET (CGPA 7.50)",
+    "Embedded Systems & IoT Innovator",
+    "AWS Cloud Specialist",
+    "Published GNN/ML Researcher (ICAMSTA-2025)",
+    "1st Prize Patent Summit Winner"
   ];
-  const typewriterEl = document.getElementById('typewriter');
-  let roleIndex = 0, charIndex = 0, isDeleting = false;
 
-  function typeLoop() {
-    const currentRole = roles[roleIndex];
-    if (!isDeleting) {
-      charIndex++;
-      typewriterEl.textContent = currentRole.substring(0, charIndex);
-      if (charIndex === currentRole.length) {
-        isDeleting = true;
-        setTimeout(typeLoop, 1600);
-        return;
+  let roleIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+  let typingSpeed = 75;
+
+  function typeStep() {
+    const currentRole = roles[roleIdx];
+
+    if (isDeleting) {
+      charIdx--;
+      roleEl.textContent = currentRole.substring(0, charIdx);
+      typingSpeed = 35;
+    } else {
+      charIdx++;
+      roleEl.textContent = currentRole.substring(0, charIdx);
+      typingSpeed = 75;
+    }
+
+    if (!isDeleting && charIdx === currentRole.length) {
+      isDeleting = true;
+      typingSpeed = 1800; // Pause at end
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+      typingSpeed = 400; // Pause before next role
+    }
+
+    setTimeout(typeStep, typingSpeed);
+  }
+  typeStep();
+}
+
+// ==========================================================================
+// 5. INTERACTIVE RishithOS CLI TERMINAL ENGINE
+// ==========================================================================
+function initTerminalEngine() {
+  const terminalBody = document.getElementById('terminal-output');
+  const inputField = document.getElementById('terminal-input');
+  if (!terminalBody || !inputField) return;
+
+  const commands = {
+    help: () => `
+<span class="term-cmd-highlight">AVAILABLE COMMANDS:</span>
+  • <b style="color:var(--cyan);">about</b>       : Read full bio, background & core philosophy
+  • <b style="color:var(--cyan);">skills</b>      : Display categorized technical proficiency matrix
+  • <b style="color:var(--cyan);">projects</b>    : Explore academic & full-stack software projects
+  • <b style="color:var(--cyan);">experience</b>  : Timeline of internships (Infosys, AWS, Internshala)
+  • <b style="color:var(--cyan);">edu</b>         : Academic credentials (VNR VJIET, Narayana)
+  • <b style="color:var(--cyan);">patent</b>      : 1st Prize Patent Summit & hardware innovation
+  • <b style="color:var(--cyan);">paper</b>       : ICAMSTA-2025 GNN research paper details
+  • <b style="color:var(--cyan);">resume</b>      : Launch live resume PDF viewer / download
+  • <b style="color:var(--cyan);">contact</b>     : Direct communication coordinates (Email, Phone, LinkedIn)
+  • <b style="color:var(--cyan);">hire</b>        : Open immediate interview / collaboration dialog
+  • <b style="color:var(--cyan);">clear</b>       : Clear console buffer
+    `,
+
+    about: () => `
+<b style="color:var(--gold);">CHILUKA RISHITH REDDY</b> — Full-Stack Developer & Embedded Systems Specialist
+Pursuing B.Tech in Electronics & Instrumentation Engineering (EIE) at VNR VJIET, Hyderabad (CGPA: 7.50).
+Passionate about building resilient distributed web systems (Django, React, PostgreSQL) integrated seamlessly with IoT telemetry & cloud infrastructure (AWS).
+    `,
+
+    skills: () => `
+<b style="color:var(--cyan);">[PROGRAMMING LANGUAGES]</b> : Python, JavaScript (ES6+), C / Embedded C, Arduino, HTML5, CSS3, SQL
+<b style="color:var(--purple);">[FRAMEWORKS & LIBS]</b>    : Django, Django REST Framework, React.js, Streamlit, Bootstrap, Tailwind
+<b style="color:var(--gold);">[HARDWARE & IoT]</b>        : Arduino, ESP32, NI LabVIEW, NI Multisim, MATLAB, Sensors & Actuators, Auto-CAD
+<b style="color:var(--emerald);">[CLOUD & DEV TOOLS]</b>      : AWS (EC2, S3, Lambda, IAM), Git, GitHub, PostgreSQL, SQLite, VS Code
+    `,
+
+    projects: () => `
+1. <b style="color:var(--cyan);">TalentLink / Taskera</b> : Freelance marketplace platform (React, Django REST, PostgreSQL, JWT Auth).
+2. <b style="color:var(--gold);">HeavyHaul Pro</b>        : Uber for Heavy Machinery & Contract Vehicles (Django REST, Leaflet Radar, Dynamic Billing).
+3. <b style="color:var(--purple);">Smart EV Dashboard</b>   : Real-time IoT battery & vehicle telemetry dashboard (Arduino, Streamlit, NI Multisim).
+4. <b style="color:var(--emerald);">Campus Career Hub</b>    : Student job readiness portal with ATS resume builders & mock interview tools.
+    `,
+
+    experience: () => `
+• <b style="color:var(--cyan);">Infosys Springboard</b> (11/2025 - 01/2026) : "Taskera" freelance matchmaking platform development.
+• <b style="color:var(--purple);">Internship Studio</b> (07/2025 - 01/2026) : 6-Month AWS Cloud Engineering internship (EC2, S3, IAM, Lambda).
+• <b style="color:var(--gold);">Internshala / NSDC</b> (06/2025 - 08/2025) : Govt.-affiliated Full-Stack Web Development internship.
+    `,
+
+    edu: () => `
+• <b style="color:var(--cyan);">B.Tech in EIE (2023 - 2027)</b> : VNR Vignana Jyothi Institute of Engineering and Technology | CGPA: 7.50
+• <b style="color:var(--purple);">Intermediate MPC (2021 - 2023)</b> : Narayana Junior College | Score: 91.7%
+• <b style="color:var(--gold);">SSC (2021)</b> : Narayana High School | GPA: 10.0 / 10.0
+    `,
+
+    patent: () => `
+<b style="color:var(--gold);">🏆 1st PRIZE WINNER — PATENT SUMMIT COMPETITION</b>
+Awarded at the National Workshop on Patent Analytics and Filing Framework, VNR VJIET for innovative hardware-software intellectual property design.
+    `,
+
+    paper: () => `
+<b style="color:var(--cyan);">📄 RESEARCH PAPER PRESENTATION @ ICAMSTA-2025 (Osmania University):</b>
+<i>"Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN) for Robust Fault Detection and Uncertainty Quantification in Distributed Sensor Systems"</i>
+    `,
+
+    resume: () => {
+      openResumeModal();
+      return `Launching official resume viewer... You can also download directly via <a href="/resume.pdf" download style="color:var(--cyan); text-decoration:underline;">resume.pdf</a>`;
+    },
+
+    contact: () => `
+• <b>Email</b>: <a href="mailto:rishithreddyc45@gmail.com" style="color:var(--cyan);">rishithreddyc45@gmail.com</a>
+• <b>Phone</b>: <a href="tel:+919494105486" style="color:var(--gold);">+91 9494105486</a>
+• <b>GitHub</b>: <a href="https://github.com/rishithreddy46" target="_blank" style="color:var(--purple);">github.com/rishithreddy46</a>
+• <b>Location</b>: Teachers Colony, BN Reddy, Ranga Reddy, Telangana, India - 500070
+    `,
+
+    hire: () => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+      return `<b style="color:var(--emerald);">Routing you to the Direct Connect form... Let's build something extraordinary!</b>`;
+    },
+
+    clear: () => {
+      terminalBody.innerHTML = '';
+      return '';
+    }
+  };
+
+  function executeCommand(input) {
+    const trimmed = input.trim().toLowerCase();
+    if (!trimmed) return;
+
+    const cmdRow = document.createElement('div');
+    cmdRow.innerHTML = `<span class="term-line-prefix">rishith@terminal:~$</span> <span class="term-cmd-highlight">${input}</span>`;
+    terminalBody.appendChild(cmdRow);
+
+    if (commands[trimmed]) {
+      const output = commands[trimmed]();
+      if (output) {
+        const outRow = document.createElement('div');
+        outRow.style.margin = '4px 0 10px 0';
+        outRow.innerHTML = output;
+        terminalBody.appendChild(outRow);
       }
     } else {
-      charIndex--;
-      typewriterEl.textContent = currentRole.substring(0, charIndex);
-      if (charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-      }
+      const errorRow = document.createElement('div');
+      errorRow.style.color = '#F43F5E';
+      errorRow.style.margin = '4px 0 10px 0';
+      errorRow.innerHTML = `Command not recognized: "${trimmed}". Type <b style="color:var(--cyan);">help</b> to see all available commands.`;
+      terminalBody.appendChild(errorRow);
     }
-    setTimeout(typeLoop, isDeleting ? 40 : 90);
+
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+    inputField.value = '';
   }
-  typeLoop();
 
-  /* ==========================================================
-     9. SCROLL REVEAL ANIMATIONS (reveal-up/left/right)
-  ========================================================== */
-  const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('in-view'), i * 60);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-  revealEls.forEach(el => {
-    // hero elements are already handled by GSAP timeline
-    if (!el.closest('.hero')) revealObserver.observe(el);
+  inputField.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      executeCommand(inputField.value);
+    }
   });
 
-  /* ==========================================================
-     10. COUNTER ANIMATION
-  ========================================================== */
-  const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
+  // Quick Chips
+  document.querySelectorAll('.term-chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.dataset.cmd;
+      executeCommand(cmd);
     });
-  }, { threshold: 0.5 });
-  counters.forEach(c => counterObserver.observe(c));
+  });
+}
 
-  function animateCounter(el) {
-    const target = parseFloat(el.getAttribute('data-count'));
-    const isDecimal = target % 1 !== 0;
-    let current = 0;
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function update(time) {
-      const elapsed = time - startTime;
-      const progressRatio = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progressRatio, 3);
-      current = target * eased;
-      el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
-      if (progressRatio < 1) requestAnimationFrame(update);
-      else el.textContent = isDecimal ? target.toFixed(1) : target;
-    }
-    requestAnimationFrame(update);
-  }
-
-  /* ==========================================================
-     11. SKILL BARS ANIMATION
-  ========================================================== */
-  const barFills = document.querySelectorAll('.bar-fill');
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const width = entry.target.getAttribute('data-width');
-        entry.target.style.width = width + '%';
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  barFills.forEach(b => barObserver.observe(b));
-
-  /* ==========================================================
-     12. PROJECT FILTER
-  ========================================================== */
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  function applyFilter(filter) {
-    projectCards.forEach(card => {
-      const match = filter === 'all' || card.getAttribute('data-category') === filter;
-      card.classList.toggle('show', match);
-      if (match) {
-        gsap.fromTo(card, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
-      }
-    });
-  }
-  applyFilter('all');
+// ==========================================================================
+// 6. PROJECTS MASONRY FILTERING
+// ==========================================================================
+function initProjectFiltering() {
+  const filterBtns = document.querySelectorAll('.proj-filter-btn');
+  const cards = document.querySelectorAll('.project-3d-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      applyFilter(btn.getAttribute('data-filter'));
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.opacity = '1';
+          }, 50);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// ==========================================================================
+// 7. SKILLS CATEGORY TABS
+// ==========================================================================
+function initSkillTabs() {
+  const tabBtns = document.querySelectorAll('.skill-tab-btn');
+  const skillCards = document.querySelectorAll('.skill-card-item');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cat = btn.dataset.cat;
+      skillCards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
   });
 
-  /* ==========================================================
-     13. TILT EFFECT ON PROJECT CARDS & ABOUT FRAME
-  ========================================================== */
-  if (!isTouch) {
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-        gsap.to(card, {
-          rotateX, rotateY,
-          transformPerspective: 900,
-          duration: 0.4,
-          ease: 'power2.out'
+  // Trigger progress bar widths on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.skill-bar-fill');
+        fills.forEach(fill => {
+          fill.style.width = fill.dataset.width;
         });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
-      });
-    });
-
-    const aboutFrame = document.getElementById('aboutFrame');
-    if (aboutFrame) {
-      aboutFrame.addEventListener('mousemove', (e) => {
-        const rect = aboutFrame.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateX = ((y - rect.height / 2) / rect.height) * -14;
-        const rotateY = ((x - rect.width / 2) / rect.width) * 14;
-        gsap.to(aboutFrame, { rotateX, rotateY, transformPerspective: 900, duration: 0.4, ease: 'power2.out' });
-      });
-      aboutFrame.addEventListener('mouseleave', () => {
-        gsap.to(aboutFrame, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
-      });
-    }
-  }
-
-  /* ==========================================================
-     14. TIMELINE LINE DRAW ON SCROLL
-  ========================================================== */
-  const timelineLine = document.getElementById('timelineLine');
-  const timeline = document.getElementById('timeline');
-  if (timelineLine && timeline) {
-    ScrollTrigger.create({
-      trigger: timeline,
-      start: 'top 70%',
-      end: 'bottom 80%',
-      scrub: 0.6,
-      onUpdate: (self) => {
-        timelineLine.style.height = (self.progress * 100) + '%';
       }
     });
-  }
+  }, { threshold: 0.2 });
 
-  /* ==========================================================
-     15. GSAP SCROLL-TRIGGERED SECTION TITLE PARALLAX
-  ========================================================== */
-  gsap.utils.toArray('.section-title').forEach(title => {
-    gsap.fromTo(title, { y: 40, opacity: 0 }, {
-      y: 0, opacity: 1, duration: 1,
-      scrollTrigger: { trigger: title, start: 'top 90%' }
+  const skillsContainer = document.getElementById('skills');
+  if (skillsContainer) observer.observe(skillsContainer);
+}
+
+// ==========================================================================
+// 8. 3D CARD PERSPECTIVE TILT
+// ==========================================================================
+function init3DCardTilt() {
+  const tiltCards = document.querySelectorAll('.project-3d-card, .spotlight-card, .hero-avatar-frame');
+
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
   });
+}
 
-  // Parallax blobs on scroll
-  gsap.to('.blob-1', { y: 150, scrollTrigger: { scrub: 1 } });
-  gsap.to('.blob-2', { y: -120, scrollTrigger: { scrub: 1 } });
-  gsap.to('.blob-3', { y: 100, scrollTrigger: { scrub: 1 } });
+// ==========================================================================
+// 9. SCROLL SPY & NAVBAR BLUR
+// ==========================================================================
+function initScrollSpyAndNav() {
+  const navbar = document.getElementById('main-navbar');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-item-link');
 
-  /* ==========================================================
-     16. CONTACT FORM SUBMIT (front-end demo)
-  ========================================================== */
-  const contactForm = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  const submitText = document.getElementById('submitText');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
 
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    submitText.textContent = 'Sending...';
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
 
-    setTimeout(() => {
-      submitText.textContent = 'Send Message';
-      formSuccess.classList.add('show');
-      contactForm.reset();
-      setTimeout(() => formSuccess.classList.remove('show'), 4000);
-    }, 1200);
+    // Scroll spy
+    sections.forEach(sec => {
+      const secHeight = sec.offsetHeight;
+      const secTop = sec.offsetTop - 120;
+      const secId = sec.getAttribute('id');
+
+      if (scrollY > secTop && scrollY <= secTop + secHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${secId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
   });
+}
 
-  /* ==========================================================
-     17. BACK TO TOP
-  ========================================================== */
-  const backToTop = document.getElementById('backToTop');
-  function toggleBackToTop() {
-    backToTop.classList.toggle('show', window.scrollY > 500);
+// ==========================================================================
+// 10. RESUME PDF VIEWER MODAL
+// ==========================================================================
+function openResumeModal() {
+  const modal = document.getElementById('resume-modal');
+  if (modal) modal.classList.add('active');
+}
+
+function closeResumeModal() {
+  const modal = document.getElementById('resume-modal');
+  if (modal) modal.classList.remove('active');
+}
+
+function initResumeModal() {
+  const resumeBtn = document.getElementById('btn-open-resume');
+  const modal = document.getElementById('resume-modal');
+  const closeBtn = document.getElementById('btn-close-resume-modal');
+
+  if (resumeBtn) resumeBtn.addEventListener('click', openResumeModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeResumeModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeResumeModal();
+    });
   }
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==========================================================================
+// 11. CONTACT FORM HANDLING
+// ==========================================================================
+function initContactForm() {
+  const form = document.getElementById('portfolio-contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-msg').value;
+
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const body = encodeURIComponent(`Hi Rishith,\n\n${message}\n\nFrom: ${name} (${email})`);
+    
+    // Open default email client
+    window.location.href = `mailto:rishithreddyc45@gmail.com?subject=${subject}&body=${body}`;
+
+    alert(`Thank you, ${name}! Your email client will now open to dispatch your message to rishithreddyc45@gmail.com.`);
+    form.reset();
   });
-
-  /* ==========================================================
-     18. FOOTER YEAR
-  ========================================================== */
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-});
+}

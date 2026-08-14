@@ -1,593 +1,812 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rishith Reddy | Software &amp; Web Developer</title>
-<meta name="description" content="Portfolio of Rishith Reddy — Final Year B.Tech Student, Software & Web Developer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiluka Rishith Reddy &bull; Full-Stack Software Developer &amp; Embedded Systems Innovator</title>
+  
+  <meta name="description" content="Portfolio of Chiluka Rishith Reddy — B.Tech EIE @ VNR VJIET, Full-Stack Developer, AWS Cloud Practitioner, SP-GNN ML Researcher & 1st Prize Patent Summit Winner.">
+  <meta name="keywords" content="Rishith Reddy, Chiluka Rishith Reddy, VNR VJIET, Full Stack Developer, Python, Django, React, AWS, Embedded IoT, Arduino, SP-GNN, Portfolio">
+  <meta name="author" content="Chiluka Rishith Reddy">
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Chiluka Rishith Reddy | Portfolio">
+  <meta property="og:description" content="Full-Stack Developer, Embedded Systems Innovator & AWS Cloud Practitioner. B.Tech EIE @ VNR VJIET.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rishith.me">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Favicon Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-<!-- Styles -->
-<link rel="stylesheet" href="css/style.css" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Design System Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ============ CUSTOM CURSOR ============ -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-outline" id="cursorOutline"></div>
+  <!-- Custom Magnetic Cursor -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-outline" class="cursor-outline"></div>
 
-<!-- ============ PRELOADER ============ -->
-<div class="preloader" id="preloader">
-  <div class="preloader-inner">
-    <div class="preloader-logo">
-      <span>&lt;</span>RR<span>/&gt;</span>
+  <!-- Particle Constellation Interactive Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Ambient Light Glowing Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- ==========================================================================
+       PRELOADER
+       ========================================================================== -->
+  <div id="preloader" class="preloader-overlay">
+    <div class="preloader-brand-logo">
+      RISHITH<span>.REDDY</span>
     </div>
-    <div class="preloader-bar">
-      <div class="preloader-bar-fill" id="preloaderFill"></div>
+    <div class="preloader-track">
+      <div id="preloader-progress" class="preloader-progress"></div>
     </div>
-    <div class="preloader-percent" id="preloaderPercent">0%</div>
+    <div id="preloader-status" class="preloader-meta-status">INITIALIZING SYSTEM... 0%</div>
   </div>
-</div>
 
-<!-- ============ SCROLL PROGRESS ============ -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- ============ ANIMATED BACKGROUND BLOBS ============ -->
-<div class="bg-blobs" aria-hidden="true">
-  <span class="blob blob-1"></span>
-  <span class="blob blob-2"></span>
-  <span class="blob blob-3"></span>
-  <div class="noise-overlay"></div>
-</div>
-
-<!-- ============ NAVBAR ============ -->
-<header class="navbar" id="navbar">
-  <div class="nav-container">
-    <a href="#home" class="logo">
-      <span class="logo-bracket">&lt;</span>Rishith<span class="logo-accent">.</span><span class="logo-bracket">/&gt;</span>
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR
+       ========================================================================== -->
+  <header id="main-navbar" class="navbar-wrapper">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo-box">RR</div>
+      <div class="nav-brand-title">Rishith<span>Reddy</span></div>
     </a>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="#home" class="nav-link active" data-section="home"><span>Home</span></a>
-      <a href="#about" class="nav-link" data-section="about"><span>About</span></a>
-      <a href="#skills" class="nav-link" data-section="skills"><span>Skills</span></a>
-      <a href="#projects" class="nav-link" data-section="projects"><span>Projects</span></a>
-      <a href="#experience" class="nav-link" data-section="experience"><span>Journey</span></a>
-      <a href="#contact" class="nav-link" data-section="contact"><span>Contact</span></a>
-      <span class="nav-indicator" id="navIndicator"></span>
+    <!-- Desktop Navigation Links -->
+    <nav>
+      <ul class="nav-menu-links">
+        <li><a href="#about" class="nav-item-link"><i class="fa-solid fa-user-astronaut"></i> About</a></li>
+        <li><a href="#spotlight" class="nav-item-link"><i class="fa-solid fa-trophy"></i> Research &amp; Patent</a></li>
+        <li><a href="#skills" class="nav-item-link"><i class="fa-solid fa-microchip"></i> Skills</a></li>
+        <li><a href="#projects" class="nav-item-link"><i class="fa-solid fa-layer-group"></i> Projects</a></li>
+        <li><a href="#timeline" class="nav-item-link"><i class="fa-solid fa-timeline"></i> Journey</a></li>
+        <li><a href="#terminal" class="nav-item-link"><i class="fa-solid fa-terminal"></i> Terminal</a></li>
+        <li><a href="#contact" class="nav-item-link"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+      </ul>
     </nav>
 
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fa-solid fa-sun sun-icon"></i>
-        <i class="fa-solid fa-moon moon-icon"></i>
-        <span class="toggle-ball"></span>
+    <!-- Header Actions -->
+    <div class="nav-action-buttons">
+      <button id="btn-open-resume" class="btn btn-secondary">
+        <i class="fa-solid fa-file-pdf"></i> Resume
       </button>
-      <a href="#contact" class="btn btn-nav magnetic"><span>Hire Me</span></a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#home" class="mobile-link">Home</a>
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#skills" class="mobile-link">Skills</a>
-  <a href="#projects" class="mobile-link">Projects</a>
-  <a href="#experience" class="mobile-link">Journey</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-</div>
-
-<main>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="home">
-  <div class="hero-container">
-
-    <div class="hero-text">
-      <div class="hero-badge reveal-up">
-        <span class="pulse-dot"></span> Available for Internships &amp; Full-time Roles
-      </div>
-
-      <h1 class="hero-title">
-        <span class="line" data-line>
-          <span class="split-text" data-split>Hi, I'm</span>
-        </span>
-        <span class="line" data-line>
-          <span class="split-text gradient-text" data-split>Rishith Reddy</span>
-        </span>
-      </h1>
-
-      <div class="hero-role reveal-up">
-        <span>I'm a</span>
-        <span class="typewriter" id="typewriter"></span>
-        <span class="cursor-blink">|</span>
-      </div>
-
-      <p class="hero-desc reveal-up">
-        Final year B.Tech student crafting delightful digital experiences.
-        I love turning ideas into interactive, elegant, and performant
-        web applications — one line of code at a time.
-      </p>
-
-      <div class="hero-buttons reveal-up">
-        <a href="#projects" class="btn btn-primary magnetic">
-          <span>View My Work</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-        <a href="assets/Rishith_Reddy_Resume.pdf" download class="btn btn-outline magnetic">
-          <span>Download CV</span>
-          <i class="fa-solid fa-download"></i>
-        </a>
-      </div>
-
-      <div class="hero-socials reveal-up">
-        <a href="https://github.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://twitter.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://instagram.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="orbit-wrapper">
-        <div class="orbit orbit-1">
-          <span class="orbit-icon"><i class="fa-brands fa-html5"></i></span>
-        </div>
-        <div class="orbit orbit-2">
-          <span class="orbit-icon"><i class="fa-brands fa-css3-alt"></i></span>
-        </div>
-        <div class="orbit orbit-3">
-          <span class="orbit-icon"><i class="fa-brands fa-js"></i></span>
-        </div>
-        <div class="orbit orbit-4">
-          <span class="orbit-icon"><i class="fa-brands fa-react"></i></span>
-        </div>
-        <div class="orbit orbit-5">
-          <span class="orbit-icon"><i class="fa-brands fa-node-js"></i></span>
-        </div>
-        <div class="orbit orbit-6">
-          <span class="orbit-icon"><i class="fa-brands fa-git-alt"></i></span>
-        </div>
-
-        <div class="avatar-core">
-          <div class="avatar-glow"></div>
-          <div class="avatar-blob">
-            <i class="fa-solid fa-code"></i>
-          </div>
-          <div class="floating-card card-top">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Open to Work</span>
-          </div>
-          <div class="floating-card card-bottom">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>B.Tech CSE '26</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-down">
-    <div class="mouse"><span class="wheel"></span></div>
-    <span>Scroll Down</span>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="about" id="about">
-  <div class="section-header">
-    <span class="section-tag reveal-up">Get To Know Me</span>
-    <h2 class="section-title reveal-up"><span class="text-outline">About</span> Me</h2>
-  </div>
-
-  <div class="about-container">
-    <div class="about-visual reveal-left">
-      <div class="about-frame" id="aboutFrame">
-        <div class="about-frame-inner">
-          <i class="fa-solid fa-user-graduate"></i>
-        </div>
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner br"></div>
-        <div class="exp-badge">
-          <h3 class="counter" data-count="8.9">0</h3>
-          <p>CGPA</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="about-content">
-      <h3 class="about-heading reveal-up">
-        A Final Year Engineering Student Turning <span class="gradient-text">Curiosity</span> Into Code.
-      </h3>
-      <p class="reveal-up">
-        I'm Rishith, a Computer Science undergraduate passionate about
-        building things that live on the internet. My interest lies in
-        software development, web technologies, and solving real-world
-        problems through clean, scalable code.
-      </p>
-      <p class="reveal-up">
-        Over the past few years, I've explored full-stack development,
-        contributed to hackathons, and built projects that blend design
-        with functionality. I'm constantly learning — currently diving
-        deep into the MERN stack, DSA, and cloud fundamentals.
-      </p>
-
-      <div class="about-stats">
-        <div class="stat-box reveal-up">
-          <h3 class="counter" data-count="15">0</h3><span>+</span>
-          <p>Projects Built</p>
-        </div>
-        <div class="stat-box reveal-up">
-          <h3 class="counter" data-count="6">0</h3><span>+</span>
-          <p>Hackathons</p>
-        </div>
-        <div class="stat-box reveal-up">
-          <h3 class="counter" data-count="10">0</h3><span>+</span>
-          <p>Certifications</p>
-        </div>
-        <div class="stat-box reveal-up">
-          <h3 class="counter" data-count="4">0</h3><span>+</span>
-          <p>Years Coding</p>
-        </div>
-      </div>
-
-      <a href="#contact" class="btn btn-primary magnetic reveal-up">
-        <span>Let's Talk</span><i class="fa-solid fa-arrow-right"></i>
+      <a href="#contact" class="btn btn-primary">
+        <i class="fa-solid fa-bolt"></i> Hire Me
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SKILLS ============ -->
-<section class="skills" id="skills">
-  <div class="section-header">
-    <span class="section-tag reveal-up">What I Bring</span>
-    <h2 class="section-title reveal-up"><span class="text-outline">My</span> Skills</h2>
-  </div>
-
-  <div class="skills-container">
-    <div class="skills-col reveal-left">
-      <h3><i class="fa-solid fa-laptop-code"></i> Frontend Development</h3>
-      <div class="skill-bar">
-        <div class="skill-info"><span>HTML5 / CSS3</span><span>95%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="95"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>JavaScript</span><span>90%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="90"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>React.js</span><span>85%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="85"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>Tailwind CSS</span><span>88%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="88"></div></div>
-      </div>
-    </div>
-
-    <div class="skills-col reveal-right">
-      <h3><i class="fa-solid fa-server"></i> Backend &amp; Tools</h3>
-      <div class="skill-bar">
-        <div class="skill-info"><span>Node.js / Express</span><span>82%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="82"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>Java / Python</span><span>85%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="85"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>MongoDB / MySQL</span><span>80%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="80"></div></div>
-      </div>
-      <div class="skill-bar">
-        <div class="skill-info"><span>Git / GitHub</span><span>90%</span></div>
-        <div class="bar"><div class="bar-fill" data-width="90"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="marquee-wrapper reveal-up">
-    <div class="marquee-track">
-      <span><i class="fa-brands fa-html5"></i> HTML5</span>
-      <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-      <span><i class="fa-brands fa-js"></i> JavaScript</span>
-      <span><i class="fa-brands fa-react"></i> React</span>
-      <span><i class="fa-brands fa-node-js"></i> Node.js</span>
-      <span><i class="fa-brands fa-python"></i> Python</span>
-      <span><i class="fa-brands fa-java"></i> Java</span>
-      <span><i class="fa-brands fa-git-alt"></i> Git</span>
-      <span><i class="fa-brands fa-github"></i> GitHub</span>
-      <span><i class="fa-brands fa-figma"></i> Figma</span>
-      <!-- duplicate for seamless loop -->
-      <span><i class="fa-brands fa-html5"></i> HTML5</span>
-      <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-      <span><i class="fa-brands fa-js"></i> JavaScript</span>
-      <span><i class="fa-brands fa-react"></i> React</span>
-      <span><i class="fa-brands fa-node-js"></i> Node.js</span>
-      <span><i class="fa-brands fa-python"></i> Python</span>
-      <span><i class="fa-brands fa-java"></i> Java</span>
-      <span><i class="fa-brands fa-git-alt"></i> Git</span>
-      <span><i class="fa-brands fa-github"></i> GitHub</span>
-      <span><i class="fa-brands fa-figma"></i> Figma</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROJECTS ============ -->
-<section class="projects" id="projects">
-  <div class="section-header">
-    <span class="section-tag reveal-up">My Recent Work</span>
-    <h2 class="section-title reveal-up"><span class="text-outline">Featured</span> Projects</h2>
-  </div>
-
-  <div class="filter-bar reveal-up">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="web">Web Apps</button>
-    <button class="filter-btn" data-filter="ui">UI / Design</button>
-    <button class="filter-btn" data-filter="ml">AI / ML</button>
-  </div>
-
-  <div class="projects-grid">
-
-    <div class="project-card tilt-card reveal-up" data-category="web">
-      <div class="project-media grad-1">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">Web App</span>
-        <h3>ShopSphere — E-Commerce Platform</h3>
-        <p>MERN stack shopping platform with cart, auth, and payment gateway integration.</p>
-        <div class="tech-tags">
-          <span>React</span><span>Node.js</span><span>MongoDB</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card tilt-card reveal-up" data-category="ml">
-      <div class="project-media grad-2">
-        <i class="fa-solid fa-brain"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">AI / ML</span>
-        <h3>PredictIQ — Student Performance Predictor</h3>
-        <p>ML model that predicts academic performance using regression algorithms.</p>
-        <div class="tech-tags">
-          <span>Python</span><span>Scikit-learn</span><span>Flask</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card tilt-card reveal-up" data-category="web">
-      <div class="project-media grad-3">
-        <i class="fa-solid fa-comments"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">Web App</span>
-        <h3>ChatSync — Realtime Chat App</h3>
-        <p>Real-time messaging app using Socket.io with rooms and typing indicators.</p>
-        <div class="tech-tags">
-          <span>React</span><span>Socket.io</span><span>Express</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card tilt-card reveal-up" data-category="ui">
-      <div class="project-media grad-4">
-        <i class="fa-solid fa-palette"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">UI / Design</span>
-        <h3>Fintrack — Finance Dashboard UI</h3>
-        <p>Sleek, data-rich dashboard concept for tracking personal expenses.</p>
-        <div class="tech-tags">
-          <span>Figma</span><span>Tailwind</span><span>Chart.js</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card tilt-card reveal-up" data-category="web">
-      <div class="project-media grad-5">
-        <i class="fa-solid fa-list-check"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">Web App</span>
-        <h3>TaskFlow — Collaborative Task Manager</h3>
-        <p>Kanban-style productivity app with drag-and-drop and team boards.</p>
-        <div class="tech-tags">
-          <span>React</span><span>Firebase</span><span>DnD Kit</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card tilt-card reveal-up" data-category="ml">
-      <div class="project-media grad-6">
-        <i class="fa-solid fa-magnifying-glass-chart"></i>
-        <div class="project-overlay">
-          <a href="#" class="icon-btn"><i class="fa-solid fa-link"></i></a>
-          <a href="#" class="icon-btn"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag">AI / ML</span>
-        <h3>SentiSense — Sentiment Analyzer</h3>
-        <p>NLP based tool to analyze sentiment from tweets and reviews in real time.</p>
-        <div class="tech-tags">
-          <span>Python</span><span>NLTK</span><span>Streamlit</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ EXPERIENCE / EDUCATION ============ -->
-<section class="experience" id="experience">
-  <div class="section-header">
-    <span class="section-tag reveal-up">My Journey</span>
-    <h2 class="section-title reveal-up"><span class="text-outline">Education</span> &amp; Experience</h2>
-  </div>
-
-  <div class="timeline" id="timeline">
-    <div class="timeline-line" id="timelineLine"></div>
-
-    <div class="timeline-item left reveal-left">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <span class="timeline-date">2022 — 2026</span>
-        <h3>B.Tech in Computer Science</h3>
-        <h4>XYZ Institute of Technology</h4>
-        <p>Pursuing Computer Science Engineering with focus on web development, DSA, and software engineering principles. Current CGPA: 8.9/10.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right reveal-right">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <span class="timeline-date">Summer 2024</span>
-        <h3>Web Development Intern</h3>
-        <h4>ABC Technologies Pvt. Ltd.</h4>
-        <p>Built and optimized responsive web interfaces using React.js, improving load performance by 30% and collaborating with a 5-member agile team.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item left reveal-left">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <span class="timeline-date">2023</span>
-        <h3>Smart India Hackathon — Finalist</h3>
-        <h4>Ministry of Education, Govt. of India</h4>
-        <p>Led a team of 6 to build a full-stack solution for smart campus management, reaching the national finals among 500+ teams.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right reveal-right">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <span class="timeline-date">2020 — 2022</span>
-        <h3>Higher Secondary Education (MPC)</h3>
-        <h4>ABC Junior College</h4>
-        <p>Completed intermediate education with a focus on Mathematics, Physics &amp; Computer Science, scoring 96%.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
-  <div class="section-header">
-    <span class="section-tag reveal-up">Get In Touch</span>
-    <h2 class="section-title reveal-up"><span class="text-outline">Contact</span> Me</h2>
-  </div>
-
-  <div class="contact-container">
-    <div class="contact-info reveal-left">
-      <h3>Let's build something <span class="gradient-text">amazing</span> together.</h3>
-      <p>Have a project in mind, an internship opportunity, or just want to say hi? My inbox is always open.</p>
-
-      <div class="info-item">
-        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-        <div><span>Email</span><p>rishith.reddy@example.com</p></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-        <div><span>Phone</span><p>+91 98765 43210</p></div>
-      </div>
-      <div class="info-item">
-        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-        <div><span>Location</span><p>Hyderabad, India</p></div>
-      </div>
-
-      <div class="hero-socials">
-        <a href="https://github.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://twitter.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://instagram.com/" target="_blank" class="social-icon magnetic"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </div>
-
-    <form class="contact-form reveal-right" id="contactForm">
-      <div class="form-group">
-        <input type="text" id="name" required />
-        <label for="name">Your Name</label>
-        <span class="form-line"></span>
-      </div>
-      <div class="form-group">
-        <input type="email" id="email" required />
-        <label for="email">Your Email</label>
-        <span class="form-line"></span>
-      </div>
-      <div class="form-group">
-        <input type="text" id="subject" required />
-        <label for="subject">Subject</label>
-        <span class="form-line"></span>
-      </div>
-      <div class="form-group">
-        <textarea id="message" rows="5" required></textarea>
-        <label for="message">Your Message</label>
-        <span class="form-line"></span>
-      </div>
-      <button type="submit" class="btn btn-primary magnetic full-width">
-        <span id="submitText">Send Message</span>
-        <i class="fa-solid fa-paper-plane"></i>
+      <button class="mobile-menu-toggle" onclick="document.querySelector('.nav-menu-links').classList.toggle('show-mobile')">
+        <i class="fa-solid fa-bars"></i>
       </button>
-      <div class="form-success" id="formSuccess">
-        <i class="fa-solid fa-circle-check"></i> Message sent successfully!
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-grid">
+      <!-- Hero Left Content -->
+      <div class="hero-left-content">
+        <!-- Live Status Pill -->
+        <div class="hero-status-pill">
+          <span class="pulse-led"></span>
+          <span>AVAILABLE FOR SDE, FULL-STACK &amp; EMBEDDED ROLES</span>
+        </div>
+
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text-cyan">Chiluka Rishith Reddy</span><br>
+          Building <span class="gradient-text-purple">Future-Ready</span> Systems.
+        </h1>
+
+        <!-- Typing Dynamic Role -->
+        <div class="hero-role-wrapper">
+          <span>&gt; </span>
+          <span id="typed-role-text" class="typed-role">Full-Stack Software Developer</span>
+        </div>
+
+        <p class="hero-description">
+          Final-year <strong>B.Tech in Electronics &amp; Instrumentation Engineering (EIE)</strong> student at <strong>VNR VJIET, Hyderabad (CGPA: 7.50)</strong>. Architecting scalable full-stack web platforms, embedded IoT telemetry solutions, AWS cloud microservices, and physics-informed AI research.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fa-solid fa-rocket"></i> Explore Projects
+          </a>
+          <a href="/resume.pdf" download="Chiluka_Rishith_Reddy_Resume.pdf" class="btn btn-gold">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+          <a href="#terminal" class="btn btn-secondary">
+            <i class="fa-solid fa-terminal"></i> RishithOS CLI
+          </a>
+        </div>
+
+        <!-- Real Metrics Strip -->
+        <div class="hero-stats-strip">
+          <div class="hero-stat-card">
+            <div class="hero-stat-number">7.50<span>/10</span></div>
+            <div class="hero-stat-label">VNR VJIET CGPA</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number">3<span>+</span></div>
+            <div class="hero-stat-label">Industry Internships</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number">1<sup>st</sup><span> Prize</span></div>
+            <div class="hero-stat-label">Patent Summit Winner</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number">10.0<span> GPA</span></div>
+            <div class="hero-stat-label">Secondary SSC</div>
+          </div>
+        </div>
       </div>
-    </form>
+
+      <!-- Hero Right Side: 3D Holographic Card & Avatar Frame -->
+      <div class="hero-right-visual">
+        <div class="hero-avatar-frame">
+          <div class="avatar-banner-code">
+            <span>SYS_ID: RR-2026</span>
+            <span>VNR_VJIET // EIE</span>
+          </div>
+
+          <div class="avatar-center-glow">
+            <div class="avatar-tech-glyph">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h2 class="avatar-name">Rishith Reddy</h2>
+            <p class="avatar-sub">Hyderabad, Telangana &bull; 500070</p>
+            <div class="avatar-chips-track">
+              <span class="tech-chip-pill"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="tech-chip-pill"><i class="fa-brands fa-react"></i> React.js</span>
+              <span class="tech-chip-pill"><i class="fa-brands fa-aws"></i> AWS Cloud</span>
+              <span class="tech-chip-pill"><i class="fa-solid fa-microchip"></i> Arduino IoT</span>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--font-mono); color:var(--text-dim); border-top:1px solid var(--border-subtle); padding-top:0.75rem;">
+            <span>ICAMSTA-2025 AUTHOR</span>
+            <span style="color:var(--emerald);">● ACTIVE</span>
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="floating-badge float-badge-1">
+            <div class="badge-icon gold"><i class="fa-solid fa-award"></i></div>
+            <div class="badge-text">
+              <h4>1st Prize Patent Winner</h4>
+              <p>National Patent Summit</p>
+            </div>
+          </div>
+
+          <div class="floating-badge float-badge-2">
+            <div class="badge-icon purple"><i class="fa-solid fa-scroll"></i></div>
+            <div class="badge-text">
+              <h4>SP-GNN Research Paper</h4>
+              <p>Osmania Univ. ICAMSTA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       RESEARCH & PATENT SPOTLIGHTS
+       ========================================================================== -->
+  <section class="section-container" id="spotlight">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-certificate"></i> Key Breakthroughs</div>
+      <h2 class="section-heading-title">Research Paper &amp; Patent Honors</h2>
+      <p class="section-subtext">Recognized for novel intellectual property and statistical physics-informed deep learning models.</p>
+    </div>
+
+    <div class="spotlight-cards-grid">
+      <!-- Card 1: Research Paper -->
+      <div class="spotlight-card">
+        <div>
+          <div class="spotlight-top-tag">
+            <span class="tag-badge cyan"><i class="fa-solid fa-book-open"></i> Research Paper Presentation</span>
+            <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-dim);">ICAMSTA-2025</span>
+          </div>
+          <h3 class="spotlight-title" style="margin-top: 1rem;">
+            "Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN) for Robust Fault Detection and Uncertainty Quantification in Distributed Sensor Systems"
+          </h3>
+          <p class="spotlight-desc" style="margin-top: 0.75rem;">
+            Presented at the prestigious <strong>ICAMSTA-2025 Conference, Osmania University</strong>. Formulated a novel mathematical architecture combining statistical physics principles with Graph Neural Networks to detect anomalies and quantify uncertainty across distributed sensor arrays.
+          </p>
+        </div>
+        <div class="spotlight-footer">
+          <span><i class="fa-solid fa-university" style="color:var(--cyan);"></i> Osmania University</span>
+          <span style="color:var(--cyan); font-weight:700;">Peer Reviewed &bull; 2025</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Patent Summit 1st Prize -->
+      <div class="spotlight-card patent-card">
+        <div>
+          <div class="spotlight-top-tag">
+            <span class="tag-badge gold"><i class="fa-solid fa-trophy"></i> 1st Prize Winner</span>
+            <span style="font-family:var(--font-mono); font-size:12px; color:var(--gold);">National Summit</span>
+          </div>
+          <h3 class="spotlight-title" style="margin-top: 1rem;">
+            Patent Summit Competition — National Workshop on Patent Analytics &amp; Filing Framework
+          </h3>
+          <p class="spotlight-desc" style="margin-top: 0.75rem;">
+            Secured <strong>1st Prize</strong> at VNR VJIET among competitive engineering innovators. Evaluated for intellectual property novelty, commercial feasibility, and technical execution across hardware-software integration.
+          </p>
+        </div>
+        <div class="spotlight-footer">
+          <span><i class="fa-solid fa-medal" style="color:var(--gold);"></i> 1st Rank Award</span>
+          <span style="color:var(--gold); font-weight:700;">VNR VJIET &bull; 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TECHNICAL SKILLS MATRIX
+       ========================================================================== -->
+  <section class="section-container" id="skills">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-code"></i> Technical Arsenal</div>
+      <h2 class="section-heading-title">Skills &amp; Engineering Competencies</h2>
+      <p class="section-subtext">A balanced synergy of hardware instrumentation, low-level microcontrollers, and high-performance modern web stacks.</p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="skills-category-tabs">
+      <button class="skill-tab-btn active" data-cat="all"><i class="fa-solid fa-layer-group"></i> All Competencies</button>
+      <button class="skill-tab-btn" data-cat="lang"><i class="fa-solid fa-code"></i> Languages</button>
+      <button class="skill-tab-btn" data-cat="web"><i class="fa-brands fa-react"></i> Full-Stack Web</button>
+      <button class="skill-tab-btn" data-cat="iot"><i class="fa-solid fa-microchip"></i> Embedded IoT &amp; Hardware</button>
+      <button class="skill-tab-btn" data-cat="cloud"><i class="fa-brands fa-aws"></i> Cloud &amp; Tools</button>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid-container">
+      <!-- Python -->
+      <div class="skill-card-item" data-category="lang">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap"><i class="fa-brands fa-python"></i></div>
+          <span class="skill-level-pct">92%</span>
+        </div>
+        <div class="skill-title-name">Python (NPTEL Elite)</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="92%" style="width: 0%;"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Django, DRF, Streamlit, Pandas, Data Analytics</p>
+      </div>
+
+      <!-- JavaScript -->
+      <div class="skill-card-item" data-category="lang">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap"><i class="fa-brands fa-js"></i></div>
+          <span class="skill-level-pct">88%</span>
+        </div>
+        <div class="skill-title-name">JavaScript (ES6+)</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="88%" style="width: 0%;"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Asynchronous JS, DOM, WebSockets, APIs</p>
+      </div>
+
+      <!-- C & Embedded C -->
+      <div class="skill-card-item" data-category="lang">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap"><i class="fa-solid fa-c"></i></div>
+          <span class="skill-level-pct">85%</span>
+        </div>
+        <div class="skill-title-name">C &amp; Embedded C</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="85%" style="width: 0%;"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Microcontroller firmware, memory management, pointers</p>
+      </div>
+
+      <!-- React.js -->
+      <div class="skill-card-item" data-category="web">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap"><i class="fa-brands fa-react"></i></div>
+          <span class="skill-level-pct">87%</span>
+        </div>
+        <div class="skill-title-name">React.js</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="87%" style="width: 0%;"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Hooks, State Management, Router, Responsive UI</p>
+      </div>
+
+      <!-- Django REST Framework -->
+      <div class="skill-card-item" data-category="web">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap"><i class="fa-solid fa-server"></i></div>
+          <span class="skill-level-pct">90%</span>
+        </div>
+        <div class="skill-title-name">Django &amp; DRF</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="90%" style="width: 0%;"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">RESTful APIs, JWT Auth, ORM, PostgreSQL/SQLite</p>
+      </div>
+
+      <!-- Arduino & IoT Hardware -->
+      <div class="skill-card-item" data-category="iot">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap" style="color:var(--gold);"><i class="fa-solid fa-microchip"></i></div>
+          <span class="skill-level-pct" style="color:var(--gold);">94%</span>
+        </div>
+        <div class="skill-title-name">Arduino &amp; ESP32 IoT</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="94%" style="width: 0%; background: linear-gradient(90deg, var(--gold), #FB8500);"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Sensor interfacing, PWM, UART/I2C/SPI telemetry</p>
+      </div>
+
+      <!-- NI Multisim & LabVIEW -->
+      <div class="skill-card-item" data-category="iot">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap" style="color:var(--gold);"><i class="fa-solid fa-wave-square"></i></div>
+          <span class="skill-level-pct" style="color:var(--gold);">86%</span>
+        </div>
+        <div class="skill-title-name">NI Multisim &amp; LabVIEW</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="86%" style="width: 0%; background: linear-gradient(90deg, var(--gold), #FB8500);"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Circuit simulation, virtual instrumentation, DAQ</p>
+      </div>
+
+      <!-- MATLAB & Auto-CAD -->
+      <div class="skill-card-item" data-category="iot">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap" style="color:var(--gold);"><i class="fa-solid fa-chart-line"></i></div>
+          <span class="skill-level-pct" style="color:var(--gold);">80%</span>
+        </div>
+        <div class="skill-title-name">MATLAB &amp; Auto-CAD</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="80%" style="width: 0%; background: linear-gradient(90deg, var(--gold), #FB8500);"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">Signal processing, control systems, schematic drafting</p>
+      </div>
+
+      <!-- AWS Cloud Architecture -->
+      <div class="skill-card-item" data-category="cloud">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap" style="color:var(--purple);"><i class="fa-brands fa-aws"></i></div>
+          <span class="skill-level-pct" style="color:var(--purple);">88%</span>
+        </div>
+        <div class="skill-title-name">AWS Cloud Services</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="88%" style="width: 0%; background: linear-gradient(90deg, var(--purple), var(--cyan));"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">EC2, S3, Lambda, IAM, VPC, Cloud Deployment</p>
+      </div>
+
+      <!-- Git & Dev Tools -->
+      <div class="skill-card-item" data-category="cloud">
+        <div class="skill-card-head">
+          <div class="skill-icon-wrap" style="color:var(--purple);"><i class="fa-brands fa-git-alt"></i></div>
+          <span class="skill-level-pct" style="color:var(--purple);">92%</span>
+        </div>
+        <div class="skill-title-name">Git &amp; Development Tools</div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-width="92%" style="width: 0%; background: linear-gradient(90deg, var(--purple), var(--cyan));"></div>
+        </div>
+        <p style="font-size:12px; color:var(--text-dim);">GitHub CI/CD, VS Code, Jupyter, Linux Shell</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROJECTS PORTFOLIO (3D TILT CARDS)
+       ========================================================================== -->
+  <section class="section-container" id="projects">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-cubes"></i> Featured Creations</div>
+      <h2 class="section-heading-title">Engineering Projects &amp; Software</h2>
+      <p class="section-subtext">Real-world applications spanning scalable marketplace backends, IoT vehicle dashboards, and AI graph algorithms.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="projects-filter-nav">
+      <button class="proj-filter-btn active" data-filter="all">All Projects</button>
+      <button class="proj-filter-btn" data-filter="web">Full-Stack Web</button>
+      <button class="proj-filter-btn" data-filter="iot">IoT &amp; Embedded</button>
+      <button class="proj-filter-btn" data-filter="ai">AI / Research</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-masonry-grid">
+      <!-- Project 1: TalentLink / Taskera -->
+      <div class="project-3d-card" data-category="web">
+        <div class="project-preview-frame">
+          <img class="project-preview-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="TalentLink Platform">
+          <div class="project-overlay-badge">FULL STACK</div>
+        </div>
+        <div class="project-body-content">
+          <div>
+            <h3 class="project-title">TalentLink &bull; Freelance Marketplace</h3>
+            <p class="project-summary">
+              Full-stack freelance matchmaking platform connecting clients with talent. Features JWT authentication, role-based dashboards (Client vs Freelancer), real-time proposal bidding, digital contract escrow, and PostgreSQL backend.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech-tags">
+              <span class="p-tag">React.js</span>
+              <span class="p-tag">Django REST</span>
+              <span class="p-tag">PostgreSQL</span>
+              <span class="p-tag">JWT Auth</span>
+            </div>
+            <div class="project-actions-row">
+              <span style="font-size:12px; color:var(--emerald); font-weight:700;"><i class="fa-solid fa-circle-check"></i> Production Ready</span>
+              <a href="https://github.com/rishithreddy46" target="_blank" class="proj-link-icon" title="View Source"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: HeavyHaul Pro -->
+      <div class="project-3d-card" data-category="web">
+        <div class="project-preview-frame">
+          <img class="project-preview-img" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80" alt="HeavyHaul Pro">
+          <div class="project-overlay-badge" style="color:var(--gold); border-color:var(--gold);">DISPATCH ECOSYSTEM</div>
+        </div>
+        <div class="project-body-content">
+          <div>
+            <h3 class="project-title">HeavyHaul Pro &bull; Machinery Booking</h3>
+            <p class="project-summary">
+              Uber &amp; Porter for heavy construction machinery (Excavators, Mobile Cranes, Transit Mixers, 10-Wheeler Tippers). Features interactive Leaflet GPS radar, dynamic Wet/Dry hourly billing, and legal digital contract generation.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech-tags">
+              <span class="p-tag">Django REST</span>
+              <span class="p-tag">Leaflet Radar</span>
+              <span class="p-tag">Dynamic Pricing</span>
+              <span class="p-tag">Digital Contracts</span>
+            </div>
+            <div class="project-actions-row">
+              <span style="font-size:12px; color:var(--gold); font-weight:700;"><i class="fa-solid fa-satellite-dish"></i> Live Telemetry</span>
+              <a href="https://github.com/rishithreddy46" target="_blank" class="proj-link-icon" title="View Source"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Smart EV Dashboard -->
+      <div class="project-3d-card" data-category="iot">
+        <div class="project-preview-frame">
+          <img class="project-preview-img" src="https://images.unsplash.com/photo-1558441719-8b489c63f7d1?w=800&q=80" alt="Smart EV Dashboard">
+          <div class="project-overlay-badge" style="color:var(--purple); border-color:var(--purple);">IoT &amp; HARDWARE</div>
+        </div>
+        <div class="project-body-content">
+          <div>
+            <h3 class="project-title">Smart EV Telemetry &amp; Dashboard</h3>
+            <p class="project-summary">
+              Real-time electric vehicle monitoring dashboard using Arduino microcontroller telemetry and Streamlit GUI. Visualizes State-of-Charge (SoC), battery temperature curves, motor RPM, and NI Multisim circuit simulations.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech-tags">
+              <span class="p-tag">Arduino</span>
+              <span class="p-tag">Streamlit</span>
+              <span class="p-tag">NI Multisim</span>
+              <span class="p-tag">Sensors</span>
+            </div>
+            <div class="project-actions-row">
+              <span style="font-size:12px; color:var(--purple); font-weight:700;"><i class="fa-solid fa-bolt"></i> Hardware Integrated</span>
+              <a href="https://github.com/rishithreddy46" target="_blank" class="proj-link-icon" title="View Source"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Campus Career Hub -->
+      <div class="project-3d-card" data-category="web">
+        <div class="project-preview-frame">
+          <img class="project-preview-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Campus Career Hub">
+          <div class="project-overlay-badge">CAREER PLATFORM</div>
+        </div>
+        <div class="project-body-content">
+          <div>
+            <h3 class="project-title">Campus Career Hub</h3>
+            <p class="project-summary">
+              Student job readiness web application with ATS dynamic resume builders, mock interview simulations, skill gap analytics, and company recruitment preparation roadmaps.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech-tags">
+              <span class="p-tag">React.js</span>
+              <span class="p-tag">JavaScript</span>
+              <span class="p-tag">Tailwind</span>
+              <span class="p-tag">Node APIs</span>
+            </div>
+            <div class="project-actions-row">
+              <span style="font-size:12px; color:var(--cyan); font-weight:700;"><i class="fa-solid fa-graduation-cap"></i> Student Empowerment</span>
+              <a href="https://github.com/rishithreddy46" target="_blank" class="proj-link-icon" title="View Source"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5: SP-GNN Sensor Fault Detector -->
+      <div class="project-3d-card" data-category="ai">
+        <div class="project-preview-frame">
+          <img class="project-preview-img" src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80" alt="SP-GNN Sensor Fault Detector">
+          <div class="project-overlay-badge" style="color:var(--cyan); border-color:var(--cyan);">RESEARCH AI</div>
+        </div>
+        <div class="project-body-content">
+          <div>
+            <h3 class="project-title">SP-GNN Distributed Fault Detector</h3>
+            <p class="project-summary">
+              Statistical Physics-Informed Graph Neural Network for real-time sensor anomaly detection and uncertainty quantification in industrial instrumentation arrays.
+            </p>
+          </div>
+          <div>
+            <div class="project-tech-tags">
+              <span class="p-tag">PyTorch / GNN</span>
+              <span class="p-tag">Python</span>
+              <span class="p-tag">Statistical Physics</span>
+              <span class="p-tag">Sensors</span>
+            </div>
+            <div class="project-actions-row">
+              <span style="font-size:12px; color:var(--cyan); font-weight:700;"><i class="fa-solid fa-scroll"></i> ICAMSTA-2025 Paper</span>
+              <a href="https://github.com/rishithreddy46" target="_blank" class="proj-link-icon" title="View Source"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       EXPERIENCE & EDUCATION TIMELINE
+       ========================================================================== -->
+  <section class="section-container" id="timeline">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-road"></i> Professional Evolution</div>
+      <h2 class="section-heading-title">Internships &amp; Academic Journey</h2>
+      <p class="section-subtext">Hands-on enterprise internships and academic milestones at top institutions.</p>
+    </div>
+
+    <div class="timeline-vertical-track">
+      <!-- Node 1: Infosys Springboard -->
+      <div class="timeline-node-card">
+        <div class="timeline-icon-pin"><i class="fa-solid fa-briefcase"></i></div>
+        <span class="timeline-period-badge">11/2025 — 01/2026</span>
+        <h3 class="timeline-role-title">Infosys Springboard Internship 6.0</h3>
+        <div class="timeline-org-name">Infosys Springboard &bull; "Taskera" Platform</div>
+        <ul class="timeline-bullet-list">
+          <li>Engineered "Taskera", a professional freelance matchmaking platform facilitating seamless client-talent collaboration.</li>
+          <li>Implemented project proposal lifecycles, milestone contract tracking, and secure client communication channels.</li>
+        </ul>
+      </div>
+
+      <!-- Node 2: Internship Studio (AWS) -->
+      <div class="timeline-node-card">
+        <div class="timeline-icon-pin"><i class="fa-brands fa-aws"></i></div>
+        <span class="timeline-period-badge">07/2025 — 01/2026 (6 Months)</span>
+        <h3 class="timeline-role-title">AWS Cloud Engineering Intern</h3>
+        <div class="timeline-org-name">Internship Studio</div>
+        <ul class="timeline-bullet-list">
+          <li>Completed a rigorous 6-month cloud engineering internship acquiring deep hands-on proficiency in AWS cloud infrastructure.</li>
+          <li>Architected and deployed compute instances on AWS EC2, configured secure S3 bucket storage policies, IAM access control, and serverless architectures.</li>
+        </ul>
+      </div>
+
+      <!-- Node 3: Internshala / NSDC -->
+      <div class="timeline-node-card">
+        <div class="timeline-icon-pin"><i class="fa-solid fa-code"></i></div>
+        <span class="timeline-period-badge">06/2025 — 08/2025</span>
+        <h3 class="timeline-role-title">Full-Stack Web Development Intern</h3>
+        <div class="timeline-org-name">Internshala &bull; Government NSDC Certified</div>
+        <ul class="timeline-bullet-list">
+          <li>Acquired practical enterprise expertise in full-stack architecture, responsive modern design, and RESTful API integration.</li>
+          <li>Awarded Government-affiliated Web Development Certificate in partnership with National Skill Development Corporation (NSDC).</li>
+        </ul>
+      </div>
+
+      <!-- Node 4: VNR VJIET Education -->
+      <div class="timeline-node-card gold-pin">
+        <div class="timeline-icon-pin"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span class="timeline-period-badge" style="color:var(--gold);">2023 — 2027 (Expected)</span>
+        <h3 class="timeline-role-title">B.Tech in Electronics &amp; Instrumentation (EIE)</h3>
+        <div class="timeline-org-name" style="color:var(--text-highlight);">VNR Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)</div>
+        <ul class="timeline-bullet-list">
+          <li><strong>CGPA: 7.50</strong> (Pursuing 6th Semester).</li>
+          <li>Active innovator in hardware hackathons (Convergence 2024, INNO-VATHON 3.0, Embedded Systems Workshops).</li>
+          <li>Won <strong>1st Prize</strong> in Patent Summit Competition for intellectual property design.</li>
+        </ul>
+      </div>
+
+      <!-- Node 5: Narayana Junior College -->
+      <div class="timeline-node-card gold-pin">
+        <div class="timeline-icon-pin"><i class="fa-solid fa-school"></i></div>
+        <span class="timeline-period-badge" style="color:var(--gold);">2021 — 2023</span>
+        <h3 class="timeline-role-title">Intermediate (MPC) — 91.7%</h3>
+        <div class="timeline-org-name">Narayana Junior College, Hyderabad</div>
+        <ul class="timeline-bullet-list">
+          <li>Achieved outstanding academic standing of <strong>91.7%</strong> in Mathematics, Physics, and Chemistry.</li>
+        </ul>
+      </div>
+
+      <!-- Node 6: Narayana High School -->
+      <div class="timeline-node-card gold-pin">
+        <div class="timeline-icon-pin"><i class="fa-solid fa-book"></i></div>
+        <span class="timeline-period-badge" style="color:var(--gold);">2021</span>
+        <h3 class="timeline-role-title">Secondary School Certificate (SSC) — 10.0 GPA</h3>
+        <div class="timeline-org-name">Narayana High School</div>
+        <ul class="timeline-bullet-list">
+          <li>Achieved a perfect score of <strong>10.0 GPA</strong> in secondary education.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE RishithOS CLI TERMINAL
+       ========================================================================== -->
+  <section class="section-container" id="terminal">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-terminal"></i> Command Line Interface</div>
+      <h2 class="section-heading-title">RishithOS Interactive Console</h2>
+      <p class="section-subtext">Type commands below or click quick tags to query profile data in hacker mode.</p>
+    </div>
+
+    <div class="terminal-window-card">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="term-dot red"></span>
+          <span class="term-dot yellow"></span>
+          <span class="term-dot green"></span>
+        </div>
+        <div class="terminal-title">rishith@portfolio: ~ (zsh)</div>
+        <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-dim);">UTF-8</div>
+      </div>
+
+      <div id="terminal-output" class="terminal-body">
+        <div style="color:var(--cyan); font-weight:bold;">Welcome to RishithOS Terminal v2.6.4 [Release x86_64-apple-darwin]</div>
+        <div style="color:var(--text-muted); font-size:12px; margin-bottom: 12px;">Type <b style="color:var(--gold);">help</b> for command list, or click any chip below:</div>
+      </div>
+
+      <div class="terminal-input-row" style="padding: 0 1.5rem 1rem;">
+        <span class="term-line-prefix">rishith@terminal:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input-box" placeholder="Type a command (e.g., skills, projects, patent, hire)..." autocomplete="off">
+      </div>
+
+      <div class="terminal-quick-chips">
+        <button class="term-chip-btn" data-cmd="about">about</button>
+        <button class="term-chip-btn" data-cmd="skills">skills</button>
+        <button class="term-chip-btn" data-cmd="projects">projects</button>
+        <button class="term-chip-btn" data-cmd="experience">experience</button>
+        <button class="term-chip-btn" data-cmd="patent">patent</button>
+        <button class="term-chip-btn" data-cmd="paper">paper</button>
+        <button class="term-chip-btn" data-cmd="resume">resume</button>
+        <button class="term-chip-btn" data-cmd="contact">contact</button>
+        <button class="term-chip-btn" data-cmd="clear">clear</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTACT & DIRECT CONNECT SECTION
+       ========================================================================== -->
+  <section class="section-container" id="contact">
+    <div class="section-head-center">
+      <div class="section-tagline"><i class="fa-solid fa-envelope"></i> Get In Touch</div>
+      <h2 class="section-heading-title">Let's Build Something Exceptional</h2>
+      <p class="section-subtext">Open for full-time software engineering roles, internships, and high-impact technology collaborations.</p>
+    </div>
+
+    <div class="contact-grid-wrapper">
+      <!-- Contact Info Channels -->
+      <div class="contact-info-panel">
+        <a href="mailto:rishithreddyc45@gmail.com" class="contact-channel-card">
+          <div class="contact-channel-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-channel-details">
+            <h4>Email Address</h4>
+            <p>rishithreddyc45@gmail.com</p>
+          </div>
+        </a>
+
+        <a href="tel:+919494105486" class="contact-channel-card">
+          <div class="contact-channel-icon" style="color:var(--gold); background:rgba(255,183,3,0.1);"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-channel-details">
+            <h4>Direct Phone &amp; WhatsApp</h4>
+            <p>+91 9494105486</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/rishithreddy46" target="_blank" class="contact-channel-card">
+          <div class="contact-channel-icon" style="color:var(--purple); background:rgba(139,92,246,0.1);"><i class="fa-brands fa-github"></i></div>
+          <div class="contact-channel-details">
+            <h4>GitHub Profile</h4>
+            <p>github.com/rishithreddy46</p>
+          </div>
+        </a>
+
+        <div class="contact-channel-card">
+          <div class="contact-channel-icon" style="color:var(--emerald); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-channel-details">
+            <h4>Location</h4>
+            <p>Teachers Colony, BN Reddy, Ranga Reddy, Telangana - 500070</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Message Form -->
+      <form id="portfolio-contact-form" class="contact-form-card">
+        <h3 style="font-family:var(--font-heading); font-size:1.35rem; color:#FFF; font-weight:800;">
+          <i class="fa-solid fa-paper-plane" style="color:var(--cyan);"></i> Send a Direct Dispatch
+        </h3>
+
+        <div class="form-group-field">
+          <label class="form-label" for="contact-name">Your Full Name</label>
+          <input type="text" id="contact-name" class="form-input-control" placeholder="e.g. John Doe / Engineering Recruiter" required>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label" for="contact-email">Your Work Email</label>
+          <input type="email" id="contact-email" class="form-input-control" placeholder="e.g. john@company.com" required>
+        </div>
+
+        <div class="form-group-field">
+          <label class="form-label" for="contact-msg">Message / Project Details</label>
+          <textarea id="contact-msg" class="form-input-control" placeholder="Tell me about your role, project scope, or timeline..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          <i class="fa-solid fa-bolt"></i> Dispatch Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       RESUME VIEWER MODAL
+       ========================================================================== -->
+  <div id="resume-modal" class="modal-overlay">
+    <div class="modal-content-window">
+      <div class="modal-header-bar">
+        <h3><i class="fa-solid fa-file-pdf" style="color:var(--cyan);"></i> Chiluka Rishith Reddy &mdash; Curriculum Vitae</h3>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <a href="/resume.pdf" download="Chiluka_Rishith_Reddy_Resume.pdf" class="btn btn-primary" style="padding:0.35rem 0.9rem; font-size:12px;">
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+          <button id="btn-close-resume-modal" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="resume-iframe-container">
+        <iframe src="/resume.pdf#toolbar=1" title="Resume PDF"></iframe>
+      </div>
+    </div>
   </div>
-</section>
 
-</main>
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer-wrapper">
+    <div class="footer-inner-grid">
+      <div class="footer-social-links">
+        <a href="https://github.com/rishithreddy46" target="_blank" class="social-circle-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="mailto:rishithreddyc45@gmail.com" class="social-circle-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:+919494105486" class="social-circle-btn" title="Phone"><i class="fa-solid fa-phone"></i></a>
+      </div>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="footer-container">
-    <a href="#home" class="logo">
-      <span class="logo-bracket">&lt;</span>Rishith<span class="logo-accent">.</span><span class="logo-bracket">/&gt;</span>
-    </a>
-    <p>Designed &amp; Built with <i class="fa-solid fa-heart"></i> by Rishith Reddy</p>
-    <p class="copyright">&copy; <span id="year"></span> All Rights Reserved.</p>
-  </div>
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-</footer>
+      <p class="footer-copy-text">
+        &copy; 2026 <strong>Chiluka Rishith Reddy</strong>. Crafted with precision, cyber aesthetics, and clean code.<br>
+        Deployed globally via <span style="color:var(--cyan);">GitHub Pages &amp; Cloudflare</span>.
+      </p>
+    </div>
+  </footer>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/script.js"></script>
+  <!-- Main JavaScript Engine -->
+  <script src="js/script.js"></script>
 </body>
 </html>
