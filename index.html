@@ -3,704 +3,561 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chiluka Rishith Reddy &bull; Embedded Systems Innovator &amp; Software Developer</title>
+  <title>Chiluka Rishith Reddy • Embedded Systems &amp; Software Developer</title>
   
-  <meta name="description" content="Portfolio of Chiluka Rishith Reddy — B.Tech EIE (7th Sem, CGPA 7.52) @ VNR VJIET. Embedded Systems Innovator, STM32 & Firmware Engineer, SP-GNN Machine Learning Researcher & 1st Prize Patent Summit Winner.">
-  <meta name="keywords" content="Chiluka Rishith Reddy, Rishith Reddy, Embedded Systems, STM32, Arduino, Firmware, C, Embedded C, Python, Signal Processing, PPG, SP-GNN, VNR VJIET, EIE, Portfolio, rishith.me">
+  <meta name="description" content="Portfolio of Chiluka Rishith Reddy — B.Tech EIE (7th Sem, CGPA 7.52) @ VNR VJIET. Embedded Systems Innovator, STM32 Firmware Developer, SP-GNN ML Researcher & 1st Prize Patent Summit Winner.">
+  <meta name="keywords" content="Chiluka Rishith Reddy, Rishith Reddy, Embedded Systems, STM32, Arduino, Firmware, C, Embedded C, Python, Signal Processing, SP-GNN, VNR VJIET, EIE, Portfolio, rishith.me">
   <meta name="author" content="Chiluka Rishith Reddy">
 
-  <!-- Open Graph Meta Tags -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Chiluka Rishith Reddy | Embedded Systems &amp; Software Developer">
   <meta property="og:description" content="B.Tech EIE (7th Sem, CGPA 7.52) @ VNR VJIET. STM32 Firmware, SP-GNN Researcher @ ICAMSTA-2025, 1st Prize Patent Summit Winner.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rishith.me">
 
-  <!-- Favicon Icon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Custom Design System Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- DevPortfolio Stylesheet with Cache-Buster -->
+  <link rel="stylesheet" href="css/style.css?v=3.1">
 </head>
 <body>
 
-  <!-- Custom Magnetic Cursor -->
-  <div id="cursor-dot" class="cursor-dot"></div>
-  <div id="cursor-outline" class="cursor-outline"></div>
-
-  <!-- Particle Constellation Interactive Canvas -->
-  <canvas id="particles-canvas"></canvas>
-
-  <!-- Ambient Light Glowing Orbs -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
-
   <!-- ==========================================================================
-       PRELOADER
+       FAST MINIMALIST NAVIGATION
        ========================================================================== -->
-  <div id="preloader" class="preloader-overlay">
-    <div class="preloader-brand-logo">
-      RISHITH<span>.REDDY</span>
-    </div>
-    <div class="preloader-track">
-      <div id="preloader-progress" class="preloader-progress"></div>
-    </div>
-    <div id="preloader-status" class="preloader-meta-status">BOOTING TELEMETRY ENGINE... 0%</div>
-  </div>
-
-  <!-- ==========================================================================
-       TOP NAVIGATION BAR
-       ========================================================================== -->
-  <header id="main-navbar" class="navbar-wrapper">
-    <a href="#home" class="nav-brand">
-      <div class="nav-logo-box">RR</div>
-      <div class="nav-brand-title">Rishith<span>Reddy</span></div>
+  <header class="dev-navbar">
+    <a href="#home" class="dev-brand">
+      <span class="dev-brand-tag">~/</span>rishith-reddy
     </a>
 
-    <!-- Desktop Navigation Links -->
     <nav>
-      <ul class="nav-menu-links">
-        <li><a href="#home" class="nav-item-link"><i class="fa-solid fa-microchip"></i> Overview</a></li>
-        <li><a href="#spotlight" class="nav-item-link"><i class="fa-solid fa-trophy"></i> Research &amp; Patent</a></li>
-        <li><a href="#case-studies" class="nav-item-link"><i class="fa-solid fa-diagram-project"></i> Case Studies</a></li>
-        <li><a href="#signal-lab" class="nav-item-link"><i class="fa-solid fa-wave-square"></i> Telemetry Lab</a></li>
-        <li><a href="#skills" class="nav-item-link"><i class="fa-solid fa-sliders"></i> Skills</a></li>
-        <li><a href="#terminal" class="nav-item-link"><i class="fa-solid fa-terminal"></i> Terminal</a></li>
-        <li><a href="#education" class="nav-item-link"><i class="fa-solid fa-graduation-cap"></i> Academics</a></li>
-        <li><a href="#contact" class="nav-item-link"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+      <ul class="dev-nav-menu" id="nav-menu">
+        <li><a href="#home" class="dev-nav-link"><span>01.</span>//about</a></li>
+        <li><a href="#spotlight" class="dev-nav-link"><span>02.</span>//spotlight</a></li>
+        <li><a href="#projects" class="dev-nav-link"><span>03.</span>//projects</a></li>
+        <li><a href="#skills" class="dev-nav-link"><span>04.</span>//skills</a></li>
+        <li><a href="#terminal" class="dev-nav-link"><span>05.</span>//terminal</a></li>
+        <li><a href="#academics" class="dev-nav-link"><span>06.</span>//academics</a></li>
+        <li><a href="#contact" class="dev-nav-link"><span>07.</span>//contact</a></li>
       </ul>
     </nav>
 
-    <!-- Header Actions -->
-    <div class="nav-action-buttons">
-      <button id="btn-open-resume" class="btn btn-secondary" title="View Official Resume">
-        <i class="fa-solid fa-file-pdf"></i> Resume
+    <div class="dev-nav-actions">
+      <button class="nav-resume-btn" id="btn-top-resume">
+        <i class="fa-solid fa-file-pdf"></i> Resume.pdf
       </button>
-      <a href="#contact" class="btn btn-primary">
-        <i class="fa-solid fa-bolt"></i> Get In Touch
-      </a>
-      <button class="mobile-menu-toggle" id="btn-mobile-toggle" aria-label="Toggle menu">
+      <button class="nav-mobile-btn" id="btn-mobile-toggle" aria-label="Toggle Navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
     </div>
   </header>
 
   <!-- ==========================================================================
-       HERO SECTION
+       HERO SECTION (Terminal & DevCard Hybrid)
        ========================================================================== -->
-  <section class="hero-section" id="home">
+  <section class="layout-container hero-wrapper" id="home">
     <div class="hero-grid">
-      <!-- Hero Left Content -->
-      <div class="hero-left-content">
-        <!-- Live Status Pill -->
-        <div class="hero-status-pill">
-          <span class="pulse-led"></span>
-          <span>SYSTEM ACTIVE // OPEN FOR SDE &amp; EMBEDDED ROLES</span>
+      
+      <!-- Hero Left: Content -->
+      <div class="hero-content">
+        <div class="hero-status-tag">
+          <span class="pulse-dot"></span>
+          <span>AVAILABLE FOR SDE &amp; EMBEDDED ROLES &bull; HYDERABAD / NCR / PAN-INDIA</span>
         </div>
 
-        <h1 class="hero-title">
-          Hi, I'm <span class="gradient-text-cyan">Chiluka Rishith Reddy</span><br>
-          Engineering <span class="gradient-text-purple">Intelligent Hardware</span> &amp; Software.
+        <h1 class="hero-headline">
+          Hi, I'm <span class="text-gradient">Chiluka Rishith Reddy</span>
         </h1>
 
-        <!-- Typing Dynamic Role -->
-        <div class="hero-role-wrapper">
+        <div class="hero-typing-box">
           <span>&gt; </span>
-          <span id="typed-role-text" class="typed-role">Embedded Systems Innovator</span>
+          <span id="typing-text" class="typing-cursor">Embedded Systems Innovator</span>
         </div>
 
-        <p class="hero-description">
-          B.Tech in <strong>Electronics &amp; Instrumentation Engineering (EIE, 7th Sem, CGPA: 7.52)</strong> at <strong>Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)</strong>. Specialized in bridging the physical and digital domains—engineering high-reliability microcontroller firmware (STM32, Arduino, ESP32), biosignal data acquisition, statistical physics-informed deep learning (SP-GNN), and real-time telemetry systems.
+        <p class="hero-summary">
+          B.Tech in <strong>Electronics &amp; Instrumentation Engineering (EIE, 7th Sem, CGPA: 7.52)</strong> at <strong>VNR VJIET</strong>. Dedicated to building reliable embedded systems and intelligent software—connecting low-level microcontrollers (STM32, Arduino, ESP32, C/Embedded C), sensor interfacing &amp; data acquisition, statistical physics-informed deep learning (SP-GNN), and telemetry backends.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="hero-cta-group">
-          <a href="#case-studies" class="btn btn-primary">
-            <i class="fa-solid fa-layer-group"></i> Explore Case Studies
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fa-solid fa-layer-group"></i> Explore Projects
           </a>
-          <button id="btn-hero-resume" class="btn btn-gold">
+          <button class="btn btn-amber" id="btn-hero-resume">
             <i class="fa-solid fa-file-pdf"></i> View Resume (PDF)
           </button>
-          <a href="#terminal" class="btn btn-terminal">
-            <i class="fa-solid fa-terminal"></i> RishithOS CLI
+          <a href="#terminal" class="btn btn-secondary">
+            <i class="fa-solid fa-terminal"></i> Terminal CLI
           </a>
         </div>
 
-        <!-- Real Metrics Strip (100% Authentic to Resume) -->
-        <div class="hero-stats-strip">
-          <div class="hero-stat-card">
-            <div class="hero-stat-number">VNR<span> VJIET</span></div>
-            <div class="hero-stat-label">B.Tech EIE (7th Sem)</div>
+        <!-- Clean Metrics Ribbon -->
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <h4>VNR<span> VJIET</span></h4>
+            <p>B.Tech EIE (7th Sem)</p>
           </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-number">7.52<span> CGPA</span></div>
-            <div class="hero-stat-label">Academic Score</div>
+          <div class="stat-item">
+            <h4>7.52<span> CGPA</span></h4>
+            <p>Academic Score</p>
           </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-number">1<sup>st</sup><span> Prize</span></div>
-            <div class="hero-stat-label">Patent Summit Winner</div>
+          <div class="stat-item">
+            <h4>1<sup>st</sup><span> Prize</span></h4>
+            <p>Patent Summit Winner</p>
           </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-number">0.028<span> MSE</span></div>
-            <div class="hero-stat-label">SP-GNN Fault Error</div>
+          <div class="stat-item">
+            <h4>0.028<span> MSE</span></h4>
+            <p>SP-GNN Recon Error</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right: Terminal Card -->
+      <div class="hero-card-col">
+        <div class="terminal-card">
+          <div class="terminal-card-header">
+            <div class="term-dots">
+              <span class="term-dot dot-red"></span>
+              <span class="term-dot dot-yellow"></span>
+              <span class="term-dot dot-green"></span>
+            </div>
+            <span class="term-card-title">rishith@workstation: ~/profile.json</span>
+          </div>
+
+          <div class="terminal-card-body">
+            <div class="term-profile-row">
+              <img src="assets/profile.png" alt="Chiluka Rishith Reddy" class="term-avatar">
+              <div class="term-profile-meta">
+                <h3>Chiluka Rishith Reddy</h3>
+                <p>&lt;Embedded Systems &bull; SDE &bull; Python&gt;</p>
+              </div>
+            </div>
+
+            <div class="term-key-val">
+              <span class="t-key">"institution":</span>
+              <span class="t-val">"VNR VJIET, Hyderabad"</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"degree":</span>
+              <span class="t-val">"B.Tech (EIE, 7th Sem)"</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"cgpa":</span>
+              <span class="t-val green">7.52</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"patent_award":</span>
+              <span class="t-val amber">"1st Prize – Patent Summit"</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"research_paper":</span>
+              <span class="t-val purple">"SP-GNN @ ICAMSTA-2025"</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"core_firmware":</span>
+              <span class="t-val cyan">["STM32", "C", "Python", "Sensors"]</span>
+            </div>
+            <div class="term-key-val">
+              <span class="t-key">"status":</span>
+              <span class="t-val green">"Ready for SDE / Embedded Roles"</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Hero Right Side: Cyber Profile & Hardware Viewport -->
-      <div class="hero-right-visual">
-        <div class="hero-cyber-panel">
-          <div class="panel-header-strip">
-            <span>DEVICE: ARM_CORTEX_M // STM32</span>
-            <span>STATUS: <span style="color:var(--emerald);">ONLINE</span></span>
-          </div>
-
-          <div class="avatar-media-container">
-            <div class="avatar-ring-pulse"></div>
-            <img class="avatar-photo" src="assets/profile.png" alt="Chiluka Rishith Reddy">
-          </div>
-
-          <div class="avatar-info-block">
-            <h2 class="avatar-name">Chiluka Rishith Reddy</h2>
-            <div class="avatar-role-tag">&lt;Embedded &bull; Signal Processing &bull; Python&gt;</div>
-            <p class="avatar-location"><i class="fa-solid fa-location-dot" style="color:var(--cyan);"></i> Hyderabad, Telangana &bull; Open to NCR / Nationwide</p>
-          </div>
-
-          <!-- Real-Time Hardware Telemetry Box -->
-          <div class="cyber-telemetry-metrics">
-            <div class="telemetry-item">
-              <span class="telemetry-label">CORE ARCHITECTURE</span>
-              <span class="telemetry-value">STM32 / ATmega / ESP32</span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">LANGUAGES</span>
-              <span class="telemetry-value">C &bull; Embedded C &bull; Python</span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">RESEARCH PEER-REVIEW</span>
-              <span class="telemetry-value" style="color:var(--purple);">ICAMSTA-2025</span>
-            </div>
-            <div class="telemetry-item">
-              <span class="telemetry-label">PATENT COMPETITION</span>
-              <span class="telemetry-value" style="color:var(--gold);">1st Rank Winner</span>
-            </div>
-          </div>
-
-          <!-- Floating Badges -->
-          <div class="floating-badge badge-patent">
-            <div class="badge-icon gold"><i class="fa-solid fa-trophy"></i></div>
-            <div class="badge-text">
-              <h4>1st Prize Patent Winner</h4>
-              <p>Vehicle Safety Interlock</p>
-            </div>
-          </div>
-
-          <div class="floating-badge badge-research">
-            <div class="badge-icon purple"><i class="fa-solid fa-scroll"></i></div>
-            <div class="badge-text">
-              <h4>SP-GNN Research Paper</h4>
-              <p>ICAMSTA-2025 Osmania Univ.</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       RESEARCH & PATENT SPOTLIGHTS
+       RESEARCH & PATENT SPOTLIGHT
        ========================================================================== -->
-  <section class="section-container" id="spotlight">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-certificate"></i> Key Breakthroughs</div>
-      <h2 class="section-heading-title">Research Paper &amp; Patent Honors</h2>
-      <p class="section-subtext">Recognized for novel intellectual property in automotive safety and statistical physics-informed deep learning architectures.</p>
+  <section class="layout-container" id="spotlight">
+    <div class="section-head">
+      <span class="section-tag">// 02. KEY BREAKTHROUGHS</span>
+      <h2 class="section-title">Research Paper &amp; Patent Honors</h2>
+      <p class="section-desc">Novel intellectual property recognized in national engineering summits and peer-reviewed physics-informed machine learning research.</p>
     </div>
 
     <div class="spotlight-grid">
-      <!-- Card 1: SP-GNN Research Paper -->
-      <div class="spotlight-card paper-card">
+      <!-- Card 1: 1st Prize Patent Summit -->
+      <div class="spotlight-card patent-card">
         <div>
-          <div class="spotlight-top-strip">
-            <span class="tag-badge purple"><i class="fa-solid fa-book-open"></i> Research Paper Presentation</span>
-            <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-dim);">ICAMSTA-2025</span>
-          </div>
-          
-          <h3 class="spotlight-title">
-            "Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN) for Robust Fault Detection and Uncertainty Quantification in Distributed Sensor Systems"
-          </h3>
-
-          <p class="spotlight-desc">
-            Presented at the prestigious <strong>ICAMSTA-2025 International Conference, Osmania University</strong>. Formulated an unsupervised graph neural framework combining physical diffusion laws with message-passing graph networks to detect sensor anomalies across massive distributed systems without labeled fault data.
+          <span class="badge-tag amber"><i class="fa-solid fa-trophy"></i> 1st Prize Winner &bull; Patent Summit</span>
+          <h3 class="spotlight-title">Passive Alcohol Detection System for Vehicle Safety</h3>
+          <p class="spotlight-text">
+            Awarded <strong>1st Prize</strong> at the <em>National Workshop on Patent Analytics and Filing Framework</em>, VNR VJIET. Designed a non-intrusive automotive safety prototype that continuously monitors ambient cabin alcohol vapor and automatically locks out vehicle ignition without requiring active driver participation.
           </p>
 
-          <!-- Benchmarks -->
-          <div class="spotlight-metrics-row">
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val violet">0.028</span>
-              <span class="s-metric-lbl">SP-GNN Recon Error</span>
+          <div class="metric-strip">
+            <div class="metric-strip-item">
+              <strong style="color:var(--accent-amber);">1st Rank</strong>
+              <span>Competition Award</span>
             </div>
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val">0.072</span>
-              <span class="s-metric-lbl">Standard GCN</span>
+            <div class="metric-strip-item">
+              <strong style="color:var(--accent-green);">Passive</strong>
+              <span>Non-Intrusive Sensing</span>
             </div>
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val green">61%</span>
-              <span class="s-metric-lbl">Error Reduction</span>
+            <div class="metric-strip-item">
+              <strong style="color:var(--accent-cyan);">Relay</strong>
+              <span>Starter Interlock</span>
             </div>
           </div>
         </div>
 
         <div class="spotlight-footer">
-          <span><i class="fa-solid fa-university" style="color:var(--purple);"></i> Osmania University</span>
-          <span style="color:var(--purple); font-weight:700;">Peer Reviewed &bull; 2025</span>
+          <span><i class="fa-solid fa-award"></i> VNR VJIET Patent Summit</span>
+          <span style="color:var(--accent-amber); font-weight:600;">Year: 2025</span>
         </div>
       </div>
 
-      <!-- Card 2: Patent Summit 1st Prize -->
-      <div class="spotlight-card patent-card">
+      <!-- Card 2: ICAMSTA-2025 Research Paper -->
+      <div class="spotlight-card paper-card">
         <div>
-          <div class="spotlight-top-strip">
-            <span class="tag-badge gold"><i class="fa-solid fa-trophy"></i> 1st Prize Winner</span>
-            <span style="font-family:var(--font-mono); font-size:12px; color:var(--gold);">National Summit</span>
-          </div>
-
-          <h3 class="spotlight-title">
-            Patent Summit Competition: Passive Alcohol Detection System for Vehicle Safety
-          </h3>
-
-          <p class="spotlight-desc">
-            Awarded <strong>1st Prize</strong> at the <em>National Workshop on Patent Analytics and Filing Framework</em>, VNR VJIET. Designed an automated non-intrusive automotive safety prototype that continuously samples ambient cabin air, assesses intoxication thresholds, and actuates starter interlocks without requiring active driver cooperation.
+          <span class="badge-tag purple"><i class="fa-solid fa-book-open"></i> Research Paper Presentation</span>
+          <h3 class="spotlight-title">"Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN)"</h3>
+          <p class="spotlight-text">
+            Presented at the <strong>ICAMSTA-2025 International Conference, Osmania University</strong>. Formulated an unsupervised graph deep learning framework for sensor fault detection using physical message-passing diffusion on the Intel Berkeley Research Lab dataset (54 sensors, 2.3M readings).
           </p>
 
-          <!-- Impact Highlights -->
-          <div class="spotlight-metrics-row">
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val amber">1st Prize</span>
-              <span class="s-metric-lbl">National Summit</span>
+          <div class="metric-strip">
+            <div class="metric-strip-item">
+              <strong style="color:var(--accent-purple);">0.028</strong>
+              <span>SP-GNN Recon Error</span>
             </div>
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val green">Passive</span>
-              <span class="s-metric-lbl">Non-Intrusive Sensing</span>
+            <div class="metric-strip-item">
+              <strong style="color:#ef4444;">0.072</strong>
+              <span>Standard GCN Error</span>
             </div>
-            <div class="spotlight-metric-item">
-              <span class="s-metric-val">Relay</span>
-              <span class="s-metric-lbl">Ignition Lockout</span>
+            <div class="metric-strip-item">
+              <strong style="color:var(--accent-green);">-61.1%</strong>
+              <span>Error Reduction</span>
             </div>
           </div>
         </div>
 
         <div class="spotlight-footer">
-          <span><i class="fa-solid fa-award" style="color:var(--gold);"></i> VNR VJIET Patent Analytics</span>
-          <span style="color:var(--gold); font-weight:700;">1st Rank &bull; 2025</span>
+          <span><i class="fa-solid fa-university"></i> Osmania University</span>
+          <span style="color:var(--accent-purple); font-weight:600;">Peer Reviewed &bull; 2025</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       DETAILED CASE STUDIES SECTION
+       DETAILED PROJECT CASE STUDIES
        ========================================================================== -->
-  <section class="section-container" id="case-studies">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-cubes"></i> Engineering In Action</div>
-      <h2 class="section-heading-title">Detailed Project Case Studies</h2>
-      <p class="section-subtext">Deep-dives into hardware firmware, signal processing pipelines, machine learning architectures, and physical prototyping.</p>
+  <section class="layout-container" id="projects">
+    <div class="section-head">
+      <span class="section-tag">// 03. ENGINEERING CASE STUDIES</span>
+      <h2 class="section-title">Featured Projects &amp; Systems</h2>
+      <p class="section-desc">Practical firmware engineering, biomedical signal processing pipelines, machine learning architectures, and IoT hardware prototypes.</p>
     </div>
 
     <!-- Filter Buttons -->
-    <div class="projects-filter-bar">
-      <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> All Projects</button>
-      <button class="filter-btn" data-filter="embedded"><i class="fa-solid fa-microchip"></i> Embedded &amp; Firmware</button>
-      <button class="filter-btn" data-filter="signal"><i class="fa-solid fa-wave-square"></i> Signal Processing &amp; AI</button>
-      <button class="filter-btn" data-filter="safety"><i class="fa-solid fa-shield-halved"></i> Automotive &amp; Safety</button>
+    <div class="case-filter-row">
+      <button class="filter-chip active" data-filter="all">All Projects</button>
+      <button class="filter-chip" data-filter="embedded">Embedded &amp; Firmware</button>
+      <button class="filter-chip" data-filter="ml">Machine Learning &amp; DSP</button>
+      <button class="filter-chip" data-filter="automotive">Automotive &amp; Safety</button>
     </div>
 
-    <!-- Case Studies Grid -->
     <div class="projects-grid">
       
       <!-- Project 1: STM32 AF Detection -->
-      <article class="case-study-card" data-category="embedded signal">
+      <div class="project-card" data-category="embedded ml">
         <div>
-          <div class="card-top-meta">
-            <span class="tag-badge cyan"><i class="fa-solid fa-heart-pulse"></i> Biomedical Embedded</span>
-            <span class="project-id-chip">SYS_ID: STM32-AF-01</span>
+          <div class="proj-top-meta">
+            <span class="proj-domain-pill"><i class="fa-solid fa-heart-pulse"></i> Biomedical Embedded</span>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">STM32-AF-01</span>
           </div>
 
-          <h3 class="case-study-title">PPG-Based Atrial Fibrillation (AF) Detection on STM32 — Inter-Patient Validation</h3>
-          
-          <p class="case-study-summary">
-            Developing an edge-based cardiac arrhythmia detection system on ARM Cortex-M (STM32). Acquires Photoplethysmogram (PPG) optical signals, removes motion artifacts through digital bandpass filtering, extracts HR/HRV time-domain features, and executes lightweight classification with patient-disjoint validation for unseen subjects.
+          <h3 class="proj-title">PPG-Based AF Detection on STM32 — Inter-Patient Validation</h3>
+          <p class="proj-summary">
+            Developing an STM32-based PPG signal acquisition and Atrial Fibrillation (AF) detection system. Integrates optical PPG acquisition, 0.5–5 Hz digital bandpass filtering, HR/HRV feature extraction, and lightweight classification with patient-disjoint validation for evaluating generalization to unseen subjects.
           </p>
 
-          <!-- Architecture Flow Strip -->
-          <div class="architecture-flow-preview">
-            <div class="flow-title"><i class="fa-solid fa-network-wired"></i> Firmware Pipeline Architecture</div>
-            <div class="flow-steps-strip">
-              <span class="flow-step-node">PPG Optical Sensor</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">STM32 ADC (DMA)</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node">0.5-5Hz Bandpass</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node">HR/HRV Analysis</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">AF Inference</span>
+          <div class="flow-diagram-box">
+            <div class="flow-title">Signal Processing &amp; Firmware Pipeline</div>
+            <div class="flow-nodes-line">
+              <span class="flow-node">PPG Sensor</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">STM32 ADC (DMA)</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node">0.5-5Hz Bandpass</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node">HRV Extraction</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">AF Classifier</span>
             </div>
           </div>
 
-          <div class="impact-badge-strip">
-            <span class="impact-chip"><i class="fa-solid fa-check-circle"></i> Patient-Disjoint Generalization</span>
-            <span class="impact-chip"><i class="fa-solid fa-bolt"></i> Low-Power Edge Execution</span>
-            <span class="impact-chip"><i class="fa-solid fa-microchip"></i> STM32 DMA Buffering</span>
-          </div>
-
-          <div class="tech-tags-cloud">
-            <span class="tech-tag-pill">STM32</span>
-            <span class="tech-tag-pill">Embedded C</span>
-            <span class="tech-tag-pill">PPG Signal DAQ</span>
-            <span class="tech-tag-pill">Digital Filtering</span>
-            <span class="tech-tag-pill">HR/HRV Analysis</span>
-            <span class="tech-tag-pill">STM32CubeIDE</span>
+          <div class="tech-pills">
+            <span class="tech-pill">STM32</span>
+            <span class="tech-pill">Embedded C</span>
+            <span class="tech-pill">PPG DAQ</span>
+            <span class="tech-pill">Digital Filtering</span>
+            <span class="tech-pill">HR/HRV Analysis</span>
+            <span class="tech-pill">STM32CubeIDE</span>
           </div>
         </div>
 
-        <div class="card-actions-row">
-          <button class="btn-case-modal" data-project="stm32-af">
-            Explore Case Study <i class="fa-solid fa-arrow-right"></i>
+        <div class="proj-footer">
+          <button class="btn-open-modal" data-modal="stm32-af">
+            Case Study Details <i class="fa-solid fa-arrow-right"></i>
           </button>
-          <a href="https://github.com/rishithreddy46" target="_blank" class="github-icon-link" title="GitHub Source">
+          <a href="https://github.com/rishithreddy46/" target="_blank" class="link-icon-btn" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
-      </article>
+      </div>
 
-      <!-- Project 2: SP-GNN Sensor Fault Detection -->
-      <article class="case-study-card" data-category="signal">
+      <!-- Project 2: SP-GNN -->
+      <div class="project-card" data-category="ml">
         <div>
-          <div class="card-top-meta">
-            <span class="tag-badge purple"><i class="fa-solid fa-brain"></i> Physics-Informed ML</span>
-            <span class="project-id-chip">PAPER: ICAMSTA-2025</span>
+          <div class="proj-top-meta">
+            <span class="proj-domain-pill" style="color:var(--accent-purple); border-color:rgba(168,85,247,0.3); background:rgba(168,85,247,0.1);">
+              <i class="fa-solid fa-brain"></i> Physics-Informed ML
+            </span>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">ICAMSTA-2025</span>
           </div>
 
-          <h3 class="case-study-title">Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN)</h3>
-          
-          <p class="case-study-summary">
-            Unsupervised deep learning framework for sensor fault detection and uncertainty quantification across distributed industrial sensor arrays. Tested on the Intel Berkeley Research Lab dataset (54 sensors, 2.3M readings). Integrates physical diffusion constraints into message passing to isolate anomalous readings.
+          <h3 class="proj-title">Hybrid Statistical Physics-Informed GNN (SP-GNN)</h3>
+          <p class="proj-summary">
+            Unsupervised SP-GNN framework for sensor fault detection using the Intel Berkeley Research Lab dataset (54 sensors, 2.3M readings). Integrates graph-based sensor relationship modeling and physical message passing to detect anomalous sensor behavior, achieving 0.028 error vs 0.072 for standard GCN.
           </p>
 
-          <!-- Architecture Flow Strip -->
-          <div class="architecture-flow-preview">
-            <div class="flow-title"><i class="fa-solid fa-network-wired"></i> Model Flow Architecture</div>
-            <div class="flow-steps-strip">
-              <span class="flow-step-node">54-Node Sensor Graph</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">Physics Message Passing</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node">Uncertainty Metric</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">MSE 0.028</span>
+          <div class="flow-diagram-box">
+            <div class="flow-title">Model Topology &amp; Physics Flow</div>
+            <div class="flow-nodes-line">
+              <span class="flow-node">54-Node Sensor Graph</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">Physics Message Passing</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node">Uncertainty Scoring</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">MSE: 0.028</span>
             </div>
           </div>
 
-          <div class="impact-badge-strip">
-            <span class="impact-chip"><i class="fa-solid fa-chart-line"></i> 0.028 Recon Error (vs 0.072 GCN)</span>
-            <span class="impact-chip"><i class="fa-solid fa-database"></i> 2.3M Sensor Readings</span>
-            <span class="impact-chip"><i class="fa-solid fa-scroll"></i> Osmania Univ. Presentation</span>
-          </div>
-
-          <div class="tech-tags-cloud">
-            <span class="tech-tag-pill">Python</span>
-            <span class="tech-tag-pill">PyTorch Geometric</span>
-            <span class="tech-tag-pill">Graph Neural Networks</span>
-            <span class="tech-tag-pill">Statistical Physics</span>
-            <span class="tech-tag-pill">Sensor Networks</span>
-            <span class="tech-tag-pill">Data Analytics</span>
+          <div class="tech-pills">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">PyTorch Geometric</span>
+            <span class="tech-pill">Graph Neural Networks</span>
+            <span class="tech-pill">Statistical Physics</span>
+            <span class="tech-pill">Sensor Networks</span>
           </div>
         </div>
 
-        <div class="card-actions-row">
-          <button class="btn-case-modal" data-project="sp-gnn">
-            Explore Case Study <i class="fa-solid fa-arrow-right"></i>
+        <div class="proj-footer">
+          <button class="btn-open-modal" data-modal="sp-gnn">
+            Case Study Details <i class="fa-solid fa-arrow-right"></i>
           </button>
-          <a href="https://github.com/rishithreddy46" target="_blank" class="github-icon-link" title="GitHub Source">
+          <a href="https://github.com/rishithreddy46/" target="_blank" class="link-icon-btn" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
-      </article>
+      </div>
 
-      <!-- Project 3: Embedded EV Monitoring System -->
-      <article class="case-study-card" data-category="embedded safety">
+      <!-- Project 3: EV Dashboard -->
+      <div class="project-card" data-category="embedded automotive">
         <div>
-          <div class="card-top-meta">
-            <span class="tag-badge emerald"><i class="fa-solid fa-car-battery"></i> Automotive IoT</span>
-            <span class="project-id-chip">SYS_ID: EV-MON-02</span>
+          <div class="proj-top-meta">
+            <span class="proj-domain-pill" style="color:var(--accent-green); border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.1);">
+              <i class="fa-solid fa-car-battery"></i> Automotive IoT
+            </span>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">EV-MON-02</span>
           </div>
 
-          <h3 class="case-study-title">Embedded EV Monitoring System using Arduino &amp; Software Telemetry</h3>
-          
-          <p class="case-study-summary">
-            Engineered an Arduino-based embedded acquisition prototype for real-time telemetry of key electric vehicle operational parameters. Interfaced multi-channel sensors for battery State of Charge (SOC), vehicle speed, and pack temperature, feeding a live software telemetry dashboard for dynamic range estimation.
+          <h3 class="proj-title">Embedded EV Monitoring System using Arduino</h3>
+          <p class="proj-summary">
+            Arduino-based embedded monitoring prototype for real-time acquisition and monitoring of key EV parameters, including battery level/SOC, vehicle speed, and temperature. Implemented multi-sensor interfacing and software telemetry dashboard for real-time visualization and estimated driving-range monitoring.
           </p>
 
-          <!-- Architecture Flow Strip -->
-          <div class="architecture-flow-preview">
-            <div class="flow-title"><i class="fa-solid fa-network-wired"></i> Telemetry &amp; DAQ Architecture</div>
-            <div class="flow-steps-strip">
-              <span class="flow-step-node">Battery &bull; Speed &bull; Temp</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">Arduino DAQ (UART)</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node">Signal Conditioning</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">Telemetry Dashboard</span>
+          <div class="flow-diagram-box">
+            <div class="flow-title">Hardware Telemetry Architecture</div>
+            <div class="flow-nodes-line">
+              <span class="flow-node">Voltage/Current/Temp Sensors</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">Arduino ATmega DAQ</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node">UART Serial Protocol</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">Telemetry Dashboard</span>
             </div>
           </div>
 
-          <div class="impact-badge-strip">
-            <span class="impact-chip"><i class="fa-solid fa-gauge-high"></i> Real-Time Multi-Parameter DAQ</span>
-            <span class="impact-chip"><i class="fa-solid fa-battery-half"></i> Dynamic Range Estimation</span>
-            <span class="impact-chip"><i class="fa-solid fa-desktop"></i> Live Software Dashboard</span>
-          </div>
-
-          <div class="tech-tags-cloud">
-            <span class="tech-tag-pill">Arduino</span>
-            <span class="tech-tag-pill">C / C++</span>
-            <span class="tech-tag-pill">Sensor Interfacing</span>
-            <span class="tech-tag-pill">Signal Conditioning</span>
-            <span class="tech-tag-pill">UART Telemetry</span>
-            <span class="tech-tag-pill">Arduino IDE</span>
+          <div class="tech-pills">
+            <span class="tech-pill">Arduino</span>
+            <span class="tech-pill">C / C++</span>
+            <span class="tech-pill">Sensor Interfacing</span>
+            <span class="tech-pill">Signal Conditioning</span>
+            <span class="tech-pill">UART Telemetry</span>
+            <span class="tech-pill">Arduino IDE</span>
           </div>
         </div>
 
-        <div class="card-actions-row">
-          <button class="btn-case-modal" data-project="ev-monitor">
-            Explore Case Study <i class="fa-solid fa-arrow-right"></i>
+        <div class="proj-footer">
+          <button class="btn-open-modal" data-modal="ev-monitor">
+            Case Study Details <i class="fa-solid fa-arrow-right"></i>
           </button>
-          <a href="https://github.com/rishithreddy46" target="_blank" class="github-icon-link" title="GitHub Source">
+          <a href="https://github.com/rishithreddy46/" target="_blank" class="link-icon-btn" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
-      </article>
+      </div>
 
       <!-- Project 4: Passive Alcohol Detection System -->
-      <article class="case-study-card" data-category="safety embedded">
+      <div class="project-card" data-category="automotive embedded">
         <div>
-          <div class="card-top-meta">
-            <span class="tag-badge gold"><i class="fa-solid fa-award"></i> 1st Prize Invention</span>
-            <span class="project-id-chip">PATENT_SUMMIT_2025</span>
+          <div class="proj-top-meta">
+            <span class="proj-domain-pill" style="color:var(--accent-amber); border-color:rgba(245,158,11,0.3); background:rgba(245,158,11,0.1);">
+              <i class="fa-solid fa-trophy"></i> 1st Prize Invention
+            </span>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">PATENT-2025</span>
           </div>
 
-          <h3 class="case-study-title">Passive Alcohol Detection System for Vehicle Safety</h3>
-          
-          <p class="case-study-summary">
-            Novel hardware-integrated automotive safety system developed for the Patent Summit Competition. Replaces intrusive breathalyzer devices with continuous, passive ambient air analysis in the steering column/cabin. Interfaced directly with vehicle ignition circuitry to prevent intoxicated driving without driver intervention.
+          <h3 class="proj-title">Passive Alcohol Detection System for Vehicle Safety</h3>
+          <p class="proj-summary">
+            Automated non-intrusive automotive safety prototype that replaces active breathalyzer blowing with continuous cabin air sampling. Interfaced calibrated gas sensors with microcontroller threshold logic and an ignition starter relay interlock to prevent drunk driving.
           </p>
 
-          <!-- Architecture Flow Strip -->
-          <div class="architecture-flow-preview">
-            <div class="flow-title"><i class="fa-solid fa-network-wired"></i> Sensor Interlock Architecture</div>
-            <div class="flow-steps-strip">
-              <span class="flow-step-node">Passive Gas Sensing</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">Calibrated ADC Comparator</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node">Safety Microcontroller</span>
-              <span class="flow-step-arrow">&rarr;</span>
-              <span class="flow-step-node active-node">Ignition Interlock</span>
+          <div class="flow-diagram-box">
+            <div class="flow-title">Safety Interlock Mechanism</div>
+            <div class="flow-nodes-line">
+              <span class="flow-node">Passive Gas Sensing</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">Calibrated Comparator</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node">Microcontroller Logic</span>
+              <span class="flow-arrow">&rarr;</span>
+              <span class="flow-node highlight">Ignition Interlock Relay</span>
             </div>
           </div>
 
-          <div class="impact-badge-strip">
-            <span class="impact-chip"><i class="fa-solid fa-trophy"></i> 1st Prize Winner</span>
-            <span class="impact-chip"><i class="fa-solid fa-shield"></i> Non-Intrusive Safety Mechanism</span>
-            <span class="impact-chip"><i class="fa-solid fa-file-contract"></i> Patent Analytics Framework</span>
-          </div>
-
-          <div class="tech-tags-cloud">
-            <span class="tech-tag-pill">Microcontrollers</span>
-            <span class="tech-tag-pill">Gas Sensors (MQ)</span>
-            <span class="tech-tag-pill">Signal Conditioning</span>
-            <span class="tech-tag-pill">Relay Interlock</span>
-            <span class="tech-tag-pill">Hardware Integration</span>
+          <div class="tech-pills">
+            <span class="tech-pill">Microcontrollers</span>
+            <span class="tech-pill">MQ Gas Sensors</span>
+            <span class="tech-pill">Signal Conditioning</span>
+            <span class="tech-pill">Relay Actuation</span>
+            <span class="tech-pill">Patent Framework</span>
           </div>
         </div>
 
-        <div class="card-actions-row">
-          <button class="btn-case-modal" data-project="alcohol-patent">
-            Explore Case Study <i class="fa-solid fa-arrow-right"></i>
+        <div class="proj-footer">
+          <button class="btn-open-modal" data-modal="alcohol-patent">
+            Case Study Details <i class="fa-solid fa-arrow-right"></i>
           </button>
-          <a href="https://github.com/rishithreddy46" target="_blank" class="github-icon-link" title="GitHub Source">
+          <a href="https://github.com/rishithreddy46/" target="_blank" class="link-icon-btn" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
-      </article>
+      </div>
 
     </div>
   </section>
 
   <!-- ==========================================================================
-       INTERACTIVE SENSOR & SIGNAL TELEMETRY LAB (LIVE CANVAS OSCILLOSCOPE)
+       TECHNICAL SKILLS MATRIX (100% Resume Categories)
        ========================================================================== -->
-  <section class="section-container" id="signal-lab">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-wave-square"></i> Real-Time Simulation</div>
-      <h2 class="section-heading-title">Live Signal Telemetry &amp; DSP Lab</h2>
-      <p class="section-subtext">Interactive digital signal processing demonstrator simulating raw optical PPG data acquisition, 0.5–5 Hz bandpass filtering, and live heart rate extraction.</p>
+  <section class="layout-container" id="skills">
+    <div class="section-head">
+      <span class="section-tag">// 04. ENGINEERING ARSENAL</span>
+      <h2 class="section-title">Skills &amp; Technical Competencies</h2>
+      <p class="section-desc">Firmware, instrumentation, signal processing, and low-level microcontrollers structured strictly around verified engineering skills.</p>
     </div>
 
-    <div class="telemetry-lab-panel">
-      <div class="oscilloscope-top-bar">
-        <div class="oscilloscope-title-group">
-          <span class="scope-led"></span>
-          <span style="font-family:var(--font-heading); font-size:1.1rem; font-weight:700; color:var(--text-highlight);">
-            Virtual Oscilloscope: PPG Channel 01 (100 Hz Sampling)
-          </span>
-        </div>
-
-        <div class="scope-overlay-meta">
-          <span>ADC: 12-BIT</span>
-          <span>WINDOW: 4.0s</span>
-          <span id="scope-status" style="color:var(--emerald);">STREAMING</span>
-        </div>
-      </div>
-
-      <!-- Oscilloscope Canvas Frame -->
-      <div class="oscilloscope-canvas-frame">
-        <canvas id="oscilloscope-canvas"></canvas>
-      </div>
-
-      <!-- Controls & Live Readouts Strip -->
-      <div class="oscilloscope-controls-strip">
-        <div class="scope-mode-tabs">
-          <button class="scope-mode-btn active" data-mode="filtered"><i class="fa-solid fa-filter"></i> Bandpass Filtered (Clean)</button>
-          <button class="scope-mode-btn" data-mode="raw"><i class="fa-solid fa-bolt"></i> Raw Noisy PPG (+Noise)</button>
-          <button class="scope-mode-btn" data-mode="arrhythmia"><i class="fa-solid fa-heart-pulse"></i> Inject Arrhythmia (AF)</button>
-        </div>
-
-        <div class="scope-telemetry-readouts">
-          <div class="readout-item">ESTIMATED HR: <strong id="scope-hr-val" class="emerald">74 BPM</strong></div>
-          <div class="readout-item">HRV (RMSSD): <strong id="scope-hrv-val" class="cyan">38 ms</strong></div>
-          <div class="readout-item">STATUS: <strong id="scope-rhythm-val" class="emerald">NORMAL SINUS</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       TECHNICAL SKILLS MATRIX (100% MATCHED TO RESUME CATEGORIES)
-       ========================================================================== -->
-  <section class="section-container" id="skills">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-microchip"></i> Engineering Arsenal</div>
-      <h2 class="section-heading-title">Core Technical Competencies</h2>
-      <p class="section-subtext">Comprehensive breakdown of low-level microcontroller firmware, circuit hardware, instrumentation, signal processing, and high-level programming.</p>
-    </div>
-
-    <!-- Category Tabs -->
-    <div class="skills-tabs-container">
-      <button class="skill-tab-btn active" data-cat="all"><i class="fa-solid fa-layer-group"></i> All Competencies</button>
-      <button class="skill-tab-btn" data-cat="embed"><i class="fa-solid fa-microchip"></i> Embedded Systems</button>
-      <button class="skill-tab-btn" data-cat="inst"><i class="fa-solid fa-gauge"></i> Instrumentation &amp; DAQ</button>
-      <button class="skill-tab-btn" data-cat="signal"><i class="fa-solid fa-wave-square"></i> Control &amp; Signals</button>
-      <button class="skill-tab-btn" data-cat="code"><i class="fa-solid fa-code"></i> Programming</button>
-      <button class="skill-tab-btn" data-cat="tools"><i class="fa-solid fa-screwdriver-wrench"></i> Engineering Tools</button>
-    </div>
-
-    <!-- 6 Exact Categories from Resume -->
-    <div class="skills-matrix-grid">
+    <div class="skills-grid">
       
       <!-- 1. Embedded Systems -->
-      <div class="skill-category-card" data-cat="embed">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon emerald"><i class="fa-solid fa-microchip"></i></div>
-          <h3 class="skill-cat-title">Embedded Systems</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-microchip"></i>
+          <h3>Embedded Systems</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> STM32</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Arduino</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> ESP32</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Microcontrollers</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> GPIO &amp; Timers</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> ADC &amp; DMA</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> STM32</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Arduino</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> ESP32</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Microcontrollers</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> GPIO &amp; Timers</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> ADC &amp; DMA</span>
         </div>
       </div>
 
       <!-- 2. Instrumentation & Measurement -->
-      <div class="skill-category-card" data-cat="inst">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon cyan"><i class="fa-solid fa-gauge"></i></div>
-          <h3 class="skill-cat-title">Instrumentation &amp; Measurement</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-gauge-high"></i>
+          <h3>Instrumentation &amp; Measurement</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Sensors</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Sensor Interfacing</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Data Acquisition (DAQ)</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Signal Conditioning</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Calibration</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Sensors</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Sensor Interfacing</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Data Acquisition (DAQ)</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Signal Conditioning</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Process Monitoring</span>
         </div>
       </div>
 
       <!-- 3. Control & Signal Processing -->
-      <div class="skill-category-card" data-cat="signal">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon purple"><i class="fa-solid fa-wave-square"></i></div>
-          <h3 class="skill-cat-title">Control &amp; Signal Processing</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-wave-square"></i>
+          <h3>Control &amp; Signal Processing</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Control Systems</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Digital Filtering</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> FFT Analysis</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> HR/HRV Analysis</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Feature Extraction</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Control Systems</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Digital Filtering</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> FFT Analysis</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> HR/HRV Analysis</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Feature Extraction</span>
         </div>
       </div>
 
       <!-- 4. Programming -->
-      <div class="skill-category-card" data-cat="code">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon blue"><i class="fa-solid fa-code"></i></div>
-          <h3 class="skill-cat-title">Programming</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-code"></i>
+          <h3>Programming</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> C</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Embedded C</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Python (NPTEL Elite)</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Data Structures</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Firmware Algorithms</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> C</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Embedded C</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Python (NPTEL Elite)</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Data Structures</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Firmware Algorithms</span>
         </div>
       </div>
 
       <!-- 5. Electronics -->
-      <div class="skill-category-card" data-cat="embed">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon gold"><i class="fa-solid fa-bolt"></i></div>
-          <h3 class="skill-cat-title">Electronics</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Electronics</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Analog Electronics</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Digital Electronics</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Circuit Fundamentals</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Operational Amplifiers</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Power Regulation</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Analog Electronics</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Digital Electronics</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Circuit Fundamentals</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Op-Amps &amp; Regulators</span>
         </div>
       </div>
 
       <!-- 6. Engineering Tools -->
-      <div class="skill-category-card" data-cat="tools">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon cyan"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h3 class="skill-cat-title">Engineering Tools</h3>
+      <div class="skill-category-card">
+        <div class="skill-cat-head">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <h3>Engineering Tools</h3>
         </div>
-        <div class="skill-chips-list">
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> MATLAB</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> LabVIEW</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> STM32CubeIDE</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Arduino IDE</span>
-          <span class="skill-chip-item"><i class="fa-solid fa-check"></i> Git &amp; GitHub</span>
+        <div class="skill-chip-wrap">
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> MATLAB</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> LabVIEW</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> STM32CubeIDE</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Arduino IDE</span>
+          <span class="skill-chip"><i class="fa-solid fa-check"></i> Git &amp; GitHub</span>
         </div>
       </div>
 
@@ -708,133 +565,128 @@
   </section>
 
   <!-- ==========================================================================
-       RISHITHOS INTERACTIVE CLI TERMINAL (ENGINEERING CONSOLE)
+       INTERACTIVE RISHITHOS TERMINAL
        ========================================================================== -->
-  <section class="section-container" id="terminal">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-terminal"></i> Command Line Interface</div>
-      <h2 class="section-heading-title">RishithOS Interactive Console</h2>
-      <p class="section-subtext">Type commands below or click quick tags to query telemetry, run benchmarks, or inspect credentials in hacker mode.</p>
+  <section class="layout-container" id="terminal">
+    <div class="section-head">
+      <span class="section-tag">// 05. COMMAND LINE INTERFACE</span>
+      <h2 class="section-title">Interactive Terminal Console</h2>
+      <p class="section-desc">Type commands below or click quick tags to inspect telemetry, run benchmarks, or view source data.</p>
     </div>
 
-    <div class="terminal-window-card">
-      <div class="terminal-header">
-        <div class="terminal-dots">
-          <span class="term-dot red"></span>
-          <span class="term-dot yellow"></span>
-          <span class="term-dot green"></span>
+    <div class="full-terminal-window">
+      <div class="term-topbar">
+        <div class="term-dots">
+          <span class="term-dot dot-red"></span>
+          <span class="term-dot dot-yellow"></span>
+          <span class="term-dot dot-green"></span>
         </div>
-        <div class="terminal-title">rishith@portfolio: ~ (zsh / arm-none-eabi)</div>
-        <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-dim);">UTF-8 &bull; 115200 BAUD</div>
+        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-dim);">rishith@console: ~ (zsh / arm-none-eabi)</span>
       </div>
 
-      <div id="terminal-output" class="terminal-body">
-        <div style="color:var(--cyan); font-weight:bold;">Welcome to RishithOS Telemetry Terminal v3.1.0 [ARM Cortex-M Target]</div>
-        <div style="color:var(--text-muted); font-size:12px; margin-bottom: 12px;">Type <b style="color:var(--gold);">help</b> for command list, or click any chip below:</div>
+      <div class="terminal-scroll-area" id="term-out">
+        <div style="color:var(--accent-cyan); font-weight:700;">RishithOS Developer CLI v3.2.0 [ARM Cortex-M Target]</div>
+        <div style="color:var(--text-dim); font-size:0.8rem; margin-bottom:10px;">Type <b style="color:var(--accent-amber);">help</b> for commands, or click any chip below:</div>
       </div>
 
-      <div class="terminal-input-row">
-        <span class="term-line-prefix">rishith@telemetry:~$</span>
-        <input type="text" id="terminal-input" class="terminal-input-box" placeholder="Type a command (e.g., help, skills, projects, patent, research, resume)..." autocomplete="off">
+      <div class="terminal-input-bar">
+        <span class="term-prompt-green">rishith@telemetry:~$</span>
+        <input type="text" class="terminal-input-field" id="term-input" placeholder="Type a command (e.g. help, skills, projects, patent, research, resume)..." autocomplete="off">
       </div>
 
-      <div class="terminal-quick-chips">
-        <button class="term-chip-btn" data-cmd="help">help</button>
-        <button class="term-chip-btn" data-cmd="about">about</button>
-        <button class="term-chip-btn" data-cmd="skills">skills</button>
-        <button class="term-chip-btn" data-cmd="projects">projects</button>
-        <button class="term-chip-btn" data-cmd="stm32">stm32</button>
-        <button class="term-chip-btn" data-cmd="spgnn">spgnn</button>
-        <button class="term-chip-btn" data-cmd="patent">patent</button>
-        <button class="term-chip-btn" data-cmd="resume">resume</button>
-        <button class="term-chip-btn" data-cmd="contact">contact</button>
-        <button class="term-chip-btn" data-cmd="clear">clear</button>
+      <div class="terminal-quick-tags">
+        <button class="quick-cmd-btn" data-cmd="help">help</button>
+        <button class="quick-cmd-btn" data-cmd="about">about</button>
+        <button class="quick-cmd-btn" data-cmd="skills">skills</button>
+        <button class="quick-cmd-btn" data-cmd="projects">projects</button>
+        <button class="quick-cmd-btn" data-cmd="stm32">stm32</button>
+        <button class="quick-cmd-btn" data-cmd="spgnn">spgnn</button>
+        <button class="quick-cmd-btn" data-cmd="patent">patent</button>
+        <button class="quick-cmd-btn" data-cmd="resume">resume</button>
+        <button class="quick-cmd-btn" data-cmd="contact">contact</button>
+        <button class="quick-cmd-btn" data-cmd="clear">clear</button>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       EDUCATION & ACHIEVEMENTS (100% AUTHENTIC TO RESUME)
+       ACADEMICS & ACHIEVEMENTS (100% Resume Accurate)
        ========================================================================== -->
-  <section class="section-container" id="education">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-graduation-cap"></i> Academic Foundation</div>
-      <h2 class="section-heading-title">Education &amp; Professional Milestones</h2>
-      <p class="section-subtext">Solid grounding in Instrumentation, Electronics, Control Systems, and recognized competitive hackathon achievements.</p>
+  <section class="layout-container" id="academics">
+    <div class="section-head">
+      <span class="section-tag">// 06. ACADEMICS &amp; HONORS</span>
+      <h2 class="section-title">Education &amp; Professional Milestones</h2>
+      <p class="section-desc">Formal university education at VNR VJIET and competitive hardware hackathons.</p>
     </div>
 
-    <div class="education-achieve-grid">
-      <!-- Left: Education & Certifications -->
-      <div class="edu-card">
-        <h3 class="card-inner-heading">
-          <i class="fa-solid fa-university" style="color:var(--cyan);"></i> Formal Education &amp; Certs
-        </h3>
+    <div class="academics-grid">
+      <!-- Education & Certs -->
+      <div class="academic-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-graduation-cap" style="color:var(--accent-cyan);"></i> University Education &amp; Certifications</h3>
 
-        <div class="degree-block">
-          <div class="degree-title">B.Tech in Electronics &amp; Instrumentation Engineering (EIE)</div>
-          <div class="institution-name">Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)</div>
-          <div class="meta-stats-row">
+        <div class="degree-card">
+          <h4>B.Tech in Electronics &amp; Instrumentation Engineering</h4>
+          <p>Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)</p>
+          <div class="degree-meta">
             <span>PERIOD: <strong>2023 — 2027</strong></span>
-            <span>STATUS: <strong>Pursuing 7th Sem</strong></span>
+            <span>STATUS: <strong>7th Semester</strong></span>
             <span>CGPA: <strong>7.52</strong></span>
           </div>
         </div>
 
-        <div class="cert-item-list">
-          <div class="cert-item-row">
-            <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-rows">
+          <div class="cert-row">
+            <div class="cert-badge-icon"><i class="fa-solid fa-certificate"></i></div>
             <div class="cert-info">
               <h5>Coursera Certification in Google Data Analytics</h5>
-              <p>Foundations of data cleaning, analysis, SQL, visualization, and statistical modeling.</p>
+              <p>Data cleaning, analysis, SQL, visualization, and statistical modeling.</p>
             </div>
           </div>
 
-          <div class="cert-item-row">
-            <div class="cert-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="cert-row">
+            <div class="cert-badge-icon"><i class="fa-solid fa-code"></i></div>
             <div class="cert-info">
-              <h5>NPTEL Certification in The Joy of Computing with Python (Elite) &bull; 2025</h5>
-              <p>Advanced algorithmic problem solving, computational logic, and scripting in Python.</p>
+              <h5>NPTEL Certification in The Joy of Computing with Python (Elite) • 2025</h5>
+              <p>Algorithmic problem solving and computational programming in Python.</p>
             </div>
           </div>
 
-          <div class="cert-item-row">
-            <div class="cert-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div class="cert-row">
+            <div class="cert-badge-icon"><i class="fa-solid fa-book-open"></i></div>
             <div class="cert-info">
-              <h5>ICAMSTA-2025 Research Presentation &bull; Osmania University</h5>
-              <p>Presented peer-reviewed research on SP-GNN sensor fault detection.</p>
+              <h5>ICAMSTA-2025 Research Presentation • Osmania University</h5>
+              <p>Peer-reviewed presentation on SP-GNN sensor fault detection.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right: Competitions & Achievements -->
-      <div class="achieve-card">
-        <h3 class="card-inner-heading">
-          <i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Honors &amp; Practical Workshops
-        </h3>
+      <!-- Honors & Hackathons -->
+      <div class="academic-panel">
+        <h3 class="panel-title"><i class="fa-solid fa-trophy" style="color:var(--accent-amber);"></i> Competitions &amp; Practical Workshops</h3>
 
-        <div class="cert-item-list">
-          <div class="cert-item-row">
-            <div class="cert-icon" style="background:var(--gold-subtle); color:var(--gold);"><i class="fa-solid fa-trophy"></i></div>
+        <div class="cert-rows">
+          <div class="cert-row">
+            <div class="cert-badge-icon amber"><i class="fa-solid fa-trophy"></i></div>
             <div class="cert-info">
               <h5>1st Prize – Patent Summit Competition</h5>
               <p><em>Passive Alcohol Detection System for Vehicle Safety</em>. National Workshop on Patent Analytics and Filing Framework, VNR VJIET.</p>
             </div>
           </div>
 
-          <div class="cert-item-row">
-            <div class="cert-icon" style="background:var(--purple-subtle); color:var(--purple);"><i class="fa-solid fa-stopwatch"></i></div>
+          <div class="cert-row">
+            <div class="cert-badge-icon" style="background:rgba(168,85,247,0.12); color:var(--accent-purple);"><i class="fa-solid fa-stopwatch"></i></div>
             <div class="cert-info">
               <h5>24-Hour INNO-VATHON 3.0 Hackathon Participant</h5>
-              <p>Organized by the Department of EIE, VNR VJIET. Developed innovative hardware-software integrated prototypes under a continuous 24-hour sprint.</p>
+              <p>Organized by the Department of EIE, VNR VJIET. Developed hardware-software integrated prototypes under a continuous 24-hour sprint.</p>
             </div>
           </div>
 
-          <div class="cert-item-row">
-            <div class="cert-icon" style="background:var(--emerald-subtle); color:var(--emerald);"><i class="fa-solid fa-microchip"></i></div>
+          <div class="cert-row">
+            <div class="cert-badge-icon" style="background:rgba(16,185,129,0.12); color:var(--accent-green);"><i class="fa-solid fa-microchip"></i></div>
             <div class="cert-info">
               <h5>Four-Day Hands-on Embedded Systems Workshop</h5>
-              <p>Department of EIE, VNR VJIET. Practical laboratory exposure to microcontrollers, sensor interfacing, embedded firmware, and hardware-software validation.</p>
+              <p>Department of EIE, VNR VJIET. Laboratory exposure to microcontrollers, sensor interfacing, embedded programming, and integration.</p>
             </div>
           </div>
         </div>
@@ -843,78 +695,78 @@
   </section>
 
   <!-- ==========================================================================
-       CONTACT & DIRECT CONNECT SECTION
+       CONTACT SECTION
        ========================================================================== -->
-  <section class="section-container" id="contact">
-    <div class="section-head-center">
-      <div class="section-tagline"><i class="fa-solid fa-envelope"></i> Get In Touch</div>
-      <h2 class="section-heading-title">Let's Connect &amp; Collaborate</h2>
-      <p class="section-subtext">Open for SDE, Full-Stack, and Embedded Systems engineering roles, internships, and technical innovation.</p>
+  <section class="layout-container" id="contact">
+    <div class="section-head">
+      <span class="section-tag">// 07. GET IN TOUCH</span>
+      <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+      <p class="section-desc">Open for SDE, Full-Stack, and Embedded Systems engineering roles, internships, and technical development.</p>
     </div>
 
-    <div class="contact-grid-wrapper">
-      <!-- Contact Info Channels -->
-      <div class="contact-info-panel">
-        <a href="mailto:rishithreddyc45@gmail.com" class="contact-channel-card">
-          <div class="contact-channel-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div class="contact-channel-details">
+    <div class="contact-grid">
+      <!-- Contact Cards -->
+      <div class="contact-channels">
+        <a href="mailto:rishithreddyc45@gmail.com" class="channel-card">
+          <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="channel-text">
             <h4>Email Address</h4>
             <p>rishithreddyc45@gmail.com</p>
           </div>
         </a>
 
-        <a href="tel:+919494105486" class="contact-channel-card">
-          <div class="contact-channel-icon" style="color:var(--gold); background:rgba(245,158,11,0.12);"><i class="fa-solid fa-phone"></i></div>
-          <div class="contact-channel-details">
+        <a href="tel:+919494105486" class="channel-card">
+          <div class="channel-icon" style="color:var(--accent-amber); background:rgba(245,158,11,0.1);"><i class="fa-solid fa-phone"></i></div>
+          <div class="channel-text">
             <h4>Direct Phone / WhatsApp</h4>
             <p>+91 9494105486</p>
           </div>
         </a>
 
-        <a href="https://github.com/rishithreddy46/" target="_blank" class="contact-channel-card">
-          <div class="contact-channel-icon" style="color:var(--cyan); background:var(--cyan-subtle);"><i class="fa-brands fa-github"></i></div>
-          <div class="contact-channel-details">
+        <a href="https://github.com/rishithreddy46/" target="_blank" class="channel-card">
+          <div class="channel-icon"><i class="fa-brands fa-github"></i></div>
+          <div class="channel-text">
             <h4>GitHub Profile</h4>
             <p>github.com/rishithreddy46</p>
           </div>
         </a>
 
-        <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" class="contact-channel-card">
-          <div class="contact-channel-icon" style="color:var(--purple); background:var(--purple-subtle);"><i class="fa-brands fa-linkedin"></i></div>
-          <div class="contact-channel-details">
+        <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" class="channel-card">
+          <div class="channel-icon" style="color:var(--accent-purple); background:rgba(168,85,247,0.1);"><i class="fa-brands fa-linkedin"></i></div>
+          <div class="channel-text">
             <h4>LinkedIn Profile</h4>
             <p>linkedin.com/in/rishith-reddy-9aa6902a0</p>
           </div>
         </a>
 
-        <div class="contact-channel-card">
-          <div class="contact-channel-icon" style="color:var(--emerald); background:var(--emerald-subtle);"><i class="fa-solid fa-location-dot"></i></div>
-          <div class="contact-channel-details">
+        <div class="channel-card">
+          <div class="channel-icon" style="color:var(--accent-green); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="channel-text">
             <h4>Location</h4>
             <p>Hyderabad, Telangana, India &bull; Open to NCR / Pan-India Relocation</p>
           </div>
         </div>
       </div>
 
-      <!-- Contact Message Form -->
-      <form id="portfolio-contact-form" class="contact-form-card">
-        <h3 style="font-family:var(--font-heading); font-size:1.35rem; color:#fff; font-weight:800; margin-bottom: 1.25rem;">
-          <i class="fa-solid fa-paper-plane" style="color:var(--cyan);"></i> Send a Direct Dispatch
+      <!-- Fast Contact Form -->
+      <form class="contact-form" id="contact-form">
+        <h3 style="font-family:var(--font-heading); font-size:1.2rem; color:#fff; font-weight:700; margin-bottom:1.1rem;">
+          <i class="fa-solid fa-paper-plane" style="color:var(--accent-cyan);"></i> Send a Direct Dispatch
         </h3>
 
-        <div class="form-group-field">
-          <label class="form-label" for="contact-name">Your Full Name</label>
-          <input type="text" id="contact-name" class="form-input-control" placeholder="e.g. Recruiter / Engineering Manager" required>
+        <div class="form-field">
+          <label class="form-label" for="form-name">Your Full Name</label>
+          <input type="text" id="form-name" class="form-input" placeholder="e.g. Recruiter / Engineering Lead" required>
         </div>
 
-        <div class="form-group-field">
-          <label class="form-label" for="contact-email">Your Work Email</label>
-          <input type="email" id="contact-email" class="form-input-control" placeholder="e.g. talent@company.com" required>
+        <div class="form-field">
+          <label class="form-label" for="form-email">Your Work Email</label>
+          <input type="email" id="form-email" class="form-input" placeholder="e.g. talent@company.com" required>
         </div>
 
-        <div class="form-group-field">
-          <label class="form-label" for="contact-msg">Message / Opportunity Scope</label>
-          <textarea id="contact-msg" class="form-input-control" placeholder="Tell me about your role, project requirements, or timeline..." required></textarea>
+        <div class="form-field">
+          <label class="form-label" for="form-msg">Message / Opportunity Scope</label>
+          <textarea id="form-msg" class="form-input" placeholder="Tell me about your role or project scope..." required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;">
@@ -925,60 +777,54 @@
   </section>
 
   <!-- ==========================================================================
-       CASE STUDY DEEP DIVE MODAL
+       CASE STUDY DETAIL MODAL
        ========================================================================== -->
-  <div id="case-study-modal" class="modal-overlay">
-    <div class="modal-content-window">
-      <div class="modal-header-bar">
-        <h3 id="case-modal-title"><i class="fa-solid fa-microchip" style="color:var(--cyan);"></i> Case Study Breakdown</h3>
-        <button id="btn-close-case-modal" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+  <div class="modal-overlay" id="modal-case">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="modal-case-title">Case Study Details</h3>
+        <button class="modal-close" id="btn-close-case"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <div id="case-modal-body" class="modal-body-scroll">
-        <!-- Injected via JavaScript -->
-      </div>
+      <div class="modal-body" id="modal-case-body"></div>
     </div>
   </div>
 
   <!-- ==========================================================================
        RESUME VIEWER MODAL
        ========================================================================== -->
-  <div id="resume-modal" class="modal-overlay">
-    <div class="modal-content-window">
-      <div class="modal-header-bar">
-        <h3><i class="fa-solid fa-file-pdf" style="color:var(--gold);"></i> Chiluka Rishith Reddy &mdash; Curriculum Vitae</h3>
+  <div class="modal-overlay" id="modal-resume">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-pdf" style="color:var(--accent-amber);"></i> Chiluka Rishith Reddy — Resume</h3>
         <div style="display:flex; align-items:center; gap:0.75rem;">
-          <a href="resume.pdf" download="Chiluka_Rishith_Reddy_Resume.pdf" class="btn btn-primary" style="padding:0.35rem 0.9rem; font-size:12px;">
+          <a href="resume.pdf" download="Chiluka_Rishith_Reddy_Resume.pdf" class="btn btn-primary" style="padding:0.3rem 0.75rem; font-size:0.78rem;">
             <i class="fa-solid fa-download"></i> Download PDF
           </a>
-          <button id="btn-close-resume-modal" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+          <button class="modal-close" id="btn-close-resume"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
-      <div class="resume-iframe-container">
-        <iframe src="resume.pdf#toolbar=1" title="Resume PDF"></iframe>
-      </div>
+      <iframe src="resume.pdf#toolbar=1" class="resume-frame" title="Resume PDF"></iframe>
     </div>
   </div>
 
   <!-- ==========================================================================
-       FOOTER
+       FAST MINIMAL FOOTER
        ========================================================================== -->
-  <footer class="footer-wrapper">
-    <div class="footer-inner-grid">
-      <div class="footer-social-links">
-        <a href="https://github.com/rishithreddy46/" target="_blank" class="social-circle-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" class="social-circle-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="mailto:rishithreddyc45@gmail.com" class="social-circle-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="tel:+919494105486" class="social-circle-btn" title="Phone"><i class="fa-solid fa-phone"></i></a>
+  <footer class="dev-footer">
+    <div class="footer-inner">
+      <div class="footer-text">
+        &copy; 2026 <strong>Chiluka Rishith Reddy</strong> &bull; B.Tech EIE @ VNR VJIET &bull; Deployed via <span style="color:var(--accent-cyan);">GitHub Pages at rishith.me</span>
       </div>
-
-      <p class="footer-copy-text">
-        &copy; 2026 <strong>Chiluka Rishith Reddy</strong>. Built with precision, hardware-software synergy, and clean code.<br>
-        B.Tech EIE &bull; VNR VJIET &bull; Deployed via <span style="color:var(--cyan);">GitHub Pages at rishith.me</span>
-      </p>
+      <div class="footer-links">
+        <a href="https://github.com/rishithreddy46/" target="_blank" class="footer-icon-link"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" class="footer-icon-link"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:rishithreddyc45@gmail.com" class="footer-icon-link"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:+919494105486" class="footer-icon-link"><i class="fa-solid fa-phone"></i></a>
+      </div>
     </div>
   </footer>
 
-  <!-- Main JavaScript Engine -->
-  <script src="js/script.js"></script>
+  <!-- DevPortfolio Script Engine with Cache-Buster -->
+  <script src="js/script.js?v=3.1"></script>
 </body>
 </html>
