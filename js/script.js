@@ -1,150 +1,319 @@
 /**
- * DEVPORTFOLIO & TERMINAL HYBRID ENGINE
- * Fast, lightweight interactive logic for Chiluka Rishith Reddy
+ * SIGNAL LAB — Engineering, Visualized
+ * Application Engine for Chiluka Rishith Reddy
+ * Features:
+ * - Real-Time Oscilloscope Waveform Simulation
+ * - Formspree Form Dispatch with End-to-End Feedback
+ * - Keyboard-Accessible Engineering Console
+ * - Editorial Case Study Detail Modals
+ * - Active ScrollSpy Navigation
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTypewriter();
-  initTerminal();
-  initProjectFilter();
-  initCaseModals();
-  initResumeModal();
-  initContactForm();
-  initMobileNav();
+  initHeroOscilloscope();
+  initNavigationScrollSpy();
+  initMobileNavigation();
+  initContactFormspree();
+  initEngineeringConsole();
+  initEditorialCaseStudies();
 });
 
 // ==========================================================================
-// 1. TYPEWRITER EFFECT
+// 1. HERO OSCILLOSCOPE WAVEFORM SIMULATION
 // ==========================================================================
-function initTypewriter() {
-  const el = document.getElementById('typing-text');
-  if (!el) return;
+function initHeroOscilloscope() {
+  const canvas = document.getElementById('hero-scope-canvas');
+  if (!canvas) return;
 
-  const roles = [
-    'Embedded Systems Innovator',
-    'STM32 Firmware Developer',
-    'Full-Stack Software Developer',
-    'SP-GNN ML Researcher',
-    'Signal Processing & DAQ Specialist'
-  ];
-
-  let roleIdx = 0;
-  let charIdx = 0;
-  let isDeleting = false;
-
-  function tick() {
-    const current = roles[roleIdx];
-    if (isDeleting) {
-      el.textContent = current.substring(0, charIdx - 1);
-      charIdx--;
-    } else {
-      el.textContent = current.substring(0, charIdx + 1);
-      charIdx++;
-    }
-
-    let delay = isDeleting ? 30 : 65;
-
-    if (!isDeleting && charIdx === current.length) {
-      delay = 1800;
-      isDeleting = true;
-    } else if (isDeleting && charIdx === 0) {
-      isDeleting = false;
-      roleIdx = (roleIdx + 1) % roles.length;
-      delay = 350;
-    }
-
-    setTimeout(tick, delay);
+  // Respect reduced-motion preferences
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = canvas.parentElement.clientHeight;
+    ctx.fillStyle = '#060A10';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#48DDE8';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+    ctx.stroke();
+    return;
   }
-  tick();
+
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = canvas.parentElement.clientWidth);
+  let height = (canvas.height = canvas.parentElement.clientHeight);
+
+  window.addEventListener('resize', () => {
+    if (!canvas.parentElement) return;
+    width = canvas.width = canvas.parentElement.clientWidth;
+    height = canvas.height = canvas.parentElement.clientHeight;
+  });
+
+  const buffer = new Array(width).fill(height / 2);
+  let t = 0;
+
+  function getPhysiologicalPPG(timeVal) {
+    // 1.25 Hz pulse rate (~75 bpm)
+    const phase = (timeVal * 1.25 * Math.PI * 2) % (Math.PI * 2);
+    // Systolic wave + dicrotic notch
+    const systolic = Math.exp(-Math.pow(phase - 1.1, 2) / 0.18) * (height * 0.38);
+    const dicrotic = Math.exp(-Math.pow(phase - 2.3, 2) / 0.38) * (height * 0.16);
+    return systolic + dicrotic;
+  }
+
+  function renderScope() {
+    t += 0.016;
+
+    // Shift buffer and push new sample
+    buffer.shift();
+    const ppgSample = getPhysiologicalPPG(t);
+    const yCoord = (height * 0.65) - ppgSample;
+    buffer.push(yCoord);
+
+    // Dark grid background
+    ctx.fillStyle = '#060A10';
+    ctx.fillRect(0, 0, width, height);
+
+    // Oscilloscope grid lines
+    ctx.strokeStyle = 'rgba(154, 169, 186, 0.07)';
+    ctx.lineWidth = 1;
+    const gridStep = 24;
+    for (let x = 0; x < width; x += gridStep) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = 0; y < height; y += gridStep) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    // Baseline reference
+    ctx.strokeStyle = 'rgba(72, 221, 232, 0.15)';
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(0, height * 0.65);
+    ctx.lineTo(width, height * 0.65);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Signal trace
+    ctx.beginPath();
+    ctx.moveTo(0, buffer[0]);
+    for (let i = 1; i < buffer.length; i++) {
+      ctx.lineTo(i, buffer[i]);
+    }
+    ctx.strokeStyle = '#48DDE8';
+    ctx.lineWidth = 2;
+    ctx.shadowColor = '#48DDE8';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(renderScope);
+  }
+  renderScope();
 }
 
 // ==========================================================================
-// 2. INTERACTIVE TERMINAL
+// 2. ACTIVE NAVIGATION SCROLLSPY
 // ==========================================================================
-function initTerminal() {
-  const input = document.getElementById('term-input');
-  const output = document.getElementById('term-out');
-  const quickBtns = document.querySelectorAll('.quick-cmd-btn');
+function initNavigationScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-anchor');
+  if (!sections.length || !navLinks.length) return;
+
+  function onScroll() {
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id = sec.getAttribute('id');
+
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// ==========================================================================
+// 3. MOBILE MENU
+// ==========================================================================
+function initMobileNavigation() {
+  const btn = document.getElementById('mobile-toggle-btn');
+  const menu = document.getElementById('nav-links');
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('open-mobile');
+  });
+
+  const links = menu.querySelectorAll('a');
+  links.forEach(l => {
+    l.addEventListener('click', () => {
+      menu.classList.remove('open-mobile');
+    });
+  });
+}
+
+// ==========================================================================
+// 4. FORMSPREE CONTACT FORM DISPATCH
+// ==========================================================================
+function initContactFormspree() {
+  const form = document.getElementById('signallab-contact-form');
+  const feedback = document.getElementById('form-feedback-status');
+  const submitBtn = document.getElementById('btn-submit-form');
+  if (!form || !feedback || !submitBtn) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const inquiry = document.getElementById('contact-inquiry').value;
+    const msg = document.getElementById('contact-message').value.trim();
+
+    if (!name || !email || !msg) {
+      feedback.textContent = 'Please complete all required fields.';
+      feedback.className = 'form-status-msg error';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Transmitting Dispatch...';
+    feedback.className = 'form-status-msg';
+    feedback.style.display = 'none';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          inquiry_type: inquiry,
+          message: msg
+        })
+      });
+
+      if (response.ok) {
+        feedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message transmitted successfully! Thank you for reaching out. I will respond to your inquiry shortly.';
+        feedback.className = 'form-status-msg success';
+        form.reset();
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Submission failed');
+      }
+    } catch (err) {
+      // Graceful mailto fallback if endpoint is pending verification
+      feedback.innerHTML = `Notice: Direct API dispatch encountered a network delay. Opening your email client to send directly to <strong>rishithreddyc45@gmail.com</strong>...`;
+      feedback.className = 'form-status-msg error';
+
+      const subject = encodeURIComponent(`[${inquiry}] Portfolio Inquiry from ${name}`);
+      const body = encodeURIComponent(`Hi Rishith,\n\n${msg}\n\nFrom: ${name} (${email})`);
+      window.location.href = `mailto:rishithreddyc45@gmail.com?subject=${subject}&body=${body}`;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+    }
+  });
+}
+
+// ==========================================================================
+// 5. INTERACTIVE ENGINEERING CONSOLE
+// ==========================================================================
+function initEngineeringConsole() {
+  const input = document.getElementById('console-input');
+  const output = document.getElementById('console-output');
+  const chips = document.querySelectorAll('.c-chip-btn');
   if (!input || !output) return;
 
   const history = [];
   let histIdx = -1;
 
   const COMMANDS = {
-    help: `Available commands:
-  - <b style="color:var(--accent-cyan);">about</b>       : Academic status, discipline &amp; career vision
-  - <b style="color:var(--accent-cyan);">skills</b>      : Technical competencies &amp; engineering toolset
-  - <b style="color:var(--accent-cyan);">projects</b>    : 4 flagship engineering case studies
-  - <b style="color:var(--accent-cyan);">stm32</b>       : STM32 PPG Atrial Fibrillation detection pipeline
-  - <b style="color:var(--accent-cyan);">spgnn</b>       : ICAMSTA-2025 Physics-GNN research (0.028 error)
-  - <b style="color:var(--accent-cyan);">patent</b>      : 1st Prize Patent Summit automotive safety system
-  - <b style="color:var(--accent-cyan);">research</b>    : Osmania University ICAMSTA-2025 conference paper
-  - <b style="color:var(--accent-cyan);">resume</b>      : Launch Curriculum Vitae viewer
-  - <b style="color:var(--accent-cyan);">contact</b>     : Direct phone, email &amp; LinkedIn coordinates
-  - <b style="color:var(--accent-cyan);">clear</b>       : Clear console buffer`,
+    help: `Available engineering commands:
+  - <b style="color:var(--signal-cyan);">about</b>       : Academic status, discipline &amp; career vision
+  - <b style="color:var(--signal-cyan);">skills</b>      : Summary of verified instrumentation &amp; programming skills
+  - <b style="color:var(--signal-cyan);">projects</b>    : 4 flagship engineering case studies
+  - <b style="color:var(--signal-cyan);">research</b>    : ICAMSTA-2025 SP-GNN conference paper (0.028 MSE)
+  - <b style="color:var(--signal-cyan);">education</b>   : B.Tech EIE at VNR VJIET (CGPA: 7.52)
+  - <b style="color:var(--signal-cyan);">resume</b>      : Download official verified resume PDF
+  - <b style="color:var(--signal-cyan);">contact</b>     : Direct communication coordinates
+  - <b style="color:var(--signal-cyan);">clear</b>       : Clear console buffer`,
 
     about: `<b style="color:#fff;">Chiluka Rishith Reddy</b>
 • Discipline: B.Tech in Electronics &amp; Instrumentation Engineering (EIE)
-• Institution: VNR Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)
-• Status: Pursuing 7th Semester &bull; CGPA: 7.52 &bull; Batch 2023–2027
-• Objective: Seeking to apply knowledge of sensors, data acquisition, electronics, and signal processing to support efficient industrial operations, equipment monitoring, process reliability, and continuous improvement.`,
+• Institution: Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering &amp; Technology (VNR VJIET)
+• Current Status: Pursuing 7th Semester &bull; CGPA: 7.52 &bull; Batch 2023–2027
+• Objective: Seeking to apply knowledge of C programming, microcontrollers, signal processing, and real-time data acquisition to contribute to embedded product development, testing, and system validation.`,
 
     skills: `================== SKILLS MATRIX ==================
-<b style="color:var(--accent-green);">[Embedded Systems]</b>    : STM32, Arduino, ESP32, Microcontrollers, GPIO, ADC, DMA
-<b style="color:var(--accent-cyan);">[Instrumentation]</b>     : Sensors, Sensor Interfacing, Data Acquisition (DAQ), Signal Conditioning
-<b style="color:var(--accent-purple);">[Control &amp; Signals]</b>   : Control Systems, Digital Filtering, FFT, HR/HRV Analysis
-<b style="color:var(--accent-blue);">[Programming]</b>         : C, Embedded C, Python (NPTEL Elite Certification)
-<b style="color:var(--accent-amber);">[Electronics]</b>         : Analog &amp; Digital Circuits, Circuit Fundamentals, Op-Amps
-<b style="color:var(--accent-cyan);">[Engineering Tools]</b>   : MATLAB, LabVIEW, STM32CubeIDE, Arduino IDE, Git`,
+<b style="color:var(--signal-cyan);">[Programming]</b>         : C, Embedded C, Python (NPTEL Elite Certification)
+<b style="color:var(--inst-amber);">[Embedded Systems]</b>    : STM32, Arduino, ESP32, Microcontrollers, GPIO, ADC
+<b style="color:var(--signal-cyan);">[Sensors &amp; DAQ]</b>       : Sensor Interfacing, Data Acquisition, Signal Conditioning, UWB, PPG
+<b style="color:var(--inst-amber);">[Signal Processing]</b>   : Digital Filtering, FFT/Fourier Transform, HR/HRV Analysis
+<b style="color:var(--signal-cyan);">[Tools &amp; Platforms]</b>   : STM32CubeIDE, Arduino IDE, MATLAB, LabVIEW`,
 
-    projects: `================ CASE STUDIES ================
-1. <b style="color:var(--accent-cyan);">PPG-Based AF Detection on STM32</b> (Edge Signal Processing &amp; Arrhythmia Classification)
-2. <b style="color:var(--accent-purple);">Hybrid SP-GNN Sensor Fault Detector</b> (ICAMSTA-2025 Paper, 0.028 Recon Error)
-3. <b style="color:var(--accent-green);">Embedded EV Monitoring System</b> (Arduino DAQ, Real-Time Telemetry Dashboard)
-4. <b style="color:var(--accent-amber);">Passive Alcohol Detection System</b> (1st Prize Winner, Patent Summit Competition)`,
+    projects: `================ SELECTED PROJECTS ================
+1. <b style="color:var(--signal-cyan);">PPG-Based AF Detection on STM32</b> (Status: In Progress)
+   Optical PPG DAQ &rarr; Digital Preprocessing &rarr; HRV Extraction &rarr; Patient-Disjoint Validation.
+2. <b style="color:var(--signal-cyan);">Hybrid SP-GNN Sensor Fault Detector</b> (Status: Research Publication)
+   IBRL Dataset (54 sensors, ~2.3M readings) &rarr; 0.028 Mean Reconstruction Error.
+3. <b style="color:var(--signal-cyan);">Embedded EV Monitoring System</b> (Status: Hardware Prototype)
+   Arduino-based real-time multi-parameter telemetry dashboard.
+4. <b style="color:var(--inst-amber);">Passive Alcohol Detection System</b> (Status: 1st Prize Winner)
+   Non-intrusive automotive cabin safety &amp; ignition relay lockout.`,
 
-    stm32: `<b style="color:var(--accent-cyan);">PPG-Based AF Detection on STM32 — Inter-Patient Validation</b>
-• Target: ARM Cortex-M (STM32) via STM32CubeIDE
-• Pipeline: Optical PPG DAQ &rarr; DMA Buffer &rarr; 0.5–5 Hz Digital Bandpass &rarr; Peak Detection &rarr; HR/HRV Analysis
-• Validation: Patient-disjoint validation for generalisation to unseen subjects.`,
-
-    spgnn: `<b style="color:var(--accent-purple);">SP-GNN Sensor Fault Detection &amp; Uncertainty Quantification</b>
+    research: `<b style="color:var(--signal-cyan);">ICAMSTA-2025 International Conference Presentation</b>
+• Paper Title: "Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN) for Robust Fault Detection and Uncertainty Quantification in Distributed Sensor Systems"
+• Venue: Osmania University, Hyderabad
 • Dataset: Intel Berkeley Research Lab (54 sensors, ~2.3 Million readings)
-• Formulation: PyTorch Geometric + Statistical Physics Diffusion Message Passing
-• Results: Mean reconstruction error: <b style="color:var(--accent-green);">0.028</b> (Standard GCN: 0.072, Physics-GNN: 0.049)
-• Paper: Presented at ICAMSTA-2025, Osmania University.`,
+• Results: Mean reconstruction error of <b style="color:var(--signal-green);">0.028</b> (Standard GCN: 0.072, Physics-GNN: 0.049).`,
 
-    patent: `<b style="color:var(--accent-amber);">Patent Summit Competition — 1st Prize Winner</b>
-• Title: Passive Alcohol Detection System for Vehicle Safety
-• Host: National Workshop on Patent Analytics and Filing Framework, VNR VJIET
-• Mechanism: Non-intrusive ambient gas sensing array + ignition interlock logic.`,
+    education: `<b style="color:#fff;">Academic Background:</b>
+• B.Tech in Electronics &amp; Instrumentation Engineering
+• VNR VJIET (2023 — 2027) &bull; Pursuing 7th Semester &bull; CGPA: 7.52
+• Certifications: Coursera Google Data Analytics &bull; NPTEL Python Elite (2025).`,
 
-    research: `<b style="color:var(--accent-purple);">ICAMSTA-2025 International Conference Presentation</b>
-Presented: "Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN) for Robust Fault Detection and Uncertainty Quantification in Distributed Sensor Systems"
-Venue: Osmania University, Hyderabad.`,
+    resume: `Initiating download of official verified resume: Chiluka_Rishith_Reddy_Resume.pdf`,
 
-    resume: `Opening Curriculum Vitae modal viewer...`,
-
-    contact: `<b style="color:#fff;">Direct Communication Channels:</b>
-• Email   : <a href="mailto:rishithreddyc45@gmail.com" style="color:var(--accent-cyan);">rishithreddyc45@gmail.com</a>
-• Phone   : <a href="tel:+919494105486" style="color:var(--accent-amber);">+91 9494105486</a>
-• GitHub  : <a href="https://github.com/rishithreddy46/" target="_blank" style="color:var(--accent-cyan);">github.com/rishithreddy46</a>
-• LinkedIn: <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" style="color:var(--accent-purple);">linkedin.com/in/rishith-reddy-9aa6902a0</a>
+    contact: `<b style="color:#fff;">Direct Communication Coordinates:</b>
+• Email   : <a href="mailto:rishithreddyc45@gmail.com" style="color:var(--signal-cyan);">rishithreddyc45@gmail.com</a>
+• Phone   : <a href="tel:+919494105486" style="color:var(--inst-amber);">+91 9494105486</a>
+• GitHub  : <a href="https://github.com/rishithreddy46/" target="_blank" style="color:var(--signal-cyan);">github.com/rishithreddy46</a>
+• LinkedIn: <a href="https://www.linkedin.com/in/rishith-reddy-9aa6902a0/" target="_blank" style="color:var(--signal-cyan);">linkedin.com/in/rishith-reddy-9aa6902a0</a>
 • Location: Hyderabad, Telangana, India (Open to Relocation)`
   };
 
-  function exec(cmd) {
-    const raw = cmd.trim();
-    const clean = raw.toLowerCase();
+  function execute(rawCmd) {
+    const trimmed = rawCmd.trim();
+    const clean = trimmed.toLowerCase();
     if (!clean) return;
 
-    history.push(raw);
+    history.push(trimmed);
     histIdx = history.length;
 
-    const line = document.createElement('div');
-    line.className = 'term-out-line';
-    line.innerHTML = `<span class="term-prompt-green">rishith@telemetry:~$</span> ${escapeHTML(raw)}`;
-    output.appendChild(line);
+    const cmdEcho = document.createElement('div');
+    cmdEcho.className = 'console-line-out';
+    cmdEcho.innerHTML = `<span class="console-prompt-label">crr@signallab:~$</span> ${escapeHTML(trimmed)}`;
+    output.appendChild(cmdEcho);
 
     if (clean === 'clear') {
       output.innerHTML = '';
@@ -152,18 +321,17 @@ Venue: Osmania University, Hyderabad.`,
     }
 
     if (clean === 'resume') {
-      const modal = document.getElementById('modal-resume');
-      if (modal) modal.classList.add('active');
+      window.open('Chiluka_Rishith_Reddy_Resume.pdf', '_blank');
     }
 
     const res = COMMANDS[clean];
     const outDiv = document.createElement('div');
-    outDiv.className = 'term-out-line';
+    outDiv.className = 'console-line-out';
 
     if (res) {
       outDiv.innerHTML = res.replace(/\n/g, '<br>');
     } else {
-      outDiv.innerHTML = `<span style="color:#ef4444;">command not found: ${escapeHTML(clean)}.</span> Type <b style="color:var(--accent-amber);">help</b> for commands.`;
+      outDiv.innerHTML = `<span style="color:var(--signal-rose);">command not found: ${escapeHTML(clean)}.</span> Type <b style="color:var(--inst-amber);">help</b> for commands.`;
     }
 
     output.appendChild(outDiv);
@@ -180,7 +348,7 @@ Venue: Osmania University, Hyderabad.`,
     if (e.key === 'Enter') {
       const val = input.value;
       input.value = '';
-      exec(val);
+      execute(val);
     } else if (e.key === 'ArrowUp') {
       if (histIdx > 0) {
         histIdx--;
@@ -199,252 +367,208 @@ Venue: Osmania University, Hyderabad.`,
     }
   });
 
-  quickBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      exec(btn.getAttribute('data-cmd'));
-    });
-  });
-}
-
-// ==========================================================================
-// 3. PROJECT FILTERING
-// ==========================================================================
-function initProjectFilter() {
-  const chips = document.querySelectorAll('.filter-chip');
-  const cards = document.querySelectorAll('.project-card');
-
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      const filter = chip.getAttribute('data-filter');
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.includes(filter)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      execute(chip.getAttribute('data-cmd'));
     });
   });
 }
 
 // ==========================================================================
-// 4. CASE STUDY MODAL
+// 6. EDITORIAL CASE STUDY DETAIL MODALS
 // ==========================================================================
-function initCaseModals() {
-  const modal = document.getElementById('modal-case');
-  const title = document.getElementById('modal-case-title');
-  const body = document.getElementById('modal-case-body');
-  const closeBtn = document.getElementById('btn-close-case');
+function initEditorialCaseStudies() {
+  const modal = document.getElementById('case-study-modal');
+  const headline = document.getElementById('modal-headline');
+  const content = document.getElementById('modal-content-area');
+  const closeBtn = document.getElementById('btn-close-modal');
 
-  const DATA = {
+  const CASE_LIBRARY = {
     'stm32-af': {
-      title: 'PPG-Based Atrial Fibrillation (AF) Detection on STM32',
-      html: `
-        <h4 style="color:var(--accent-cyan); margin-bottom:8px;">1. Engineering Challenge</h4>
-        <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">
-          Traditional clinical Holter monitoring is invasive, while cloud-reliant wearables introduce network latency and battery depletion. Edge-based inference on microcontrollers faces severe memory constraints and morphological variance across unseen patients.
+      title: 'PPG-Based AF Detection on STM32 — Inter-Patient Validation',
+      body: `
+        <h4 class="modal-section-h4">1. Problem Statement &amp; Clinical Context</h4>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">
+          Atrial Fibrillation (AF) is characterized by irregular atrial electrical activity, often leading to heart failure or stroke. Clinical ECG Holter monitoring is cumbersome, while cloud-reliant wearable systems introduce latency, privacy concerns, and heavy battery discharge. Crucially, many existing ML approaches overfit to training subjects and experience severe performance drops when evaluated on unseen patients.
         </p>
 
-        <h4 style="color:var(--accent-cyan); margin-bottom:8px;">2. Firmware &amp; DSP Architecture</h4>
-        <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-family:var(--font-mono); font-size:13px; margin-bottom:16px;">
-          • <strong>Optical PPG DAQ</strong>: Continuous 100 Hz sampling into DMA ring buffer.<br>
-          • <strong>Bandpass Filter (0.5 – 5.0 Hz)</strong>: 2nd-order section IIR filter to eliminate baseline wander and high-frequency motion artifacts.<br>
-          • <strong>Peak Detection &amp; HRV</strong>: Real-time R-peak identification, computing RMSSD and SDNN metrics.<br>
-          • <strong>Patient-Disjoint Validation</strong>: Trained across strict patient splits to guarantee generalisation on unseen subjects.
+        <h4 class="modal-section-h4">2. Engineering Objectives</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.5rem; margin-bottom:1rem;">
+          <li>Acquire optical PPG pulses reliably at 100 Hz using ARM Cortex-M ADC with DMA circular buffering.</li>
+          <li>Implement digital bandpass filtering (0.5 – 5.0 Hz) to eliminate baseline wander and high-frequency motion artifacts.</li>
+          <li>Extract robust time-domain Heart Rate and HRV features (RMSSD, SDNN, pNN50).</li>
+          <li>Deploy lightweight classification with strict patient-disjoint validation to test generalization on unseen subjects.</li>
+        </ul>
+
+        <h4 class="modal-section-h4">3. System Architecture &amp; Firmware Pipeline</h4>
+        <div style="background:var(--bg-inset); border:1px solid var(--border-panel); border-radius:8px; padding:1rem; font-family:var(--font-mono); font-size:0.82rem; margin-bottom:1rem;">
+          [PPG Optical Sensor] &rarr; [ADC DMA Ring Buffer] &rarr; [2nd-Order IIR Bandpass] &rarr; [Peak Detection &amp; HRV Extraction] &rarr; [Lightweight Edge Classifier]
         </div>
 
-        <h4 style="color:var(--accent-cyan); margin-bottom:8px;">3. Embedded C Implementation Snippet</h4>
-        <pre class="code-block"><code>// STM32 ADC DMA Buffer &amp; IIR Filter Section
-#define FS 100
-float iir_filter(float raw) {
+        <h4 class="modal-section-h4">4. Key Implementation Details (Embedded C)</h4>
+        <pre class="modal-code-box"><code>// Digital Bandpass Filter (0.5 - 5.0 Hz Section @ 100 Hz Fs)
+float filter_ppg_sample(float raw_in) {
     static float x[3] = {0}, y[3] = {0};
-    x[0] = raw;
-    y[0] = 0.1245f*(x[0] - x[2]) - (-1.654f*y[1] + 0.751f*y[2]);
+    x[0] = raw_in;
+    // Direct Form II Biquad realization
+    y[0] = 0.1245f * (x[0] - x[2]) - (-1.654f * y[1] + 0.751f * y[2]);
     x[2] = x[1]; x[1] = x[0];
     y[2] = y[1]; y[1] = y[0];
     return y[0];
 }</code></pre>
+
+        <h4 class="modal-section-h4">5. Results, Limitations &amp; Future Work</h4>
+        <p style="color:var(--text-secondary); margin-bottom:0.5rem;">
+          <strong>Implemented Work:</strong> Signal acquisition firmware, digital filter implementation, and feature extraction pipeline on STM32CubeIDE with synthetic &amp; recorded pulse databases.
+        </p>
+        <p style="color:var(--text-secondary); margin-bottom:0.5rem;">
+          <strong>Verified Scope:</strong> Distinct from clinical certification—this work focuses on embedded hardware-software signal processing and patient-disjoint validation feasibility.
+        </p>
+        <p style="color:var(--text-secondary);">
+          <strong>Future Work (Planned):</strong> Optimization of integer fixed-point arithmetic on lower-power Cortex-M0 targets and extended multi-patient bench trials.
+        </p>
       `
     },
 
     'sp-gnn': {
-      title: 'Hybrid Statistical Physics-Informed Graph Neural Network (SP-GNN)',
-      html: `
-        <h4 style="color:var(--accent-purple); margin-bottom:8px;">1. Problem Formulation</h4>
-        <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">
-          Industrial sensor networks face harsh operational environments leading to sensor drift and erratic readings. Standard Graph Convolutional Networks ignore physical diffusion constraints and fail to quantify uncertainty in anomalous sensor readings.
+      title: 'Hybrid Statistical Physics-Informed GNN (SP-GNN)',
+      body: `
+        <h4 class="modal-section-h4">1. Problem Statement</h4>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">
+          Distributed sensor systems (environmental telemetry, industrial process monitoring, smart infrastructure) are susceptible to drift, transmission corruption, and hardware failures. Standard deep learning and Graph Convolutional Networks (GCNs) treat sensors as purely data-driven black boxes, ignoring physical laws (spatial heat diffusion, conservation of energy) and failing to quantify uncertainty in anomalous readings.
         </p>
 
-        <h4 style="color:var(--accent-purple); margin-bottom:8px;">2. Physical Modeling &amp; Architecture</h4>
-        <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-family:var(--font-mono); font-size:13px; margin-bottom:16px;">
-          • <strong>Graph Construction</strong>: 54 distributed sensors modeled as an adjacency graph with distance weights.<br>
-          • <strong>Physics Message-Passing</strong>: Constrained by thermodynamic and physical diffusion laws.<br>
-          • <strong>Dataset Scale</strong>: Evaluated on ~2.3 Million readings from the Intel Berkeley Research Lab dataset.<br>
-          • <strong>Uncertainty Quantification</strong>: Propagates Bayesian variance across graph edges.
-        </div>
+        <h4 class="modal-section-h4">2. Engineering Approach &amp; Physical Modeling</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.5rem; margin-bottom:1rem;">
+          <li><strong>Dataset:</strong> Intel Berkeley Research Lab (IBRL) dataset comprising 54 spatial sensors and approximately 2.3 million readings.</li>
+          <li><strong>Graph Relational Modeling:</strong> Sensors represented as graph nodes connected by physical spatial distance weights.</li>
+          <li><strong>Physics Message-Passing:</strong> Integrates thermal and physical diffusion equations into node message-passing steps.</li>
+          <li><strong>Graph-Laplacian Regularization:</strong> Enforces spatial smoothness constraints across adjacent physical sensors.</li>
+          <li><strong>Monte-Carlo Dropout:</strong> Performs uncertainty quantification during inference to distinguish genuine environmental events from sensor hardware failures.</li>
+        </ul>
 
-        <h4 style="color:var(--accent-purple); margin-bottom:8px;">3. Comparative Performance Benchmark</h4>
-        <table style="width:100%; border-collapse:collapse; margin-bottom:16px; font-family:var(--font-mono); font-size:13px;">
-          <tr style="border-bottom:1px solid var(--border-subtle); color:var(--accent-cyan);">
-            <th style="text-align:left; padding:6px 0;">Model</th>
-            <th style="text-align:left; padding:6px 0;">Mean Reconstruction Error</th>
-            <th style="text-align:left; padding:6px 0;">Improvement</th>
+        <h4 class="modal-section-h4">3. Quantitative Evaluation Results</h4>
+        <p style="color:var(--text-secondary); margin-bottom:0.75rem;">
+          Evaluation metric: <strong>Mean Reconstruction Error (MSE)</strong>. Lower error demonstrates that the model accurately models normal physical sensor relationships, enabling clear isolation of anomalies.
+        </p>
+        <table style="width:100%; border-collapse:collapse; margin-bottom:1rem; font-family:var(--font-mono); font-size:0.82rem;">
+          <tr style="border-bottom:1px solid var(--border-subtle); color:var(--signal-cyan);">
+            <th style="text-align:left; padding:8px 4px;">Model Framework</th>
+            <th style="text-align:left; padding:8px 4px;">Mean Reconstruction Error</th>
+            <th style="text-align:left; padding:8px 4px;">Performance Delta</th>
           </tr>
           <tr>
-            <td style="padding:6px 0;">Standard GCN</td>
-            <td style="padding:6px 0; color:#ef4444;">0.072</td>
-            <td style="padding:6px 0;">Baseline</td>
+            <td style="padding:6px 4px;">Standard GCN</td>
+            <td style="padding:6px 4px; color:#FB7185;">0.072</td>
+            <td style="padding:6px 4px;">Baseline</td>
           </tr>
           <tr>
-            <td style="padding:6px 0;">Physics-GNN</td>
-            <td style="padding:6px 0; color:var(--accent-amber);">0.049</td>
-            <td style="padding:6px 0;">+31.9%</td>
+            <td style="padding:6px 4px;">Physics-GNN</td>
+            <td style="padding:6px 4px; color:var(--inst-amber);">0.049</td>
+            <td style="padding:6px 4px;">+31.9% improvement</td>
           </tr>
-          <tr style="color:var(--accent-green); font-weight:700;">
-            <td style="padding:6px 0;">SP-GNN (Ours)</td>
-            <td style="padding:6px 0;">0.028</td>
-            <td style="padding:6px 0;">+61.1% vs GCN</td>
+          <tr style="color:var(--signal-green); font-weight:700;">
+            <td style="padding:6px 4px;">SP-GNN (Ours)</td>
+            <td style="padding:6px 4px;">0.028</td>
+            <td style="padding:6px 4px;">+61.1% improvement vs GCN</td>
           </tr>
         </table>
-        <p style="font-size:13px; color:var(--accent-purple);">Peer-reviewed &amp; presented at ICAMSTA-2025, Osmania University.</p>
+
+        <h4 class="modal-section-h4">4. Conference Presentation</h4>
+        <p style="color:var(--text-secondary);">
+          Presented at the <strong>ICAMSTA-2025 International Conference, Osmania University</strong>, Hyderabad. Recognized for bridging statistical physics principles with geometric deep learning in sensor systems.
+        </p>
       `
     },
 
     'ev-monitor': {
-      title: 'Embedded EV Monitoring System using Arduino',
-      html: `
-        <h4 style="color:var(--accent-green); margin-bottom:8px;">1. System Objectives</h4>
-        <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">
-          Real-time acquisition and monitoring of key EV operational metrics—battery pack voltage, current load, thermal slope, and vehicle speed—to provide dynamic driving range estimation.
+      title: 'Embedded EV Monitoring System Using Arduino',
+      body: `
+        <h4 class="modal-section-h4">1. Problem Statement &amp; Prototype Goals</h4>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">
+          Electric vehicles require continuous monitoring of safety-critical operational variables—battery pack State of Charge (SOC), terminal voltage, instantaneous current, pack temperature, and speed—to prevent thermal runaway and calculate remaining driving range.
         </p>
 
-        <h4 style="color:var(--accent-green); margin-bottom:8px;">2. Hardware &amp; Telemetry Pipeline</h4>
-        <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-family:var(--font-mono); font-size:13px; margin-bottom:16px;">
-          • <strong>Multi-Channel DAQ</strong>: Voltage divider network, current shunt sensor, and thermal thermistors.<br>
-          • <strong>Speed Odometry</strong>: Magnetic hall sensor interfaced via MCU external interrupts.<br>
-          • <strong>Serial Protocol</strong>: Calibrated UART telemetry transmitted to software dashboard.<br>
-          • <strong>State of Charge (SOC)</strong>: Real-time calculation feeding dynamic driving range estimation.
+        <h4 class="modal-section-h4">2. Hardware-Software Architecture</h4>
+        <div style="background:var(--bg-inset); border:1px solid var(--border-panel); border-radius:8px; padding:1rem; font-family:var(--font-mono); font-size:0.82rem; margin-bottom:1rem;">
+          [Sensors: Voltage Divider, Current Shunt, NTC Thermistor, Hall Effect] &rarr; [Arduino ATmega DAQ Firmware] &rarr; [UART Serial Telemetry] &rarr; [Software Dashboard]
         </div>
+
+        <h4 class="modal-section-h4">3. Verified Engineering Contributions</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.5rem; margin-bottom:1rem;">
+          <li>Interfaced multi-channel sensors with signal conditioning circuitry to measure battery pack voltage, load current, and thermal slope.</li>
+          <li>Implemented interrupt-driven wheel speed measurement using a magnetic Hall-effect sensor.</li>
+          <li>Formulated estimated driving-range monitoring combining real-time battery capacity with discharge current draw.</li>
+          <li>Developed a responsive software telemetry dashboard for real-time visualization.</li>
+        </ul>
+
+        <h4 class="modal-section-h4">4. Limitations &amp; Future Work</h4>
+        <p style="color:var(--text-secondary);">
+          <strong>Prototype Note:</strong> Validated on a laboratory embedded prototype bench without production automotive certification. Future work includes CAN bus (Controller Area Network) transceiver integration for industrial vehicle bus architectures.
+        </p>
       `
     },
 
     'alcohol-patent': {
       title: 'Passive Alcohol Detection System for Vehicle Safety',
-      html: `
-        <h4 style="color:var(--accent-amber); margin-bottom:8px;">1. Patent Summit 1st Prize Award</h4>
-        <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">
-          Awarded <strong>1st Prize</strong> at the <em>Patent Summit Competition: National Workshop on Patent Analytics and Filing Framework</em>, held at VNR VJIET.
+      body: `
+        <h4 class="modal-section-h4">1. Recognition: 1st Prize – Patent Summit Competition</h4>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">
+          Awarded <strong>1st Prize</strong> at the <em>Patent Summit Competition: National Workshop on Patent Analytics and Filing Framework</em>, held at <strong>VNR VJIET</strong>. Evaluated by patent attorneys and senior engineering faculty for novelty, commercial viability, and social safety impact.
         </p>
 
-        <h4 style="color:var(--accent-amber); margin-bottom:8px;">2. Innovation Architecture</h4>
-        <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-family:var(--font-mono); font-size:13px; margin-bottom:16px;">
-          • <strong>Passive Sampling</strong>: Non-intrusive sensor array situated in the steering column and cabin air stream.<br>
-          • <strong>Automatic Interlock</strong>: Triggered without requiring the driver to actively blow into a tube.<br>
-          • <strong>Starter Relay Cutoff</strong>: Prevents ignition start if ethanol levels exceed calibrated legal thresholds.
-        </div>
+        <h4 class="modal-section-h4">2. Engineering Innovation: Passive Sensing</h4>
+        <p style="color:var(--text-secondary); margin-bottom:1rem;">
+          Conventional breathalyzers require active driver compliance (blowing into a mouthpiece), which can be avoided, bypassed, or refused. This prototype implements continuous, passive ambient air sampling situated in the steering column/cabin air stream.
+        </p>
+
+        <h4 class="modal-section-h4">3. System Mechanism</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.5rem; margin-bottom:1rem;">
+          <li><strong>Gas Sensing:</strong> Calibrated ethanol sensor array positioned in vehicle cabin air currents.</li>
+          <li><strong>Comparator &amp; MCU Logic:</strong> Continuously converts sensor voltages and verifies against calibrated legal intoxication thresholds.</li>
+          <li><strong>Ignition Interlock:</strong> Actuates an electromechanical relay in the starter motor circuit, cutting ignition when intoxication is detected.</li>
+        </ul>
+
+        <h4 class="modal-section-h4">4. Patent Analytics Framework</h4>
+        <p style="color:var(--text-secondary);">
+          Structured prior-art search, patentability claims, and system block schematics formulated under the guidance of the National Workshop on Patent Analytics and Filing Framework.
+        </p>
       `
     }
   };
 
-  const openBtns = document.querySelectorAll('.btn-open-modal');
-  openBtns.forEach(btn => {
+  const triggers = document.querySelectorAll('.btn-case-study');
+  triggers.forEach(btn => {
     btn.addEventListener('click', () => {
-      const key = btn.getAttribute('data-modal');
-      const item = DATA[key];
+      const id = btn.getAttribute('data-project');
+      const item = CASE_LIBRARY[id];
       if (!item) return;
 
-      title.textContent = item.title;
-      body.innerHTML = item.html;
+      headline.innerHTML = `<i class="fa-solid fa-microchip" style="color:var(--signal-cyan);"></i> ${item.title}`;
+      content.innerHTML = item.body;
       modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   });
 
   if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  function closeModal() {
+    if (modal) {
       modal.classList.remove('active');
-    });
-  }
-
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
-  }
-}
-
-// ==========================================================================
-// 5. RESUME MODAL
-// ==========================================================================
-function initResumeModal() {
-  const modal = document.getElementById('modal-resume');
-  const topBtn = document.getElementById('btn-top-resume');
-  const heroBtn = document.getElementById('btn-hero-resume');
-  const closeBtn = document.getElementById('btn-close-resume');
-
-  function open() { if (modal) modal.classList.add('active'); }
-  function close() { if (modal) modal.classList.remove('active'); }
-
-  if (topBtn) topBtn.addEventListener('click', open);
-  if (heroBtn) heroBtn.addEventListener('click', open);
-  if (closeBtn) closeBtn.addEventListener('click', close);
-
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) close();
-    });
+      document.body.style.overflow = '';
+    }
   }
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      close();
-      const caseModal = document.getElementById('modal-case');
-      if (caseModal) caseModal.classList.remove('active');
-    }
-  });
-}
-
-// ==========================================================================
-// 6. CONTACT FORM
-// ==========================================================================
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('form-name').value;
-    const email = document.getElementById('form-email').value;
-    const msg = document.getElementById('form-msg').value;
-
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-    const body = encodeURIComponent(`Hi Rishith,\n\n${msg}\n\nFrom: ${name} (${email})`);
-
-    window.location.href = `mailto:rishithreddyc45@gmail.com?subject=${subject}&body=${body}`;
-    alert(`Thank you, ${name}! Your default email client will open with a pre-filled dispatch.`);
-    form.reset();
-  });
-}
-
-// ==========================================================================
-// 7. MOBILE NAVIGATION
-// ==========================================================================
-function initMobileNav() {
-  const btn = document.getElementById('btn-mobile-toggle');
-  const menu = document.getElementById('nav-menu');
-  if (!btn || !menu) return;
-
-  btn.addEventListener('click', () => {
-    menu.classList.toggle('show');
-  });
-
-  const links = menu.querySelectorAll('a');
-  links.forEach(l => {
-    l.addEventListener('click', () => {
-      menu.classList.remove('show');
-    });
+    if (e.key === 'Escape') closeModal();
   });
 }
